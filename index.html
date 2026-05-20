@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DarkFlix - Sua plataforma de streaming premium. Assista filmes e séries sem cadastro, com qualidade cinematográfica.">
+  <title>DarkFlix — Filmes & Séries</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="logo" id="logo-home">
+      <svg viewBox="0 0 160 45" width="145" height="40" class="logo-svg">
+        <defs>
+          <clipPath id="netflix-curve">
+            <path d="M 0 0 L 160 0 L 160 42 Q 80 34 0 42 Z" />
+          </clipPath>
+        </defs>
+        <g clip-path="url(#netflix-curve)">
+          <text x="6" y="38" font-family="'Bebas Neue', sans-serif" font-size="40" font-weight="900" letter-spacing="0.8" fill="#e50914">
+            DARKFLIX
+          </text>
+        </g>
+      </svg>
+    </div>
+    <nav class="nav" id="nav-menu">
+      <a href="#" class="nav-link active" data-page="home" id="nav-home">Início</a>
+      <a href="#" class="nav-link" data-page="movies" id="nav-movies">Filmes</a>
+      <a href="#" class="nav-link" data-page="series" id="nav-series">Séries</a>
+      <a href="#" class="nav-link" data-page="admin" id="nav-admin">⚙ Painel Admin</a>
+      <div class="nav-search-wrapper">
+        <svg class="nav-search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="nav-search" id="search-input" placeholder="Buscar filmes e séries...">
+      </div>
+    </nav>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ============ HOME PAGE ============ -->
+  <div class="page-view active" id="page-home">
+    <section class="hero" id="hero-section">
+      <div class="hero-backdrop" id="hero-backdrop"></div>
+      <div class="hero-trailer" id="hero-trailer">
+        <iframe id="hero-trailer-iframe" src="" allow="autoplay; encrypted-media" style="width:100%; height:100%; border:none; display:none; transform: scale(1.35); transform-origin: center;"></iframe>
+        <video id="hero-trailer-video" loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:none;"></video>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge" id="hero-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          EM DESTAQUE
+        </div>
+        <h1 class="hero-title" id="hero-title"></h1>
+        <div class="hero-meta" id="hero-meta">
+          <span class="rating">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span id="hero-rating"></span>
+          </span>
+          <span id="hero-year"></span>
+          <span id="hero-duration"></span>
+        </div>
+        <div class="hero-genres" id="hero-genres"></div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="hero-watch-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Assistir Agora
+          </button>
+          <button class="btn btn-secondary" id="hero-info-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Mais Informações
+          </button>
+        </div>
+        <p class="hero-description" id="hero-description"></p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="home-content">
+      <!-- Categories are rendered by JS -->
+    </main>
+  </div>
+
+  <!-- ============ MOVIES PAGE ============ -->
+  <div class="page-view" id="page-movies">
+    <div class="main-content" style="padding-top: calc(var(--header-height) + 32px);">
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Todos os Filmes</h2>
+        </div>
+        <div class="filter-bar" id="movies-filter-bar"></div>
+        <div class="movies-grid" id="movies-grid-all"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SERIES PAGE ============ -->
+  <div class="page-view" id="page-series">
+    <div class="main-content" style="padding-top: calc(var(--header-height) + 32px);">
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Todas as Séries</h2>
+        </div>
+        <div class="filter-bar" id="series-filter-bar"></div>
+        <div class="movies-grid" id="series-grid-all"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SEARCH RESULTS PAGE ============ -->
+  <div class="page-view" id="page-search">
+    <div class="main-content search-results-page">
+      <h2 class="search-results-title" id="search-results-title"></h2>
+      <div class="movies-grid" id="search-results-grid"></div>
+      <div class="no-results" id="no-results" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        <h3>Nenhum resultado encontrado</h3>
+        <p>Tente buscar com outros termos</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ADMIN PAGE ============ -->
+  <div class="page-view" id="page-admin">
+    <div class="main-content">
+      <div class="admin-panel">
+        <div class="admin-header">
+          <h1>⚙ Painel <span>Admin</span></h1>
+          <div class="admin-stats">
+            <div class="stat-card">
+              <div class="stat-number" id="stat-total">0</div>
+              <div class="stat-label">Total</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="stat-movies">0</div>
+              <div class="stat-label">Filmes</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="stat-series">0</div>
+              <div class="stat-label">Séries</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add / Edit Form -->
+        <div class="admin-form-container">
+          <h3 class="admin-form-title" id="form-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Adicionar Novo Título
+          </h3>
+          <form id="movie-form" class="form-grid">
+            <input type="hidden" id="form-id">
+
+            <div class="form-group">
+              <label for="form-movie-title">Título</label>
+              <input type="text" id="form-movie-title" placeholder="Ex: Interestelar" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-year">Ano de Lançamento</label>
+              <input type="number" id="form-year" placeholder="Ex: 2024" min="1900" max="2030" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-duration">Duração</label>
+              <input type="text" id="form-duration" placeholder="Ex: 2h 30m ou 3 Temporadas" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-rating">Avaliação (0 - 10)</label>
+              <input type="number" id="form-rating" placeholder="Ex: 8.5" min="0" max="10" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+              <label for="form-type">Tipo</label>
+              <select id="form-type" required>
+                <option value="movie">Filme</option>
+                <option value="series">Série</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Destaque no Banner</label>
+              <div class="featured-toggle">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="form-featured">
+                  <span class="toggle-slider"></span>
+                </label>
+                <span style="font-size: 0.82rem; color: var(--text-muted);">Sim, destacar este título</span>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="form-description">Sinopse / Descrição</label>
+              <textarea id="form-description" placeholder="Descreva o enredo do filme ou série..." required></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="form-poster-file">Imagem do Poster (Vertical)</label>
+              <input type="file" id="form-poster-file" accept="image/*">
+              <small style="color: var(--text-muted); margin-top: 2px;" id="poster-file-info">Selecione uma imagem vertical (JPEG/PNG)</small>
+              <div class="file-preview" id="poster-preview"></div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="form-backdrop-file">Imagem de Fundo (Horizontal)</label>
+              <input type="file" id="form-backdrop-file" accept="image/*">
+              <small style="color: var(--text-muted); margin-top: 2px;" id="backdrop-file-info">Selecione uma imagem horizontal (JPEG/PNG)</small>
+              <div class="file-preview" id="backdrop-preview"></div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="form-video-file">Arquivo de Vídeo (MP4 / WebM)</label>
+              <input type="file" id="form-video-file" accept="video/mp4,video/webm,video/*">
+              <small style="color: var(--text-muted); margin-top: 2px;" id="video-file-info">Selecione o arquivo de vídeo do filme</small>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="form-trailer-file">Arquivo de Mini-Trailer (Opcional - MP4)</label>
+              <input type="file" id="form-trailer-file" accept="video/mp4,video/webm,video/*">
+              <small style="color: var(--text-muted); margin-top: 2px;" id="trailer-file-info">Vídeo curto (10-30s) para tocar como fundo do modal</small>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Gêneros</label>
+              <div class="genres-checkboxes" id="genres-checkboxes">
+                <!-- Generated by JS -->
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="form-submit-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Adicionar Título
+              </button>
+              <button type="button" class="btn btn-secondary" id="form-cancel-btn" style="display:none;">
+                Cancelar Edição
+              </button>
+              <button type="button" class="btn btn-danger" id="form-reset-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                Resetar Catálogo
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Movies List -->
+        <div class="admin-movies-list">
+          <div class="admin-list-header">
+            <h2>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+              Títulos Cadastrados
+            </h2>
+          </div>
+          <div id="admin-movies-container">
+            <!-- Generated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DETAIL MODAL ============ -->
+  <div class="modal-backdrop" id="detail-modal">
+    <div class="modal">
+      <button class="modal-close" id="modal-close-btn">✕</button>
+      <div class="modal-hero" id="modal-hero">
+        <div class="modal-hero-gradient"></div>
+        <div class="modal-hero-trailer" id="modal-hero-trailer">
+          <iframe id="modal-trailer-iframe" src="" allow="autoplay; encrypted-media" style="width:100%; height:100%; border:none; display:none; transform: scale(1.35); transform-origin: center;"></iframe>
+          <video id="modal-trailer-video" loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:none;"></video>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="modal-meta" id="modal-meta">
+          <span class="rating">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span id="modal-rating"></span>
+          </span>
+          <span id="modal-year"></span>
+          <span id="modal-duration"></span>
+          <span id="modal-type-badge" style="padding: 3px 10px; background: var(--accent-soft); color: var(--accent); border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; text-transform: uppercase;"></span>
+        </div>
+        <div class="modal-genres" id="modal-genres"></div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="modal-watch-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Assistir Agora
+          </button>
+        </div>
+        <p class="modal-description" id="modal-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CINEMA MODE (Video Player) ============ -->
+  <div class="cinema-mode" id="cinema-mode">
+    <button class="cinema-close" id="cinema-close-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Fechar Player
+    </button>
+    <div class="cinema-player">
+      <iframe id="cinema-iframe" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+      <video id="cinema-video" controls autoplay style="width: 100%; height: 100%; display: none; object-fit: contain; background: #000;"></video>
+    </div>
+    <p class="cinema-title" id="cinema-title"></p>
+  </div>
+
+  <!-- ============ TOAST CONTAINER ============ -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="main-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <svg viewBox="0 0 160 45" width="110" height="30" class="logo-svg">
+          <defs>
+            <clipPath id="netflix-curve-footer">
+              <path d="M 0 0 L 160 0 L 160 42 Q 80 34 0 42 Z" />
+            </clipPath>
+          </defs>
+          <g clip-path="url(#netflix-curve-footer)">
+            <text x="6" y="38" font-family="'Bebas Neue', sans-serif" font-size="40" font-weight="900" letter-spacing="0.8" fill="#e50914">
+              DARKFLIX
+            </text>
+          </g>
+        </svg>
+      </div>
+      <p class="footer-text">© 2025 DarkFlix. Todos os direitos reservados. Feito com ❤ para os amantes de cinema.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="movies-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

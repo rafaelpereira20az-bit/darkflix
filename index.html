@@ -132,132 +132,80 @@
           <h1>⚙ Painel <span>Admin</span></h1>
           <div class="admin-stats">
             <div class="stat-card">
-              <div class="stat-number" id="stat-total">0</div>
-              <div class="stat-label">Total</div>
+              <div class="stat-number" id="stat-favorites">0</div>
+              <div class="stat-label">Favoritos</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number" id="stat-movies">0</div>
-              <div class="stat-label">Filmes</div>
+              <div class="stat-number" id="stat-cached">0</div>
+              <div class="stat-label">Itens em Cache</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-number" id="stat-series">0</div>
-              <div class="stat-label">Séries</div>
+            <div class="stat-card" style="display: flex; align-items: center; justify-content: center; background: transparent; border: none; box-shadow: none; padding: 0;">
+              <button class="btn btn-danger btn-small" id="btn-clear-cache" style="width: 100%; border-radius: var(--radius-md); font-size: 0.8rem; padding: 12px;">
+                Limpar Cache
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Add / Edit Form -->
+        <!-- TMDB Configuration Form -->
         <div class="admin-form-container">
-          <h3 class="admin-form-title" id="form-title">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Adicionar Novo Título
+          <h3 class="admin-form-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Configurações da API TMDB
           </h3>
-          <form id="movie-form" class="form-grid">
-            <input type="hidden" id="form-id">
-
-            <div class="form-group">
-              <label for="form-movie-title">Título</label>
-              <input type="text" id="form-movie-title" placeholder="Ex: Interestelar" required>
-            </div>
-
-            <div class="form-group">
-              <label for="form-year">Ano de Lançamento</label>
-              <input type="number" id="form-year" placeholder="Ex: 2024" min="1900" max="2030" required>
-            </div>
-
-            <div class="form-group">
-              <label for="form-duration">Duração</label>
-              <input type="text" id="form-duration" placeholder="Ex: 2h 30m ou 3 Temporadas" required>
-            </div>
-
-            <div class="form-group">
-              <label for="form-rating">Avaliação (0 - 10)</label>
-              <input type="number" id="form-rating" placeholder="Ex: 8.5" min="0" max="10" step="0.1" required>
-            </div>
-
-            <div class="form-group">
-              <label for="form-type">Tipo</label>
-              <select id="form-type" required>
-                <option value="movie">Filme</option>
-                <option value="series">Série</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Destaque no Banner</label>
-              <div class="featured-toggle">
-                <label class="toggle-switch">
-                  <input type="checkbox" id="form-featured">
-                  <span class="toggle-slider"></span>
-                </label>
-                <span style="font-size: 0.82rem; color: var(--text-muted);">Sim, destacar este título</span>
+          <form id="tmdb-config-form" class="form-grid" style="gap: 16px; margin-top: 16px; display: flex; flex-direction: column;">
+            <div class="form-group full-width">
+              <label for="tmdb-api-key">Sua TMDB API Key (v3)</label>
+              <div style="display: flex; gap: 12px; margin-top: 8px;">
+                <input type="password" id="tmdb-api-key" placeholder="Ex: 8a7f9202a0a2..." style="flex: 1; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); padding: 12px 16px;" required>
+                <button type="submit" class="btn btn-primary" id="btn-save-key" style="padding: 12px 24px;">Salvar Chave</button>
               </div>
+              <small style="color: var(--text-muted); display: block; margin-top: 8px;">
+                Uma chave de API gratuita do TMDB é necessária para carregar filmes e séries de forma automatizada. Obtenha em <a href="https://www.themoviedb.org/" target="_blank" style="color: var(--accent); font-weight: 500; text-decoration: underline;">themoviedb.org</a> acessando as configurações de API da sua conta.
+              </small>
             </div>
-
-            <div class="form-group full-width">
-              <label for="form-description">Sinopse / Descrição</label>
-              <textarea id="form-description" placeholder="Descreva o enredo do filme ou série..." required></textarea>
-            </div>
-
-            <div class="form-group full-width">
-              <label for="form-poster-file">Imagem do Poster (Vertical)</label>
-              <input type="file" id="form-poster-file" accept="image/*">
-              <small style="color: var(--text-muted); margin-top: 2px;" id="poster-file-info">Selecione uma imagem vertical (JPEG/PNG)</small>
-              <div class="file-preview" id="poster-preview"></div>
-            </div>
-
-            <div class="form-group full-width">
-              <label for="form-backdrop-file">Imagem de Fundo (Horizontal)</label>
-              <input type="file" id="form-backdrop-file" accept="image/*">
-              <small style="color: var(--text-muted); margin-top: 2px;" id="backdrop-file-info">Selecione uma imagem horizontal (JPEG/PNG)</small>
-              <div class="file-preview" id="backdrop-preview"></div>
-            </div>
-
-            <div class="form-group full-width">
-              <label for="form-video-url">Link do Filme (Iframe ou Vídeo)</label>
-              <input type="url" id="form-video-url" placeholder="Ex: https://www.youtube.com/embed/... ou link de vídeo" required>
-              <small style="color: var(--text-muted); margin-top: 2px;" id="video-file-info">Insira o link de embutir (embed) do vídeo</small>
-            </div>
-
-            <div class="form-group full-width">
-              <label for="form-trailer-url">Link do Trailer (Opcional)</label>
-              <input type="url" id="form-trailer-url" placeholder="Ex: https://www.youtube.com/embed/...">
-              <small style="color: var(--text-muted); margin-top: 2px;" id="trailer-file-info">Link de um vídeo curto (Trailer)</small>
-            </div>
-
-            <div class="form-group full-width">
-              <label>Gêneros</label>
-              <div class="genres-checkboxes" id="genres-checkboxes">
-                <!-- Generated by JS -->
-              </div>
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary" id="form-submit-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                Adicionar Título
-              </button>
-              <button type="button" class="btn btn-secondary" id="form-cancel-btn" style="display:none;">
-                Cancelar Edição
-              </button>
-              <button type="button" class="btn btn-danger" id="form-reset-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-                Resetar Catálogo
-              </button>
+            
+            <div class="form-group full-width" id="tmdb-status-wrapper" style="display: none; padding: 12px; border-radius: var(--radius-sm); margin-top: 10px;">
+              <span id="tmdb-status-icon" style="margin-right: 6px; font-weight: bold;"></span>
+              <span id="tmdb-status-text"></span>
             </div>
           </form>
         </div>
 
-        <!-- Movies List -->
-        <div class="admin-movies-list">
+        <!-- Custom Destaque Selector -->
+        <div class="admin-form-container" style="margin-top: 24px;">
+          <h3 class="admin-form-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Definir Título em Destaque (Banner Principal)
+          </h3>
+          <form id="featured-config-form" class="form-grid" style="gap: 16px; margin-top: 16px;">
+            <div class="form-group">
+              <label for="featured-id">ID do TMDB</label>
+              <input type="text" id="featured-id" placeholder="Ex: 157336 (Interestelar) ou 1399 (Game of Thrones)" style="background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); padding: 12px 16px; margin-top: 8px; width: 100%;" required>
+            </div>
+            <div class="form-group">
+              <label for="featured-type">Tipo de Mídia</label>
+              <select id="featured-type" style="background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); padding: 12px 16px; margin-top: 8px; width: 100%;" required>
+                <option value="movie">Filme</option>
+                <option value="tv">Série</option>
+              </select>
+            </div>
+            <div class="form-actions" style="margin-top: 8px; width: 100%; grid-column: 1 / -1;">
+              <button type="submit" class="btn btn-primary" style="padding: 12px 24px;">Definir Como Destaque</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Favorites List -->
+        <div class="admin-movies-list" style="margin-top: 32px;">
           <div class="admin-list-header">
             <h2>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
-              Títulos Cadastrados
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              Seus Favoritos
             </h2>
           </div>
-          <div id="admin-movies-container">
-            <!-- Generated by JS -->
+          <div id="admin-favorites-container" class="movies-grid">
+            <!-- Gerado via JS -->
           </div>
         </div>
       </div>
@@ -292,8 +240,25 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             Assistir Agora
           </button>
+          <button class="btn btn-secondary" id="modal-favorite-btn" style="padding: 13px 24px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span id="modal-favorite-text">Minha Lista</span>
+          </button>
         </div>
         <p class="modal-description" id="modal-description"></p>
+        
+        <!-- Seletor de Episódios para Séries (TV Shows) -->
+        <div class="modal-series-selector" id="modal-series-selector" style="display: none;">
+          <h3 style="font-size: 1.1rem; margin-bottom: 12px; font-weight: 700;">Temporadas & Episódios</h3>
+          <div class="season-select-wrapper">
+            <select id="modal-season-select" class="season-select">
+              <!-- Opções de temporadas carregadas dinamicamente -->
+            </select>
+          </div>
+          <div class="episodes-list" id="modal-episodes-list">
+            <!-- Episódios carregados dinamicamente -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -336,7 +301,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="movies-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

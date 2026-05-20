@@ -478,13 +478,13 @@
     // File Inputs
     formPosterFile: $('#form-poster-file'),
     formBackdropFile: $('#form-backdrop-file'),
-    formVideoFile: $('#form-video-file'),
+    formVideoUrl: $('#form-video-url'),
     posterFileInfo: $('#poster-file-info'),
     backdropFileInfo: $('#backdrop-file-info'),
     posterPreview: $('#poster-preview'),
     backdropPreview: $('#backdrop-preview'),
     videoFileInfo: $('#video-file-info'),
-    formTrailerFile: $('#form-trailer-file'),
+    formTrailerUrl: $('#form-trailer-url'),
     trailerFileInfo: $('#trailer-file-info'),
     // Buttons
     formSubmitBtn: $('#form-submit-btn'),
@@ -1281,55 +1281,15 @@
       DOM.cinemaIframe.style.display = 'block';
 
       const videoId = getYouTubeId(movie.video);
+      let embedUrl = movie.video;
       if (videoId) {
-        await loadYouTubeAPI();
-
-        // Create player
-        ytPlayer = new YT.Player('cinema-iframe', {
-          height: '100%',
-          width: '100%',
-          videoId: videoId,
-          playerVars: {
-            autoplay: 1,
-            controls: 1,
-            playsinline: 1,
-            start: Math.floor(startSeconds)
-          },
-          events: {
-            onReady: (event) => {
-              if (startSeconds > 0) {
-                showToast(`Continuando de ${formatTime(startSeconds)}...`, 'info');
-              }
-              if (ytInterval) clearInterval(ytInterval);
-              ytInterval = setInterval(() => {
-                try {
-                  const currTime = ytPlayer.getCurrentTime();
-                  const duration = ytPlayer.getDuration();
-                  if (currTime && duration) {
-                    if (duration - currTime < 15 || currTime < 10) {
-                      localStorage.removeItem(progressKey);
-                    } else {
-                      localStorage.setItem(progressKey, JSON.stringify({
-                        time: currTime,
-                        duration: duration,
-                        percent: (currTime / duration) * 100,
-                        timestamp: Date.now()
-                      }));
-                    }
-                  }
-                } catch (e) {}
-              }, 2000);
-            },
-            onStateChange: (event) => {
-              if (event.data === YT.PlayerState.ENDED) {
-                localStorage.removeItem(progressKey);
-              }
-            }
-          }
-        });
-      } else {
-        DOM.cinemaIframe.src = movie.video;
+        let startParam = startSeconds > 0 ? `&start=${Math.floor(startSeconds)}` : '';
+        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&controls=1&rel=0${startParam}`;
+      } else if (!embedUrl.includes('autoplay=')) {
+        const separator = embedUrl.includes('?') ? '&' : '?';
+        embedUrl = `${embedUrl}${separator}autoplay=1&playsinline=1`;
       }
+      DOM.cinemaIframe.src = embedUrl;
     }
 
     DOM.cinemaMode.classList.add('active');
@@ -1510,15 +1470,16 @@
     DOM.posterFileInfo.style.color = "var(--text-muted)";
     DOM.backdropFileInfo.textContent = "Selecione uma imagem horizontal (JPEG/PNG)";
     DOM.backdropFileInfo.style.color = "var(--text-muted)";
-    DOM.videoFileInfo.textContent = "Selecione o arquivo de vídeo do filme";
+    DOM.videoFileInfo.textContent = "Insira o link de embutir (embed) do vídeo";
     DOM.videoFileInfo.style.color = "var(--text-muted)";
-    DOM.trailerFileInfo.textContent = "Vídeo curto (10-30s) para tocar como fundo do modal";
+    DOM.trailerFileInfo.textContent = "Link de um vídeo curto (Trailer)";
     DOM.trailerFileInfo.style.color = "var(--text-muted)";
 
     // Enable inputs
     DOM.formPosterFile.required = true;
     DOM.formBackdropFile.required = true;
-    DOM.formVideoFile.required = true;
+    DOM.formVideoUrl.value = '';
+    DOM.formTrailerUrl.value = '';
 
     // Reset checkboxes
     DOM.genresCheckboxes.querySelectorAll('input[type="checkbox"]').forEach((cb) => (cb.checked = false));
@@ -1545,7 +1506,9 @@
     // File inputs are not required during edit (preserves old ones if not chosen)
     DOM.formPosterFile.required = false;
     DOM.formBackdropFile.required = false;
-    DOM.formVideoFile.required = false;
+
+    DOM.formVideoUrl.value = movie.video || '';
+    DOM.formTrailerUrl.value = movie.trailer || '';
 
     // Update helper infos to indicate current state
     if (movie.poster) {
@@ -1557,14 +1520,14 @@
       DOM.backdropFileInfo.style.color = "#22c55e";
     }
     if (movie.video) {
-      DOM.videoFileInfo.textContent = movie.videoType === 'file' ? "✓ Vídeo MP4 salvo localmente" : "✓ Link de trailer padrão";
+      DOM.videoFileInfo.textContent = "✓ Link de vídeo carregado";
       DOM.videoFileInfo.style.color = "#22c55e";
     }
-    if (movie.trailer && movie.trailerType === 'file') {
-      DOM.trailerFileInfo.textContent = "✓ Trailer local salvo no DB";
+    if (movie.trailer) {
+      DOM.trailerFileInfo.textContent = "✓ Link de trailer carregado";
       DOM.trailerFileInfo.style.color = "#22c55e";
     } else {
-      DOM.trailerFileInfo.textContent = "Vídeo curto (10-30s) para tocar como fundo do modal";
+      DOM.trailerFileInfo.textContent = "Link de um vídeo curto (Trailer)";
       DOM.trailerFileInfo.style.color = "var(--text-muted)";
     }
 
@@ -1631,15 +1594,13 @@
     try {
       const posterFile = DOM.formPosterFile.files[0];
       const backdropFile = DOM.formBackdropFile.files[0];
-      const videoFile = DOM.formVideoFile.files[0];
-      const trailerFile = DOM.formTrailerFile.files[0];
 
       let posterVal = '';
       let backdropVal = '';
-      let videoVal = '';
-      let videoTypeVal = 'url'; // Default seed is URL
-      let trailerVal = '';
-      let trailerTypeVal = '';
+      let videoVal = DOM.formVideoUrl.value.trim();
+      let videoTypeVal = 'url';
+      let trailerVal = DOM.formTrailerUrl.value.trim();
+      let trailerTypeVal = trailerVal ? 'url' : '';
 
       // If editing, start with current movie properties
       if (editingId !== null) {
@@ -1647,15 +1608,11 @@
         if (existing) {
           posterVal = existing.poster;
           backdropVal = existing.backdrop;
-          videoVal = existing.video;
-          videoTypeVal = existing.videoType || 'url';
-          trailerVal = existing.trailer || '';
-          trailerTypeVal = existing.trailerType || '';
         }
       } else {
         // Required validation for new entry
-        if (!posterFile || !backdropFile || !videoFile) {
-          showToast('Todos os arquivos (Poster, Backdrop e Vídeo MP4) são obrigatórios para novos cadastros!', 'error');
+        if (!posterFile || !backdropFile || !videoVal) {
+          showToast('Poster, Backdrop e Link do Filme são obrigatórios para novos cadastros!', 'error');
           DOM.formSubmitBtn.disabled = false;
           DOM.formSubmitBtn.innerHTML = `Adicionar Título`;
           return;
@@ -1680,28 +1637,6 @@
         }
         await saveMedia(key, backdropFile);
         backdropVal = `db:${key}`;
-      }
-
-      if (videoFile) {
-        if (editingId !== null && videoVal.startsWith('db:')) {
-          await deleteMovieVideo(movieId);
-        }
-        await saveMovieVideo(movieId, videoFile, (percent) => {
-          DOM.formSubmitBtn.textContent = `Processando: ${percent}%`;
-        });
-        videoVal = `db:video_${movieId}`;
-        videoTypeVal = 'file'; // Set type to file so HTML5 player is used
-      }
-
-      if (trailerFile) {
-        if (editingId !== null && trailerVal.startsWith('db:')) {
-          await deleteMovieTrailer(movieId);
-        }
-        await saveMovieTrailer(movieId, trailerFile, (percent) => {
-          DOM.formSubmitBtn.textContent = `Processando Trailer: ${percent}%`;
-        });
-        trailerVal = `db:trailer_${movieId}`;
-        trailerTypeVal = 'file';
       }
 
       const movieData = {

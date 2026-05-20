@@ -431,6 +431,20 @@
 
       let html = '';
 
+      // Section: Lançamentos no Cinema
+      if (nowPlayingMovies.results && nowPlayingMovies.results.length > 0) {
+        html += `
+          <section class="section">
+            <div class="section-header">
+              <h2 class="section-title">Lançamentos no Cinema</h2>
+            </div>
+            <div class="movies-row">
+              ${nowPlayingMovies.results.slice(0, 15).map((item, i) => createCardHTML(item, i, 'movie')).join('')}
+            </div>
+          </section>
+        `;
+      }
+
       // Section: Favorites / Watchlist
       if (STATE.favorites.length > 0) {
         html += `
@@ -440,20 +454,6 @@
             </div>
             <div class="movies-row">
               ${STATE.favorites.map((item, i) => createCardHTML(item, i)).join('')}
-            </div>
-          </section>
-        `;
-      }
-
-      // Section: Lançamentos no Cinema
-      if (nowPlayingMovies.results.length > 0) {
-        html += `
-          <section class="section">
-            <div class="section-header">
-              <h2 class="section-title">Lançamentos no Cinema</h2>
-            </div>
-            <div class="movies-row">
-              ${nowPlayingMovies.results.slice(0, 15).map((item, i) => createCardHTML(item, i, 'movie')).join('')}
             </div>
           </section>
         `;

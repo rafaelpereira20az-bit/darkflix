@@ -1725,6 +1725,22 @@ ul, ol {
 }
 
 /* ---------- CUSTOM TRAILER CONTROLS ---------- */
+.trailer-touch-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Impedir que cliques e toques no celular interajam diretamente com o iframe ou vídeo do trailer, evitando que pause acidentalmente */
+.hero-trailer iframe,
+.hero-trailer video,
+.modal-hero-trailer iframe,
+.modal-hero-trailer video {
+  pointer-events: none !important;
+}
+
 .trailer-controls {
   position: absolute;
   bottom: 24px;

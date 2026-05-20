@@ -101,8 +101,7 @@
       home: $('#page-home'),
       movies: $('#page-movies'),
       series: $('#page-series'),
-      search: $('#page-search'),
-      admin: $('#page-admin'),
+      search: $('#page-search')
     },
     
     // Grid lists
@@ -249,7 +248,7 @@
     
     // Reset page visibility
     Object.keys(DOM.pages).forEach((key) => {
-      DOM.pages[key].classList.toggle('active', key === page);
+      if (DOM.pages[key]) DOM.pages[key].classList.toggle('active', key === page);
     });
 
     // Update active nav link
@@ -313,25 +312,20 @@
   function showTMDBSetupMessage() {
     DOM.homeContent.innerHTML = `
       <div class="no-results" style="padding: 100px 20px; max-width: 600px; margin: 0 auto; text-align: center;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent); margin-bottom: 24px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <h2 style="font-size: 1.8rem; margin-bottom: 12px; font-weight: 800;">Configuração Necessária</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent); margin-bottom: 24px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <h2 style="font-size: 1.8rem; margin-bottom: 12px; font-weight: 800;">Erro de Conexão</h2>
         <p style="color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;">
-          Para navegar pelo catálogo infinito do TMDB e assistir a filmes e séries via MyEmbed, você precisa configurar sua chave de API nas configurações do painel admin.
+          Não foi possível conectar ao catálogo do TMDB. Verifique sua conexão com a internet e tente novamente.
         </p>
-        <button class="btn btn-primary" id="btn-goto-admin">
-          ⚙ Ir para o Painel Admin
+        <button class="btn btn-primary" onclick="location.reload()">
+          Tentar Novamente
         </button>
       </div>
     `;
 
-    const btnGo = $('#btn-goto-admin');
-    if (btnGo) {
-      btnGo.onclick = () => navigateTo('admin');
-    }
-
     DOM.heroBackdrop.style.backgroundImage = `url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221000%22 height=%22500%22><rect fill=%22%2312121a%22 width=%221000%22 height=%22500%22/></svg>')`;
     DOM.heroTitle.textContent = "Bem-vindo ao DarkFlix";
-    DOM.heroDescription.textContent = "Conecte sua chave de API do TMDB para desbloquear milhares de títulos instantaneamente.";
+    DOM.heroDescription.textContent = "Carregando catálogo...";
     DOM.heroBadge.style.display = 'none';
     DOM.heroMeta.style.display = 'none';
     DOM.heroGenres.style.display = 'none';

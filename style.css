@@ -1440,6 +1440,8 @@ ul, ol {
   .nav-search-wrapper {
     margin-left: 0;
     width: 100%;
+    order: -1;
+    margin-bottom: 16px;
   }
 
   .nav-search {
@@ -1478,7 +1480,9 @@ ul, ol {
   }
 
   .modal-body {
-    padding: 0 20px 24px;
+    padding: 20px;
+    margin-top: 0;
+    max-height: calc(90vh - 200px);
   }
 
   .modal-title {
@@ -1486,7 +1490,8 @@ ul, ol {
   }
 
   .modal-hero {
-    height: 250px;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .form-grid {
@@ -1777,8 +1782,8 @@ ul, ol {
     bottom: 20px;
   }
   #modal-trailer-controls {
-    bottom: 92px;
-    right: 20px;
+    bottom: 16px;
+    right: 16px;
   }
 }
 

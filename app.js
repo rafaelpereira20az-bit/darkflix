@@ -601,7 +601,7 @@
       html += `
         <section class="section section-continue-watching">
           <div class="section-header">
-            <h2 class="section-title">▶ Continue Assistindo</h2>
+            <h2 class="section-title">▶ Continuar Assistindo</h2>
             ${inProgressList.length > 0 ? '<button class="btn-clear-history" id="btn-clear-history">Limpar Histórico</button>' : ''}
           </div>
           <div class="movies-row">
@@ -683,7 +683,7 @@
             localStorage.removeItem(`darkflix_progress_${item.id}`);
           });
           localStorage.removeItem('darkflix_in_progress');
-          showToast('Histórico de "Continue Assistindo" limpo!', 'info');
+          showToast('Histórico de "Continuar Assistindo" limpo!', 'info');
           renderHome();
         };
       }

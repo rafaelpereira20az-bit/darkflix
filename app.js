@@ -870,17 +870,7 @@
     const progressKey = `darkflix_progress_${tmdbId}`;
 
     if (type === 'movie') {
-      const slug = title
-        .toString()
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9\s-]/g, '')
-        .trim()
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-');
-      
-      embedUrl = `https://myembed.biz/filme/${tmdbId}-${slug}`;
+      embedUrl = `https://myembed.biz/filme/${tmdbId}`;
       localStorage.setItem(progressKey, JSON.stringify({
         timestamp: Date.now(),
         type: 'movie',

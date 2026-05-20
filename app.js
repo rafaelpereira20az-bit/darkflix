@@ -407,6 +407,7 @@
 
       // Requests base + Requests de categorias
       const requests = [
+        tmdbFetch('/movie/now_playing').catch(() => ({ results: [] })),
         tmdbFetch('/trending/movie/week').catch(() => ({ results: [] })),
         tmdbFetch('/trending/tv/week').catch(() => ({ results: [] })),
         fetchFeaturedItem().catch(() => null)
@@ -418,10 +419,11 @@
 
       const responses = await Promise.all(requests);
 
-      const trendingMovies = responses[0];
-      const trendingSeries = responses[1];
-      const featuredDetails = responses[2];
-      const categoryResults = responses.slice(3);
+      const nowPlayingMovies = responses[0];
+      const trendingMovies = responses[1];
+      const trendingSeries = responses[2];
+      const featuredDetails = responses[3];
+      const categoryResults = responses.slice(4);
 
       // Set featured on banner
       const heroItem = featuredDetails || trendingMovies.results[0];
@@ -438,6 +440,20 @@
             </div>
             <div class="movies-row">
               ${STATE.favorites.map((item, i) => createCardHTML(item, i)).join('')}
+            </div>
+          </section>
+        `;
+      }
+
+      // Section: Lançamentos no Cinema
+      if (nowPlayingMovies.results.length > 0) {
+        html += `
+          <section class="section">
+            <div class="section-header">
+              <h2 class="section-title">Lançamentos no Cinema</h2>
+            </div>
+            <div class="movies-row">
+              ${nowPlayingMovies.results.slice(0, 15).map((item, i) => createCardHTML(item, i, 'movie')).join('')}
             </div>
           </section>
         `;

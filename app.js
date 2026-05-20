@@ -15,7 +15,11 @@
     featuredId: localStorage.getItem('darkflix_featured_id') || '157336', // Interstellar default
     featuredType: localStorage.getItem('darkflix_featured_type') || 'movie',
     heroTrailerTimeout: null,
-    modalTrailerTimeout: null
+    modalTrailerTimeout: null,
+    heroTrailerPlaying: true,
+    heroTrailerMuted: false,
+    modalTrailerPlaying: true,
+    modalTrailerMuted: false
   };
 
   // ---------- Genre Maps ----------
@@ -87,6 +91,9 @@
     heroInfoBtn: $('#hero-info-btn'),
     heroTrailer: $('#hero-trailer'),
     heroTrailerIframe: $('#hero-trailer-iframe'),
+    heroTrailerControls: $('#hero-trailer-controls'),
+    heroTrailerPlayPause: $('#hero-trailer-play-pause'),
+    heroTrailerMuteUnmute: $('#hero-trailer-mute-unmute'),
     
     // Pages wrapper
     homeContent: $('#home-content'),
@@ -125,6 +132,9 @@
     modalCloseBtn: $('#modal-close-btn'),
     modalHeroTrailer: $('#modal-hero-trailer'),
     modalTrailerIframe: $('#modal-trailer-iframe'),
+    modalTrailerControls: $('#modal-trailer-controls'),
+    modalTrailerPlayPause: $('#modal-trailer-play-pause'),
+    modalTrailerMuteUnmute: $('#modal-trailer-mute-unmute'),
     modalSeriesSelector: $('#modal-series-selector'),
     modalSeasonSelect: $('#modal-season-select'),
     modalEpisodesList: $('#modal-episodes-list'),
@@ -136,6 +146,8 @@
     cinemaTitle: $('#cinema-title'),
     cinemaCloseBtn: $('#cinema-close-btn'),
     cinemaExternalBtn: $('#cinema-external-btn'),
+    cinemaRewindBtn: $('#cinema-rewind-btn'),
+    cinemaForwardBtn: $('#cinema-forward-btn'),
     
     // Admin config inputs & stats
     tmdbConfigForm: $('#tmdb-config-form'),
@@ -202,12 +214,48 @@
       const videos = data.results || [];
       const trailer = videos.find(v => v.type === 'Trailer' && v.site === 'YouTube') || videos.find(v => v.site === 'YouTube');
       if (trailer) {
-        return `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailer.key}&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0`;
+        return `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=0&controls=0&loop=1&playlist=${trailer.key}&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=1`;
       }
     } catch (e) {
       console.warn("Falha ao buscar trailer do vídeo", e);
     }
     return '';
+  }
+
+  // ---------- YouTube Player Controls via PostMessage ----------
+  const ICONS = {
+    play: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+    pause: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`,
+    muted: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`,
+    unmuted: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`
+  };
+
+  function sendTrailerCommand(iframe, func, args = []) {
+    if (iframe && iframe.contentWindow) {
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: func,
+          args: args
+        }), '*');
+      } catch (e) {
+        console.error("Error sending postMessage to YouTube player:", e);
+      }
+    }
+  }
+
+  function updateTrailerControlsUI(prefix, isPlaying, isMuted) {
+    const playPauseBtn = DOM[`${prefix}TrailerPlayPause`];
+    const muteUnmuteBtn = DOM[`${prefix}TrailerMuteUnmute`];
+    
+    if (playPauseBtn) {
+      playPauseBtn.innerHTML = isPlaying ? ICONS.pause : ICONS.play;
+      playPauseBtn.title = isPlaying ? 'Pausar Trailer' : 'Reproduzir Trailer';
+    }
+    if (muteUnmuteBtn) {
+      muteUnmuteBtn.innerHTML = isMuted ? ICONS.muted : ICONS.unmuted;
+      muteUnmuteBtn.title = isMuted ? 'Ativar Som' : 'Silenciar';
+    }
   }
 
   // ---------- Navigation ----------
@@ -474,30 +522,30 @@
       }
 
       // 1. Lançamentos no Cinema (40 filmes)
-      html += buildSection('🎬 Lançamentos no Cinema', nowPlayingAll, 'movie');
+      html += buildSection('Lançamentos no Cinema', nowPlayingAll, 'movie');
 
       // 2. Minha Lista
       if (STATE.favorites.length > 0) {
-        html += buildSection('❤️ Minha Lista', STATE.favorites, 'movie');
+        html += buildSection('Minha Lista', STATE.favorites, 'movie');
       }
 
       // 3. Filmes em Destaque (trending semana)
-      html += buildSection('🔥 Filmes em Destaque', trendingMovies.results, 'movie');
+      html += buildSection('Filmes em Destaque', trendingMovies.results, 'movie');
 
       // 4. Séries Populares (trending semana)
-      html += buildSection('📺 Séries Populares', trendingSeries.results, 'tv');
+      html += buildSection('Séries Populares', trendingSeries.results, 'tv');
 
       // 5. Mais Bem Avaliados de Todos os Tempos
-      html += buildSection('⭐ Mais Bem Avaliados', topRated.results, 'movie');
+      html += buildSection('Mais Bem Avaliados', topRated.results, 'movie');
 
       // 6. Em Breve nos Cinemas
-      html += buildSection('🎥 Em Breve nos Cinemas', upcoming.results, 'movie');
+      html += buildSection('Em Breve nos Cinemas', upcoming.results, 'movie');
 
       // 7. Populares Agora (40 filmes)
-      html += buildSection('📈 Populares Agora', popularAll, 'movie');
+      html += buildSection('Populares Agora', popularAll, 'movie');
 
       // 8. Séries em Alta Hoje
-      html += buildSection('🌟 Séries em Alta Hoje', trendingSeriesDay.results, 'tv');
+      html += buildSection('Séries em Alta Hoje', trendingSeriesDay.results, 'tv');
 
       // 9. Todas as categorias por gênero
       homeCategories.forEach((cat, index) => {
@@ -582,6 +630,10 @@
         DOM.heroTrailerIframe.src = trailer;
         DOM.heroTrailerIframe.style.display = 'block';
         DOM.heroTrailer.classList.add('active');
+        STATE.heroTrailerPlaying = true;
+        STATE.heroTrailerMuted = false;
+        updateTrailerControlsUI('hero', true, false);
+        if (DOM.heroTrailerControls) DOM.heroTrailerControls.style.display = 'flex';
       }
     }, 5000);
   }
@@ -594,6 +646,7 @@
     DOM.heroTrailer.classList.remove('active');
     DOM.heroTrailerIframe.src = '';
     DOM.heroTrailerIframe.style.display = 'none';
+    if (DOM.heroTrailerControls) DOM.heroTrailerControls.style.display = 'none';
   }
 
   // ---------- Render List Pages ----------
@@ -799,6 +852,10 @@
         DOM.modalTrailerIframe.src = trailer;
         DOM.modalTrailerIframe.style.display = 'block';
         DOM.modalHeroTrailer.classList.add('active');
+        STATE.modalTrailerPlaying = true;
+        STATE.modalTrailerMuted = false;
+        updateTrailerControlsUI('modal', true, false);
+        if (DOM.modalTrailerControls) DOM.modalTrailerControls.style.display = 'flex';
       }
     }, 5000);
   }
@@ -822,6 +879,7 @@
     DOM.modalHeroTrailer.classList.remove('active');
     DOM.modalTrailerIframe.src = '';
     DOM.modalTrailerIframe.style.display = 'none';
+    if (DOM.modalTrailerControls) DOM.modalTrailerControls.style.display = 'none';
   }
 
   // ---------- Seasons & Episodes Loading ----------
@@ -998,7 +1056,6 @@
     updateFavoriteBtnState(movie.id);
 
     if (STATE.currentPage === 'home') renderHome();
-    else if (STATE.currentPage === 'admin') renderAdmin();
   }
 
   function updateFavoriteBtnState(movieId) {
@@ -1018,49 +1075,7 @@
     }
   }
 
-  // ---------- Admin Control Panel ----------
-  function renderAdmin() {
-    // Fill state
-    DOM.tmdbApiKey.value = STATE.tmdbApiKey;
-    DOM.featuredId.value = STATE.featuredId;
-    DOM.featuredType.value = STATE.featuredType;
 
-    // Refresh statistics
-    DOM.statFavorites.textContent = STATE.favorites.length;
-    
-    let cacheCount = 0;
-    for (let i = 0; i < sessionStorage.length; i++) {
-      if (sessionStorage.key(i).startsWith('tmdb_cache_')) cacheCount++;
-    }
-    DOM.statCached.textContent = cacheCount;
-
-    // Status check
-    if (STATE.tmdbApiKey) {
-      updateTMDBStatusBlock(true, 'Chave de API ativa. Catálogo automatizado pronto.');
-    } else {
-      updateTMDBStatusBlock(false, 'Chave de API não configurada. Forneça uma chave do TMDB para acessar conteúdo.');
-    }
-
-    // Render favorites grid
-    if (STATE.favorites.length === 0) {
-      DOM.adminFavoritesContainer.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted);">
-          <h3>Nenhum favorito salvo</h3>
-          <p>Adicione títulos à "Minha Lista" e eles aparecerão aqui!</p>
-        </div>
-      `;
-    } else {
-      DOM.adminFavoritesContainer.innerHTML = STATE.favorites.map((item, i) => createCardHTML(item, i)).join('');
-      attachCardEvents(DOM.adminFavoritesContainer);
-    }
-  }
-
-  function updateTMDBStatusBlock(isValid, text) {
-    DOM.tmdbStatusWrapper.style.display = 'block';
-    DOM.tmdbStatusWrapper.className = `form-group full-width ${isValid ? 'success' : 'error'}`;
-    DOM.tmdbStatusIcon.textContent = isValid ? '✓' : '✕';
-    DOM.tmdbStatusText.textContent = text;
-  }
 
   // ---------- Setup Core Event Bindings ----------
   function initApp() {
@@ -1117,68 +1132,81 @@
       }
     });
 
-    // Form: API Key configure
-    DOM.tmdbConfigForm.onsubmit = async (e) => {
-      e.preventDefault();
-      const apiKey = DOM.tmdbApiKey.value.trim();
-      if (!apiKey) return;
+    // Bind Hero Trailer controls
+    if (DOM.heroTrailerPlayPause) {
+      DOM.heroTrailerPlayPause.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        STATE.heroTrailerPlaying = !STATE.heroTrailerPlaying;
+        sendTrailerCommand(DOM.heroTrailerIframe, STATE.heroTrailerPlaying ? 'playVideo' : 'pauseVideo');
+        updateTrailerControlsUI('hero', STATE.heroTrailerPlaying, STATE.heroTrailerMuted);
+      };
+    }
+    if (DOM.heroTrailerMuteUnmute) {
+      DOM.heroTrailerMuteUnmute.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        STATE.heroTrailerMuted = !STATE.heroTrailerMuted;
+        sendTrailerCommand(DOM.heroTrailerIframe, STATE.heroTrailerMuted ? 'mute' : 'unMute');
+        updateTrailerControlsUI('hero', STATE.heroTrailerPlaying, STATE.heroTrailerMuted);
+      };
+    }
 
-      showToast('Validando Chave API...', 'info');
-      try {
-        const testQueryParams = new URLSearchParams({ api_key: apiKey });
-        const res = await fetch(`https://api.themoviedb.org/3/movie/popular?${testQueryParams}`);
-        
-        if (!res.ok) {
-          throw new Error('Key fail test');
+    // Bind Modal Trailer controls
+    if (DOM.modalTrailerPlayPause) {
+      DOM.modalTrailerPlayPause.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        STATE.modalTrailerPlaying = !STATE.modalTrailerPlaying;
+        sendTrailerCommand(DOM.modalTrailerIframe, STATE.modalTrailerPlaying ? 'playVideo' : 'pauseVideo');
+        updateTrailerControlsUI('modal', STATE.modalTrailerPlaying, STATE.modalTrailerMuted);
+      };
+    }
+    if (DOM.modalTrailerMuteUnmute) {
+      DOM.modalTrailerMuteUnmute.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        STATE.modalTrailerMuted = !STATE.modalTrailerMuted;
+        sendTrailerCommand(DOM.modalTrailerIframe, STATE.modalTrailerMuted ? 'mute' : 'unMute');
+        updateTrailerControlsUI('modal', STATE.modalTrailerPlaying, STATE.modalTrailerMuted);
+      };
+    }
+
+    // Bind Cinema Rewind/Forward buttons
+    if (DOM.cinemaRewindBtn) {
+      DOM.cinemaRewindBtn.onclick = (e) => {
+        e.preventDefault();
+        if (DOM.cinemaVideo.style.display !== 'none') {
+          DOM.cinemaVideo.currentTime = Math.max(0, DOM.cinemaVideo.currentTime - 15);
+        } else {
+          try {
+            const iframeWindow = DOM.cinemaIframe.contentWindow;
+            if (iframeWindow) {
+              iframeWindow.postMessage(JSON.stringify({ event: 'seek', value: -15 }), '*');
+              iframeWindow.postMessage(JSON.stringify({ method: 'seek', value: -15 }), '*');
+            }
+          } catch (err) {}
+          showToast("Tentando voltar 15s... Use os controles na tela se necessário.", "info");
         }
-
-        localStorage.setItem('darkflix_tmdb_api_key', apiKey);
-        STATE.tmdbApiKey = apiKey;
-        
-        showToast('Chave TMDB API validada com sucesso!', 'success');
-        updateTMDBStatusBlock(true, 'Chave de API ativa e validada com sucesso.');
-        renderAdmin();
-      } catch (err) {
-        showToast('Chave inválida! Teste de conexão falhou.', 'error');
-        updateTMDBStatusBlock(false, 'Chave de API inválida ou teste falhou. Tente novamente.');
-      }
-    };
-
-    // Form: featured banner configure
-    DOM.featuredConfigForm.onsubmit = async (e) => {
-      e.preventDefault();
-      const id = DOM.featuredId.value.trim();
-      const type = DOM.featuredType.value;
-      if (!id) return;
-
-      showToast('Pesquisando título no TMDB...', 'info');
-      try {
-        const details = await tmdbFetch(`/${type}/${id}`);
-        localStorage.setItem('darkflix_featured_id', id);
-        localStorage.setItem('darkflix_featured_type', type);
-        STATE.featuredId = id;
-        STATE.featuredType = type;
-
-        showToast(`Destaque alterado: "${details.title || details.name}"`, 'success');
-      } catch (err) {
-        console.error("Falha ao salvar destaque:", err);
-        showToast('Código de ID não localizado no TMDB.', 'error');
-      }
-    };
-
-    // Action: Clear TMDB Cache
-    DOM.btnClearCache.onclick = () => {
-      let count = 0;
-      for (let i = sessionStorage.length - 1; i >= 0; i--) {
-        const key = sessionStorage.key(i);
-        if (key && key.startsWith('tmdb_cache_')) {
-          sessionStorage.removeItem(key);
-          count++;
+      };
+    }
+    if (DOM.cinemaForwardBtn) {
+      DOM.cinemaForwardBtn.onclick = (e) => {
+        e.preventDefault();
+        if (DOM.cinemaVideo.style.display !== 'none') {
+          DOM.cinemaVideo.currentTime = Math.min(DOM.cinemaVideo.duration || 0, DOM.cinemaVideo.currentTime + 15);
+        } else {
+          try {
+            const iframeWindow = DOM.cinemaIframe.contentWindow;
+            if (iframeWindow) {
+              iframeWindow.postMessage(JSON.stringify({ event: 'seek', value: 15 }), '*');
+              iframeWindow.postMessage(JSON.stringify({ method: 'seek', value: 15 }), '*');
+            }
+          } catch (err) {}
+          showToast("Tentando avançar 15s... Use os controles na tela se necessário.", "info");
         }
-      }
-      showToast(`Cache do TMDB liberado (${count} itens).`, 'success');
-      renderAdmin();
-    };
+      };
+    }
 
     // First load
     navigateTo('home');

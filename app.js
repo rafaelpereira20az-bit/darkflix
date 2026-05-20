@@ -81,6 +81,7 @@
     heroYear: $('#hero-year'),
     heroDuration: $('#hero-duration'),
     heroGenres: $('#hero-genres'),
+    heroMeta: $('#hero-meta'),
     heroDescription: $('#hero-description'),
     heroWatchBtn: $('#hero-watch-btn'),
     heroInfoBtn: $('#hero-info-btn'),

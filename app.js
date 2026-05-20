@@ -885,9 +885,10 @@
         item.onclick = () => {
           const epNum = item.dataset.episode;
           const sNum = item.dataset.season;
+          const seriesName = STATE.currentMovieDetail ? (STATE.currentMovieDetail.name || STATE.currentMovieDetail.title) : 'Série';
           closeDetail();
           setTimeout(() => {
-            openCinema(seriesId, `${STATE.currentMovieDetail.name} — T${sNum}:E${epNum}`, 'tv', sNum, epNum);
+            openCinema(seriesId, `${seriesName} — T${sNum}:E${epNum}`, 'tv', sNum, epNum);
           }, 300);
         };
       });

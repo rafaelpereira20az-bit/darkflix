@@ -394,12 +394,34 @@
     showLoadingSkeletons(DOM.homeContent);
 
     try {
-      // Parallel requests
-      const [trendingMovies, trendingSeries, featuredDetails] = await Promise.all([
+      const homeCategories = [
+        { title: 'Terror e Suspense', id: '27,53' },
+        { title: 'Comédias', id: '35' },
+        { title: 'Ação e Aventura', id: '28,12' },
+        { title: 'Românticos', id: '10749' },
+        { title: 'Para Toda a Família', id: '10751' },
+        { title: 'Dramas', id: '18' },
+        { title: 'Animação', id: '16' },
+        { title: 'Ficção Científica', id: '878' }
+      ];
+
+      // Requests base + Requests de categorias
+      const requests = [
         tmdbFetch('/trending/movie/week').catch(() => ({ results: [] })),
         tmdbFetch('/trending/tv/week').catch(() => ({ results: [] })),
         fetchFeaturedItem().catch(() => null)
-      ]);
+      ];
+
+      homeCategories.forEach(cat => {
+        requests.push(tmdbFetch('/discover/movie', { with_genres: cat.id }).catch(() => ({ results: [] })));
+      });
+
+      const responses = await Promise.all(requests);
+
+      const trendingMovies = responses[0];
+      const trendingSeries = responses[1];
+      const featuredDetails = responses[2];
+      const categoryResults = responses.slice(3);
 
       // Set featured on banner
       const heroItem = featuredDetails || trendingMovies.results[0];
@@ -414,7 +436,7 @@
             <div class="section-header">
               <h2 class="section-title">Minha Lista</h2>
             </div>
-            <div class="movies-grid">
+            <div class="movies-row">
               ${STATE.favorites.map((item, i) => createCardHTML(item, i)).join('')}
             </div>
           </section>
@@ -428,8 +450,8 @@
             <div class="section-header">
               <h2 class="section-title">Filmes em Destaque</h2>
             </div>
-            <div class="movies-grid">
-              ${trendingMovies.results.slice(0, 12).map((item, i) => createCardHTML(item, i, 'movie')).join('')}
+            <div class="movies-row">
+              ${trendingMovies.results.slice(0, 15).map((item, i) => createCardHTML(item, i, 'movie')).join('')}
             </div>
           </section>
         `;
@@ -442,12 +464,29 @@
             <div class="section-header">
               <h2 class="section-title">Séries Populares</h2>
             </div>
-            <div class="movies-grid">
-              ${trendingSeries.results.slice(0, 12).map((item, i) => createCardHTML(item, i, 'tv')).join('')}
+            <div class="movies-row">
+              ${trendingSeries.results.slice(0, 15).map((item, i) => createCardHTML(item, i, 'tv')).join('')}
             </div>
           </section>
         `;
       }
+
+      // Section: Custom Categories
+      homeCategories.forEach((cat, index) => {
+        const results = categoryResults[index].results || [];
+        if (results.length > 0) {
+          html += `
+            <section class="section">
+              <div class="section-header">
+                <h2 class="section-title">${cat.title}</h2>
+              </div>
+              <div class="movies-row">
+                ${results.slice(0, 15).map((item, i) => createCardHTML(item, i, 'movie')).join('')}
+              </div>
+            </section>
+          `;
+        }
+      });
 
       DOM.homeContent.innerHTML = html || `
         <div class="no-results">
@@ -460,7 +499,7 @@
 
     } catch (err) {
       console.error("Erro renderizando home:", err);
-      showErrorState(DOM.homeContent, "Erro ao conectar-se com o TMDB API. Verifique sua chave de API nas configurações.");
+      showErrorState(DOM.homeContent, "Erro ao conectar-se com o TMDB API. Verifique sua conexão.");
     }
   }
 

@@ -1560,7 +1560,7 @@ ul, ol {
   }
 
   .nav-categories-wrapper {
-    display: none;
+    display: none !important;
   }
 
   .menu-toggle {

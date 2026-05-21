@@ -605,7 +605,7 @@
         tmdbFetch('/movie/popular').catch(() => ({ results: [] })),                        // 6
         tmdbFetch('/movie/popular', { page: 2 }).catch(() => ({ results: [] })),           // 7
         tmdbFetch('/trending/tv/day').catch(() => ({ results: [] })),                      // 8
-        fetchFeaturedItem().catch(() => null),                                             // 9
+        Promise.resolve(null),                                                             // 9
         tmdbFetch('/tv/top_rated').catch(() => ({ results: [] })),                         // 10
         tmdbFetch('/tv/on_the_air').catch(() => ({ results: [] })),                        // 11
         tmdbFetch('/tv/popular').catch(() => ({ results: [] }))                            // 12
@@ -651,9 +651,9 @@
       const nowPlayingAll = [...(nowPlaying1.results || []), ...(nowPlaying2.results || [])];
       const popularAll = [...(popular1.results || []), ...(popular2.results || [])];
 
-      // Set featured on banner
-      const heroItem = featuredDetails || trendingMovies.results[0];
-      renderHero(heroItem);
+      // Set featured on banner (daily rotating movie/series)
+      const heroItem = await selectDailyFeaturedItem(nowPlayingAll, trendingSeries.results);
+      renderHero(heroItem || trendingMovies.results[0]);
 
       let html = '';
 
@@ -807,6 +807,78 @@
     } catch (e) {
       console.warn("Featured item fetch failed", e);
       return null;
+    }
+  }
+
+  async function selectDailyFeaturedItem(nowPlayingMovies, trendingSeriesList) {
+    // Curated list of classic highly requested series/movies to mix in
+    const curatedClassics = [
+      { id: 71446, media_type: 'tv' },   // La Casa de Papel
+      { id: 210815, media_type: 'tv' },  // Berlim
+      { id: 66732, media_type: 'tv' },   // Stranger Things
+      { id: 1396, media_type: 'tv' },    // Breaking Bad
+      { id: 70523, media_type: 'tv' },   // Dark
+      { id: 119051, media_type: 'tv' },  // Wandinha (Wednesday)
+      { id: 157336, media_type: 'movie' } // Interstellar
+    ];
+
+    const candidates = [];
+
+    // Add curated hits
+    curatedClassics.forEach(item => {
+      candidates.push({ id: item.id, media_type: item.media_type });
+    });
+
+    // Add cinema releases
+    if (nowPlayingMovies && nowPlayingMovies.length > 0) {
+      nowPlayingMovies.forEach(item => {
+        candidates.push({ id: item.id, media_type: 'movie', data: item });
+      });
+    }
+
+    // Add trending series
+    if (trendingSeriesList && trendingSeriesList.length > 0) {
+      trendingSeriesList.forEach(item => {
+        candidates.push({ id: item.id, media_type: 'tv', data: item });
+      });
+    }
+
+    // Deduplicate candidates by key (media_type + id)
+    const uniqueCandidates = [];
+    const seen = new Set();
+    candidates.forEach(item => {
+      const key = `${item.media_type}_${item.id}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        uniqueCandidates.push(item);
+      }
+    });
+
+    if (uniqueCandidates.length === 0) return null;
+
+    // Sort candidates by ID to ensure deterministic order regardless of TMDB response order
+    uniqueCandidates.sort((a, b) => a.id - b.id);
+
+    // Use current date to pick a deterministic index
+    const today = new Date();
+    // Deterministic hash based on year, month, and day
+    const dateHash = today.getFullYear() * 1000 + (today.getMonth() + 1) * 31 + today.getDate();
+    const index = dateHash % uniqueCandidates.length;
+    const selected = uniqueCandidates[index];
+
+    // If we already have the full data object, return it
+    if (selected.data) {
+      return selected.data;
+    }
+
+    // Otherwise, fetch the full details for the curated classic
+    try {
+      const details = await tmdbFetch(`/${selected.media_type}/${selected.id}`);
+      details.media_type = selected.media_type;
+      return details;
+    } catch (e) {
+      console.warn("Error fetching curated classic details, falling back", e);
+      return nowPlayingMovies[0] || null;
     }
   }
 

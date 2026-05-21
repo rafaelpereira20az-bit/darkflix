@@ -148,7 +148,11 @@
     cinemaRewindBtn: $('#cinema-rewind-btn'),
     cinemaForwardBtn: $('#cinema-forward-btn'),
     
-
+    // Mobile categories accordion
+    mobileMoviesTrigger: $('#mobile-movies-trigger'),
+    mobileMoviesList: $('#mobile-movies-list'),
+    mobileSeriesTrigger: $('#mobile-series-trigger'),
+    mobileSeriesList: $('#mobile-series-list'),
     
     toastContainer: $('#toast-container'),
     footer: $('#main-footer')
@@ -307,6 +311,57 @@
     if (page === 'home') renderHome();
     else if (page === 'movies') renderMoviesPage();
     else if (page === 'series') renderSeriesPage();
+  }
+
+  function navigateToGenre(type, genreName) {
+    const genreId = PORTUGUESE_GENRES[genreName] || null;
+    STATE.currentPage = type;
+    
+    // Reset page visibility
+    Object.keys(DOM.pages).forEach((key) => {
+      if (DOM.pages[key]) DOM.pages[key].classList.toggle('active', key === type);
+    });
+
+    // Update active nav link
+    $$('.nav-link').forEach((link) => {
+      link.classList.toggle('active', link.dataset.page === type);
+    });
+
+    // Mobile menu reset
+    DOM.navMenu.classList.remove('open');
+    DOM.menuToggle.classList.remove('active');
+    
+    // Stop trailers
+    stopMainHeroTrailer();
+    closeDetail();
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Render with genre pre-filtered
+    if (type === 'movies') {
+      renderMoviesPage(genreId);
+      // Wait for rendering to complete, then update filter bar active button
+      setTimeout(() => {
+        const filterBar = DOM.moviesFilterBar;
+        if (filterBar) {
+          filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.genre === (genreName || 'all'));
+          });
+        }
+      }, 50);
+    } else if (type === 'series') {
+      renderSeriesPage(genreId);
+      // Wait for rendering to complete, then update filter bar active button
+      setTimeout(() => {
+        const filterBar = DOM.seriesFilterBar;
+        if (filterBar) {
+          filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.genre === (genreName || 'all'));
+          });
+        }
+      }, 50);
+    }
   }
 
   // ---------- Toast Notifications ----------
@@ -1242,6 +1297,58 @@
 
   // ---------- Setup Core Event Bindings ----------
   function initApp() {
+    // Render and bind Mobile categories accordion
+    if (DOM.mobileMoviesList && DOM.mobileSeriesList) {
+      // 1. Populate Lists
+      const genresList = Object.keys(PORTUGUESE_GENRES);
+      
+      DOM.mobileMoviesList.innerHTML = genresList.map(name => `
+        <button class="mobile-category-item" data-genre="${name}">${name}</button>
+      `).join('');
+      
+      DOM.mobileSeriesList.innerHTML = genresList.map(name => `
+        <button class="mobile-category-item" data-genre="${name}">${name}</button>
+      `).join('');
+
+      // 2. Bind Triggers (Accordion Toggle)
+      DOM.mobileMoviesTrigger.onclick = (e) => {
+        e.preventDefault();
+        DOM.mobileMoviesTrigger.classList.toggle('active');
+        DOM.mobileMoviesList.classList.toggle('open');
+        
+        // Auto-close other accordion for a premium accordion feel
+        DOM.mobileSeriesTrigger.classList.remove('active');
+        DOM.mobileSeriesList.classList.remove('open');
+      };
+
+      DOM.mobileSeriesTrigger.onclick = (e) => {
+        e.preventDefault();
+        DOM.mobileSeriesTrigger.classList.toggle('active');
+        DOM.mobileSeriesList.classList.toggle('open');
+        
+        // Auto-close other accordion for a premium accordion feel
+        DOM.mobileMoviesTrigger.classList.remove('active');
+        DOM.mobileMoviesList.classList.remove('open');
+      };
+
+      // 3. Bind Item Click Navigation
+      DOM.mobileMoviesList.querySelectorAll('.mobile-category-item').forEach(item => {
+        item.onclick = (e) => {
+          e.preventDefault();
+          const genre = item.dataset.genre;
+          navigateToGenre('movies', genre);
+        };
+      });
+
+      DOM.mobileSeriesList.querySelectorAll('.mobile-category-item').forEach(item => {
+        item.onclick = (e) => {
+          e.preventDefault();
+          const genre = item.dataset.genre;
+          navigateToGenre('series', genre);
+        };
+      });
+    }
+
     // Window header scroll glass effect
     window.addEventListener('scroll', () => {
       DOM.header.classList.toggle('scrolled', window.scrollY > 20);

@@ -172,6 +172,11 @@
     mobileSeriesList: $('#mobile-series-list'),
     mobileAnimesTrigger: $('#mobile-animes-trigger'),
     mobileAnimesList: $('#mobile-animes-list'),
+
+    // Desktop categories dropdown
+    categoriesWrapper: $('#nav-categories-wrapper'),
+    categoriesBtn: $('#nav-categories-btn'),
+    categoriesDropdown: $('#categories-dropdown'),
     
     toastContainer: $('#toast-container'),
     footer: $('#main-footer')
@@ -1529,6 +1534,9 @@
     // Navigation bindings
     $$('.nav-link').forEach((link) => {
       link.addEventListener('click', (e) => {
+        // Prevent "Categorias" button from triggering page navigation since it's a dropdown toggle
+        if (link.id === 'nav-categories-btn') return;
+        
         e.preventDefault();
         navigateTo(link.dataset.page);
       });
@@ -1544,6 +1552,64 @@
       DOM.menuToggle.classList.toggle('active');
       DOM.navMenu.classList.toggle('open');
     });
+
+    // ---------- Desktop Categories Dropdown ----------
+    if (DOM.categoriesBtn && DOM.categoriesDropdown) {
+      // Populate dropdown with genre sections
+      const filmIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg>';
+      const tvIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>';
+      const animeIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+
+      const movieGenres = Object.keys(PORTUGUESE_GENRES);
+      const seriesGenreNames = ['Drama', 'Comédia', 'Ação', 'Crime', 'Ficção Científica', 'Mistério', 'Animação', 'Documentário', 'Romance', 'Terror'];
+      const animeGenreNames = Object.keys(ANIME_GENRES);
+
+      DOM.categoriesDropdown.innerHTML = `
+        <div class="categories-section">
+          <div class="categories-section-title">${filmIcon} Filmes</div>
+          <div class="categories-grid">
+            ${movieGenres.map(name => `<button class="category-pill" data-type="movies" data-genre="${name}">${name}</button>`).join('')}
+          </div>
+        </div>
+        <div class="categories-section">
+          <div class="categories-section-title">${tvIcon} Séries</div>
+          <div class="categories-grid">
+            ${seriesGenreNames.map(name => `<button class="category-pill" data-type="series" data-genre="${name}">${name}</button>`).join('')}
+          </div>
+        </div>
+        <div class="categories-section">
+          <div class="categories-section-title">${animeIcon} Animes</div>
+          <div class="categories-grid">
+            ${animeGenreNames.map(name => `<button class="category-pill" data-type="animes" data-genre="${name}">${name}</button>`).join('')}
+          </div>
+        </div>
+      `;
+
+      // Toggle dropdown
+      DOM.categoriesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        DOM.categoriesWrapper.classList.toggle('open');
+      });
+
+      // Close dropdown on outside click
+      document.addEventListener('click', (e) => {
+        if (!DOM.categoriesWrapper.contains(e.target)) {
+          DOM.categoriesWrapper.classList.remove('open');
+        }
+      });
+
+      // Navigate on pill click
+      DOM.categoriesDropdown.querySelectorAll('.category-pill').forEach(pill => {
+        pill.addEventListener('click', (e) => {
+          e.preventDefault();
+          const type = pill.dataset.type;
+          const genre = pill.dataset.genre;
+          DOM.categoriesWrapper.classList.remove('open');
+          navigateToGenre(type, genre);
+        });
+      });
+    }
 
     // Search input bounce
     DOM.searchInput.addEventListener('input', (e) => {

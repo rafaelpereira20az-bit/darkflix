@@ -310,6 +310,15 @@
   function navigateTo(page) {
     STATE.currentPage = page;
     
+    // Force solid blurred dark header background on inner pages to prevent clashing content
+    if (DOM.header) {
+      if (page !== 'home') {
+        DOM.header.classList.add('scrolled');
+      } else {
+        DOM.header.classList.toggle('scrolled', window.scrollY > 20);
+      }
+    }
+    
     // Reset page visibility
     Object.keys(DOM.pages).forEach((key) => {
       if (DOM.pages[key]) DOM.pages[key].classList.toggle('active', key === page);
@@ -1528,7 +1537,11 @@
 
     // Window header scroll glass effect
     window.addEventListener('scroll', () => {
-      DOM.header.classList.toggle('scrolled', window.scrollY > 20);
+      if (STATE.currentPage !== 'home') {
+        DOM.header.classList.add('scrolled');
+      } else {
+        DOM.header.classList.toggle('scrolled', window.scrollY > 20);
+      }
     });
 
     // Navigation bindings

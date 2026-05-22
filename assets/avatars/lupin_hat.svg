@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#2ecc71"/>
+  <circle cx="100" cy="100" r="95" fill="#abebc6" opacity="0.3"/>
+  
+  <!-- Blue Jacket -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#2980b9"/>
+  <!-- Dark turtleneck -->
+  <path d="M 80 150 L 85 135 L 115 135 L 120 150 Z" fill="#1e272e"/>
+
+  <!-- Neck -->
+  <rect x="91" y="125" width="18" height="20" fill="#4a2c11"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 82 75 66 100 66 C 125 66 132 82 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#4a2c11"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="86" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="4" fill="#111"/>
+  <circle cx="114" cy="95" r="4" fill="#111"/>
+  <circle cx="85" cy="93" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="93" r="1.5" fill="#fff"/>
+  
+  <!-- Nose -->
+  <path d="M 100 90 L 97 108 L 102 108" fill="none" stroke="#2b1a0a" stroke-width="1.5"/>
+
+  <!-- Smile -->
+  <path d="M 88 118 Q 100 124 112 118" stroke="#2b1a0a" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Flat Cap / Newsboy Cap (Lupin flat cap style) -->
+  <ellipse cx="100" cy="55" rx="34" ry="15" fill="#1e272e" stroke="#111" stroke-width="1"/>
+  <!-- Brim -->
+  <path d="M 68 62 Q 100 68 132 62" stroke="#111111" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,12 +1,104 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <!-- Outer black background -->
-  <rect width="512" height="512" fill="#000000"/>
-  <!-- Inner rounded frame -->
-  <rect x="24" y="24" width="464" height="464" rx="48" fill="#141414" stroke="#ffffff" stroke-width="6" filter="drop-shadow(0px 0px 12px rgba(255,255,255,0.4))"/>
-  <!-- Gothic L text -->
-  <text x="256" y="340" font-size="260" font-family="'Old English Text MT', 'Cloister Black', 'Georgia', serif" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">L</text>
-  <!-- Decorative gothic border elements -->
-  <path d="M 120,380 L 392,380" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="120" cy="380" r="6" fill="#ffffff"/>
-  <circle cx="392" cy="380" r="6" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Deep dark background - Death Note grey -->
+  <rect width="200" height="200" fill="#0a0a0e"/>
+  <radialGradient id="lbg" cx="50%" cy="40%" r="65%">
+    <stop offset="0%" stop-color="#1a1a26"/>
+    <stop offset="100%" stop-color="#040408"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#lbg)"/>
+
+  <!-- Subtle notebook lines in background -->
+  <g opacity="0.06" stroke="#aaaaff" stroke-width="0.5">
+    <line x1="0" y1="30" x2="200" y2="30"/>
+    <line x1="0" y1="50" x2="200" y2="50"/>
+    <line x1="0" y1="70" x2="200" y2="70"/>
+    <line x1="0" y1="90" x2="200" y2="90"/>
+    <line x1="0" y1="110" x2="200" y2="110"/>
+    <line x1="0" y1="130" x2="200" y2="130"/>
+    <line x1="0" y1="150" x2="200" y2="150"/>
+    <line x1="0" y1="170" x2="200" y2="170"/>
+    <line x1="0" y1="190" x2="200" y2="190"/>
+    <line x1="30" y1="0" x2="30" y2="200" stroke="#4444aa" stroke-width="1"/>
+  </g>
+
+  <!-- Body - hunched posture, white shirt -->
+  <path d="M 25 200 L 40 158 Q 55 140 100 138 Q 145 140 160 158 L 175 200 Z" fill="#e8e8f0"/>
+  <!-- Shirt hanging loose -->
+  <path d="M 40 158 Q 42 148 52 143 Q 55 155 50 170 Z" fill="#d8d8e8"/>
+  <path d="M 160 158 Q 158 148 148 143 Q 145 155 150 170 Z" fill="#d8d8e8"/>
+  <!-- Shirt crinkle/texture -->
+  <path d="M 80 148 Q 82 155 80 165" stroke="#cccce0" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M 100 140 Q 98 150 100 160" stroke="#cccce0" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M 120 148 Q 118 155 120 165" stroke="#cccce0" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <!-- Jeans waistband hint at bottom -->
+  <path d="M 30 200 L 35 190 L 165 190 L 170 200 Z" fill="#2a3a5a" opacity="0.5"/>
+
+  <!-- Neck - pale, thin -->
+  <rect x="89" y="127" width="22" height="16" rx="5" fill="#ddd8c8"/>
+
+  <!-- Head - pale, slightly gaunt -->
+  <ellipse cx="100" cy="97" rx="38" ry="43" fill="#ddd8c8"/>
+
+  <!-- BLACK HAIR - L's signature messy, disheveled hair -->
+  <!-- Main hair mass -->
+  <ellipse cx="100" cy="63" rx="38" ry="22" fill="#0a0a0a"/>
+  <!-- Messy side pieces -->
+  <path d="M 62 72 Q 50 78 48 90 Q 50 82 60 78 Z" fill="#0a0a0a"/>
+  <path d="M 138 72 Q 150 78 152 90 Q 150 82 140 78 Z" fill="#0a0a0a"/>
+  <!-- Wild hair strands pointing in different directions -->
+  <path d="M 72 52 Q 68 38 74 28 Q 76 40 78 54" fill="#111"/>
+  <path d="M 85 48 Q 86 33 94 24 Q 92 38 92 50" fill="#111"/>
+  <path d="M 100 46 Q 104 30 112 22 Q 108 36 108 48" fill="#0a0a0a"/>
+  <path d="M 112 50 Q 118 36 128 32 Q 122 44 118 54" fill="#111"/>
+  <path d="M 122 57 Q 132 46 140 44 Q 134 54 128 62" fill="#0a0a0a"/>
+  <!-- Hair curls over forehead -->
+  <path d="M 68 68 Q 74 60 82 65 Q 86 56 94 62" stroke="#111" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 108 62 Q 116 56 124 64 Q 128 56 134 62" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- DARK CIRCLES under eyes - L's most iconic feature -->
+  <ellipse cx="80" cy="104" rx="16" ry="11" fill="#1a1428" opacity="0.85"/>
+  <ellipse cx="120" cy="104" rx="16" ry="11" fill="#1a1428" opacity="0.85"/>
+
+  <!-- Eyes - wide open, pale grey/dark, penetrating stare -->
+  <ellipse cx="80" cy="102" rx="13" ry="11" fill="white"/>
+  <ellipse cx="120" cy="102" rx="13" ry="11" fill="white"/>
+  <!-- Iris - large, dark, almost no white showing -->
+  <ellipse cx="80" cy="102" rx="10" ry="10" fill="#2a2235"/>
+  <ellipse cx="120" cy="102" rx="10" ry="10" fill="#2a2235"/>
+  <ellipse cx="80" cy="102" rx="7" ry="7" fill="#150f20"/>
+  <ellipse cx="120" cy="102" rx="7" ry="7" fill="#150f20"/>
+  <ellipse cx="80" cy="102" rx="4" ry="4" fill="#050308"/>
+  <ellipse cx="120" cy="102" rx="4" ry="4" fill="#050308"/>
+  <!-- Bright reflective highlights - sharp, calculating eyes -->
+  <ellipse cx="84" cy="98" rx="3" ry="2.5" fill="white" opacity="0.95"/>
+  <ellipse cx="124" cy="98" rx="3" ry="2.5" fill="white" opacity="0.95"/>
+  <ellipse cx="78" cy="105" rx="1.5" ry="1.5" fill="white" opacity="0.5"/>
+  <ellipse cx="118" cy="105" rx="1.5" ry="1.5" fill="white" opacity="0.5"/>
+  <!-- Eyelids - heavy, drooping -->
+  <path d="M 67 97 Q 80 92 93 97" stroke="#2a2030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 107 97 Q 120 92 133 97" stroke="#2a2030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyebrows - thin, sparse, irregular -->
+  <path d="M 68 90 Q 78 87 90 90" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 110 90 Q 122 87 132 90" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Nose - thin, pointed -->
+  <path d="M 98 112 L 94 122 Q 100 126 106 122 L 102 112" fill="#ccc0b0" opacity="0.6"/>
+  <ellipse cx="94" cy="121" rx="4" ry="3" fill="#c0b0a0" opacity="0.6"/>
+  <ellipse cx="106" cy="121" rx="4" ry="3" fill="#c0b0a0" opacity="0.6"/>
+
+  <!-- Mouth - slight downward curve, unemotional -->
+  <path d="M 86 132 Q 100 129 114 132" stroke="#9a8880" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Thumb touching lips (L's famous pose hint) -->
+  <path d="M 86 130 Q 80 120 78 115" stroke="#ccc0a8" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <!-- Thumb nail -->
+  <ellipse cx="79" cy="114" rx="4" ry="5" fill="#e8dcc8"/>
+  <ellipse cx="79" cy="113" rx="3" ry="3.5" fill="#f0e4d0"/>
+
+  <!-- Ears - slightly large -->
+  <ellipse cx="62" cy="100" rx="7" ry="10" fill="#ddd8c8"/>
+  <ellipse cx="138" cy="100" rx="7" ry="10" fill="#ddd8c8"/>
+
+  <!-- "L" letter glow at bottom -->
+  <text x="100" y="196" font-family="Georgia, serif" font-size="28" font-weight="900" fill="white" text-anchor="middle" opacity="0.15" letter-spacing="2">L</text>
 </svg>

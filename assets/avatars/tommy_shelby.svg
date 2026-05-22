@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Smoky Golden-Grey Gradient Background -->
+  <radialGradient id="smoky-bg" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#4a3b32"/>
+    <stop offset="100%" stop-color="#1c1613"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#smoky-bg)"/>
+  <circle cx="100" cy="100" r="95" fill="#f39c12" opacity="0.05"/>
+  
+  <!-- Smoky effect overlay -->
+  <ellipse cx="120" cy="150" rx="30" ry="15" fill="#ffffff" opacity="0.05" filter="blur(5px)"/>
+
+  <!-- Suit & Tie -->
+  <path d="M 50 200 L 65 145 L 135 145 L 150 200 Z" fill="#1e272e"/>
+  <!-- Shirt collar -->
+  <path d="M 85 145 L 100 165 L 115 145 Z" fill="#ffffff"/>
+  <!-- Dark Tie -->
+  <path d="M 96 160 L 104 160 L 106 200 L 94 200 Z" fill="#111"/>
+
+  <!-- Neck -->
+  <rect x="90" y="125" width="20" height="25" fill="#e5c298"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 85 75 68 100 68 C 125 68 132 85 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#e5c298"/>
+  
+  <!-- Intense blue eyes (Tommy Shelby) -->
+  <ellipse cx="86" cy="95" rx="7" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="3" fill="#2980b9"/>
+  <circle cx="114" cy="95" r="3" fill="#2980b9"/>
+  <circle cx="85" cy="93" r="1" fill="#fff"/>
+  <circle cx="113" cy="93" r="1" fill="#fff"/>
+  
+  <!-- Nose (Sharp, defined) -->
+  <path d="M 100 90 L 97 108 L 102 108" fill="none" stroke="#c09d7e" stroke-width="1.5"/>
+
+  <!-- Serious expression lip line -->
+  <path d="M 88 120 L 112 120" stroke="#3e2723" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Side shaved crop haircut -->
+  <path d="M 72 90 L 74 72" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 128 90 L 126 72" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Flat Cap (Peaky Blinders newsboy cap) -->
+  <!-- Main cap volume -->
+  <ellipse cx="100" cy="55" rx="35" ry="16" fill="#2d3436" stroke="#1e272e" stroke-width="1"/>
+  <!-- Cap peak/visor -->
+  <path d="M 68 62 Q 100 70 132 62" stroke="#111111" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Cigarette with glowing orange tip -->
+  <line x1="102" y1="120" x2="114" y2="124" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="114" cy="124" r="1.5" fill="#e67e22"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#3498db"/>
+  <circle cx="100" cy="100" r="95" fill="#aed6f1" opacity="0.3"/>
+  
+  <!-- Horse Neck/Chest -->
+  <path d="M 120 200 C 120 180 130 140 140 120 C 130 110 110 100 90 120 C 80 140 60 180 60 200 Z" fill="#5d4037"/>
+
+  <!-- Horse Head -->
+  <!-- Snout/Jaw -->
+  <path d="M 140 120 L 100 70 C 90 55 70 70 80 90 L 110 135 Z" fill="#5d4037"/>
+  <!-- Ears -->
+  <path d="M 98 72 L 92 45 Q 98 42 104 55 Z" fill="#5d4037"/>
+  <path d="M 112 76 L 118 48 Q 124 45 120 58 Z" fill="#5d4037"/>
+  <!-- Inner ear -->
+  <path d="M 97 68 L 94 48 Q 97 46 100 55 Z" fill="#4e342e"/>
+  
+  <!-- White Stripe on Nose (Classic horse blaze) -->
+  <path d="M 98 72 L 90 92 L 100 110 L 105 92 Z" fill="#ffffff"/>
+
+  <!-- Muzzle/Nose -->
+  <path d="M 75 88 Q 70 95 80 100 Q 88 95 85 88 Z" fill="#4e342e"/>
+  <circle cx="76" cy="94" r="2.5" fill="#111"/>
+
+  <!-- Eye (Dark horse eye with white reflection) -->
+  <circle cx="115" cy="85" r="5" fill="#111"/>
+  <circle cx="114" cy="84" r="1.5" fill="#fff"/>
+
+  <!-- Black Mane -->
+  <path d="M 122 75 Q 138 90 142 120 L 148 115 Q 144 85 128 70 Z" fill="#111111"/>
+  <path d="M 114 62 Q 106 68 110 74 Z" fill="#111111"/>
+</svg>

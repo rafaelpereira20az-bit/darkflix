@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#f39c12"/>
+  <circle cx="100" cy="100" r="95" fill="#fdebd0" opacity="0.3"/>
+  
+  <!-- Lute (on shoulder, viewer's left) -->
+  <path d="M 40 180 Q 30 140 45 130 Q 60 140 50 180 Z" fill="#b08b75" stroke="#7e5a40" stroke-width="1.5"/>
+  <line x1="45" y1="130" x2="35" y2="110" stroke="#7e5a40" stroke-width="3"/>
+  <!-- Lute pegs -->
+  <circle cx="33" cy="110" r="1.5" fill="#111"/>
+  <circle cx="37" cy="107" r="1.5" fill="#111"/>
+
+  <!-- Bard Jacket (Plum/Pink) -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#9b59b6"/>
+  <!-- Yellow collar trim -->
+  <path d="M 68 150 L 80 160 Q 100 172 120 160 L 132 150 Z" fill="#f1c40f"/>
+
+  <!-- Neck -->
+  <rect x="91" y="125" width="18" height="25" fill="#fbe5d6"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 82 75 66 100 66 C 125 66 132 82 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#fbe5d6"/>
+  
+  <!-- Eyes (Blue, cheerful/expressive) -->
+  <ellipse cx="86" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="3.5" fill="#2980b9"/>
+  <circle cx="114" cy="95" r="3.5" fill="#2980b9"/>
+  <circle cx="85" cy="93" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="93" r="1.5" fill="#fff"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 98 108 L 102 108" fill="none" stroke="#d5b290" stroke-width="1.5"/>
+
+  <!-- Happy Smile -->
+  <path d="M 86 118 Q 100 126 114 118" stroke="#7e2a1f" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Medium Shoulder-Length Brown Hair -->
+  <path d="M 70 70 Q 52 75 56 120 L 68 115 Q 64 85 72 70 Z" fill="#6f4e37"/>
+  <path d="M 130 70 Q 148 75 144 120 L 132 115 Q 136 85 128 70 Z" fill="#6f4e37"/>
+  <path d="M 70 70 Q 100 50 130 70 L 126 62 Q 100 54 74 62 Z" fill="#6f4e37"/>
+</svg>

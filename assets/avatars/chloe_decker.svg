@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#27ae60"/>
+  <circle cx="100" cy="100" r="95" fill="#a9dfbf" opacity="0.3"/>
+  
+  <!-- Body/Clothes -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#2c3e50"/>
+  <!-- Gold badge chain -->
+  <path d="M 85 170 Q 100 195 115 170" stroke="#f1c40f" stroke-width="2.5" fill="none"/>
+  <path d="M 97 185 L 100 178 L 103 185 L 100 192 Z" fill="#f1c40f"/>
+
+  <!-- Neck -->
+  <rect x="91" y="125" width="18" height="25" fill="#edd0be"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 82 75 66 100 66 C 125 66 132 82 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#edd0be"/>
+  
+  <!-- Eyes (Blue, friendly) -->
+  <ellipse cx="86" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="3.5" fill="#3498db"/>
+  <circle cx="114" cy="95" r="3.5" fill="#3498db"/>
+  <circle cx="85" cy="93" r="1" fill="#fff"/>
+  <circle cx="113" cy="93" r="1" fill="#fff"/>
+  
+  <!-- Black Glasses (as in Chloe Decker screenshot) -->
+  <rect x="69" y="85" width="30" height="20" rx="4" fill="none" stroke="#111111" stroke-width="3"/>
+  <rect x="101" y="85" width="30" height="20" rx="4" fill="none" stroke="#111111" stroke-width="3"/>
+  <line x1="99" y1="92" x2="101" y2="92" stroke="#111111" stroke-width="3"/>
+  <path d="M 69 90 Q 60 88 56 94" stroke="#111111" stroke-width="2" fill="none"/>
+  <path d="M 131 90 Q 140 88 144 94" stroke="#111111" stroke-width="2" fill="none"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 98 108 L 102 108" fill="none" stroke="#d5b290" stroke-width="1.5"/>
+
+  <!-- Warm Smile -->
+  <path d="M 86 118 Q 100 128 114 118" stroke="#c0392b" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Blonde Hair (wavy ponytail/back hair) -->
+  <path d="M 72 70 Q 52 80 56 120 Q 60 145 68 150 Z" fill="#f1c40f"/>
+  <path d="M 128 70 Q 148 80 144 120 Q 140 145 132 150 Z" fill="#f1c40f"/>
+  <path d="M 70 70 Q 100 50 130 70 L 126 60 Q 100 48 74 60 Z" fill="#f1c40f"/>
+</svg>

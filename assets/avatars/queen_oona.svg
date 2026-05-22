@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#9b59b6"/>
+  <circle cx="100" cy="100" r="90" fill="#d7bde2" opacity="0.3"/>
+  <!-- Body/Dress -->
+  <path d="M 60 200 L 70 150 L 130 150 L 140 200 Z" fill="#fd79a8"/>
+  <!-- Neck -->
+  <rect x="90" y="125" width="20" height="30" fill="#a9dfbf"/>
+  <!-- Head -->
+  <path d="M 70 100 Q 60 70 100 70 Q 140 70 130 100 Q 135 125 100 130 Q 65 125 70 100 Z" fill="#a9dfbf"/>
+  <!-- Hair (Dark, long spikes/layers) -->
+  <path d="M 65 80 Q 50 110 50 150 L 60 150 Q 62 100 72 80 Z" fill="#2c3e50"/>
+  <path d="M 135 80 Q 150 110 150 150 L 140 150 Q 138 100 128 80 Z" fill="#2c3e50"/>
+  <path d="M 70 70 Q 100 50 130 70 L 125 60 Q 100 45 75 60 Z" fill="#2c3e50"/>
+  <!-- Eyes (Big round yellow eyes, snake/reptile look) -->
+  <circle cx="85" cy="90" r="10" fill="#f1c40f"/>
+  <circle cx="115" cy="90" r="10" fill="#f1c40f"/>
+  <!-- Slit Pupils -->
+  <line x1="85" y1="82" x2="85" y2="98" stroke="#111111" stroke-width="2.5"/>
+  <line x1="115" y1="82" x2="115" y2="98" stroke="#111111" stroke-width="2.5"/>
+  <!-- Nose (Small nostrils) -->
+  <circle cx="97" cy="104" r="1.5" fill="#7daba0"/>
+  <circle cx="103" cy="104" r="1.5" fill="#7daba0"/>
+  <!-- Mouth (Smug line) -->
+  <path d="M 88 116 Q 100 122 112 114" stroke="#7daba0" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Crown (Simple gold points) -->
+  <path d="M 82 60 L 80 45 L 90 52 L 100 40 L 110 52 L 120 45 L 118 60 Z" fill="#d4ac0d" stroke="#b7950b" stroke-width="1"/>
+</svg>

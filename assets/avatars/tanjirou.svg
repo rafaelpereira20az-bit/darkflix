@@ -1,40 +1,130 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <!-- Checkered pattern -->
-    <pattern id="checkers" width="64" height="64" patternUnits="userSpaceOnUse">
-      <rect width="32" height="32" fill="#0c0c0c"/>
-      <rect x="32" width="32" height="32" fill="#11794b"/>
-      <rect y="32" width="32" height="32" fill="#11794b"/>
-      <rect x="32" y="32" width="32" height="32" fill="#0c0c0c"/>
-    </pattern>
-  </defs>
-  <!-- Outer black background -->
-  <rect width="512" height="512" fill="#000000"/>
-  <!-- Inner rounded frame with checkered background -->
-  <rect x="24" y="24" width="464" height="464" rx="48" fill="url(#checkers)" stroke="#0df27b" stroke-width="6" filter="drop-shadow(0px 0px 12px rgba(13,242,123,0.4))"/>
-  
-  <!-- Silhouette / Minimalist Tanjirou elements -->
-  <!-- Hair: Spiky silhouette dark burgundy/red-brown -->
-  <path d="M 256,120 C 200,120 160,160 160,220 C 160,240 170,270 180,290 L 150,300 C 170,330 200,340 220,340 L 210,360 L 230,360 L 240,400 L 272,400 L 282,360 L 302,360 L 292,340 C 312,340 342,330 362,300 L 332,290 C 342,270 352,240 352,220 C 352,160 312,120 256,120 Z" fill="#2d1518" stroke="#7a1f29" stroke-width="4"/>
-  
-  <!-- Face/Skin tone -->
-  <path d="M 200,240 C 200,200 312,200 312,240 C 312,290 290,340 256,340 C 222,340 200,290 200,240 Z" fill="#fce4d6"/>
-  
-  <!-- Spiky hair overlay to make it look detailed -->
-  <path d="M 180,180 L 220,150 L 210,200 L 250,140 L 240,210 L 272,210 L 262,140 L 302,200 L 292,150 L 332,180 L 312,220 L 342,230 L 302,260 L 322,280 L 282,290 L 272,330 L 256,300 L 240,330 L 230,290 L 190,280 L 210,260 L 170,230 L 200,220 Z" fill="#2d1518" stroke="#7a1f29" stroke-width="2"/>
-  
-  <!-- Red scar on top left of head -->
-  <path d="M 215,215 C 210,210 205,215 208,222 C 210,225 218,220 220,225 C 222,228 220,232 225,230 C 230,225 220,215 215,215 Z" fill="#932b35"/>
-  
-  <!-- Hanafuda Earring -->
-  <g transform="translate(305, 290) scale(0.65)">
-    <!-- White rectangle earring -->
-    <rect x="-15" y="0" width="30" height="60" rx="3" fill="#ffffff" stroke="#000000" stroke-width="2"/>
-    <!-- Red circle sun on earring -->
-    <circle cx="0" cy="18" r="8" fill="#ff2a2a"/>
-    <!-- Black ray lines -->
-    <line x1="-15" y1="60" x2="0" y2="35" stroke="#000000" stroke-width="2"/>
-    <line x1="15" y1="60" x2="0" y2="35" stroke="#000000" stroke-width="2"/>
-    <line x1="0" y1="60" x2="0" y2="35" stroke="#000000" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Demon Slayer dark green/black background -->
+  <rect width="200" height="200" fill="#0d1a0d"/>
+  <radialGradient id="dsbg" cx="50%" cy="40%" r="65%">
+    <stop offset="0%" stop-color="#162614"/>
+    <stop offset="100%" stop-color="#050e05"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#dsbg)"/>
+
+  <!-- Hanafuda earring glow hint -->
+  <circle cx="148" cy="108" r="12" fill="#cc2200" opacity="0.15"/>
+  <circle cx="148" cy="108" r="8" fill="#cc2200" opacity="0.1"/>
+
+  <!-- Body - Demon Slayer Corps uniform (black with Tanjiro's haori) -->
+  <!-- Haori (cape) - checkered green and black pattern -->
+  <path d="M 25 200 L 36 152 Q 46 136 100 134 Q 154 136 164 152 L 175 200 Z" fill="#1a1a1a"/>
+  <!-- Haori checkered pattern -->
+  <g clip-path="url(#haoriclip)">
+    <clipPath id="haoriclip">
+      <path d="M 25 200 L 36 152 Q 46 136 100 134 Q 154 136 164 152 L 175 200 Z"/>
+    </clipPath>
+    <!-- Green squares -->
+    <rect x="36" y="134" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="68" y="134" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="100" y="134" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="132" y="134" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="52" y="150" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="84" y="150" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="116" y="150" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="148" y="150" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="36" y="166" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="68" y="166" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="100" y="166" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="132" y="166" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="52" y="182" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="84" y="182" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="116" y="182" width="16" height="16" fill="#1a5c1a"/>
+    <rect x="148" y="182" width="16" height="16" fill="#1a5c1a"/>
+    <!-- Grid lines -->
+    <line x1="36" y1="134" x2="36" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="52" y1="134" x2="52" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="68" y1="134" x2="68" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="84" y1="134" x2="84" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="100" y1="134" x2="100" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="116" y1="134" x2="116" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="132" y1="134" x2="132" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="148" y1="134" x2="148" y2="200" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="25" y1="150" x2="175" y2="150" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="25" y1="166" x2="175" y2="166" stroke="#0a0a0a" stroke-width="1"/>
+    <line x1="25" y1="182" x2="175" y2="182" stroke="#0a0a0a" stroke-width="1"/>
   </g>
+  <!-- Corps uniform collar/belt -->
+  <path d="M 82 145 Q 100 155 118 145 L 115 135 Q 100 143 85 135 Z" fill="#222"/>
+  <!-- Belt -->
+  <rect x="55" y="155" width="90" height="8" rx="3" fill="#333" opacity="0.5"/>
+
+  <!-- Neck -->
+  <rect x="88" y="125" width="24" height="16" rx="5" fill="#e8c8a0"/>
+
+  <!-- Head - young, determined face -->
+  <ellipse cx="100" cy="95" rx="38" ry="42" fill="#e8c8a0"/>
+
+  <!-- DARK RED/BURGUNDY HAIR - Tanjiro's signature -->
+  <!-- Main hair mass -->
+  <ellipse cx="100" cy="62" rx="38" ry="22" fill="#6a0000"/>
+  <!-- Hair that sweeps to the right -->
+  <path d="M 62 70 Q 52 76 50 88 Q 54 80 62 76 Z" fill="#6a0000"/>
+  <path d="M 138 70 Q 150 78 150 90 Q 146 82 138 78 Z" fill="#5a0000"/>
+  <!-- Front hair spiky sections -->
+  <path d="M 70 60 Q 68 44 76 34 Q 78 48 80 60" fill="#7a0000"/>
+  <path d="M 82 58 Q 84 40 92 30 Q 92 46 94 58" fill="#6a0000"/>
+  <path d="M 98 56 Q 102 38 110 30 Q 108 46 108 58" fill="#7a0000"/>
+  <path d="M 112 60 Q 118 44 126 38 Q 122 52 120 62" fill="#6a0000"/>
+  <!-- Hair tie suggestion at back -->
+  <rect x="130" y="65" width="12" height="6" rx="3" fill="#cc4400" opacity="0.7"/>
+
+  <!-- FOREHEAD SCAR - Tanjiro's birthmark (not scar, but flame-shaped birthmark) -->
+  <!-- Flame/scar marking on forehead -->
+  <path d="M 92 76 Q 96 68 100 74 Q 104 68 108 76 Q 104 72 100 78 Q 96 72 92 76 Z" fill="#cc2200" opacity="0.9"/>
+  <path d="M 95 76 Q 100 70 105 76" stroke="#aa1a00" stroke-width="1.5" fill="none"/>
+
+  <!-- Hanafuda earrings! (round flower earrings - signature look) -->
+  <!-- Left earring -->
+  <circle cx="52" cy="103" r="9" fill="#f0e8d0"/>
+  <circle cx="52" cy="103" r="9" fill="none" stroke="#cc0000" stroke-width="1.5"/>
+  <!-- Flower pattern on earring -->
+  <circle cx="52" cy="103" r="4" fill="#cc0000"/>
+  <circle cx="52" cy="96" r="2.5" fill="#cc0000"/>
+  <circle cx="52" cy="110" r="2.5" fill="#cc0000"/>
+  <circle cx="45" cy="103" r="2.5" fill="#cc0000"/>
+  <circle cx="59" cy="103" r="2.5" fill="#cc0000"/>
+  <!-- Right earring -->
+  <circle cx="148" cy="103" r="9" fill="#f0e8d0"/>
+  <circle cx="148" cy="103" r="9" fill="none" stroke="#cc0000" stroke-width="1.5"/>
+  <circle cx="148" cy="103" r="4" fill="#cc0000"/>
+  <circle cx="148" cy="96" r="2.5" fill="#cc0000"/>
+  <circle cx="148" cy="110" r="2.5" fill="#cc0000"/>
+  <circle cx="141" cy="103" r="2.5" fill="#cc0000"/>
+  <circle cx="155" cy="103" r="2.5" fill="#cc0000"/>
+
+  <!-- Eyebrows - strong, thick, determined -->
+  <path d="M 69 86 Q 82 79 95 86" stroke="#5a2010" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 105 86 Q 118 79 131 86" stroke="#5a2010" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes - wine red/dark red (water breathing style) -->
+  <ellipse cx="82" cy="98" rx="12" ry="10" fill="white"/>
+  <ellipse cx="118" cy="98" rx="12" ry="10" fill="white"/>
+  <ellipse cx="82" cy="98" rx="9" ry="9" fill="#8a1010"/>
+  <ellipse cx="118" cy="98" rx="9" ry="9" fill="#8a1010"/>
+  <ellipse cx="82" cy="98" rx="6" ry="6" fill="#5a0808"/>
+  <ellipse cx="118" cy="98" rx="6" ry="6" fill="#5a0808"/>
+  <ellipse cx="82" cy="98" rx="3.5" ry="3.5" fill="#1a0000"/>
+  <ellipse cx="118" cy="98" rx="3.5" ry="3.5" fill="#1a0000"/>
+  <!-- Eye shine -->
+  <ellipse cx="85" cy="95" rx="2.5" ry="2" fill="white" opacity="0.9"/>
+  <ellipse cx="121" cy="95" rx="2.5" ry="2" fill="white" opacity="0.9"/>
+
+  <!-- Nose -->
+  <path d="M 97 108 L 93 118 Q 100 122 107 118 L 103 108" fill="#d8a880" opacity="0.6"/>
+  <ellipse cx="93" cy="117" rx="4" ry="3" fill="#c8987A" opacity="0.7"/>
+  <ellipse cx="107" cy="117" rx="4" ry="3" fill="#c8987A" opacity="0.7"/>
+
+  <!-- Mouth - determined but kind expression -->
+  <path d="M 86 129 Q 100 134 114 129" stroke="#b08068" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 90 129 Q 100 133 110 129 Q 108 136 100 137 Q 92 136 90 129 Z" fill="#e0a888" opacity="0.5"/>
+
+  <!-- Ears -->
+  <ellipse cx="62" cy="100" rx="6" ry="9" fill="#e8c8a0"/>
+  <ellipse cx="138" cy="100" rx="6" ry="9" fill="#e8c8a0"/>
 </svg>

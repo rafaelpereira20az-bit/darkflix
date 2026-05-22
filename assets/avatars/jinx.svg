@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Deep Dark Teal Background -->
+  <rect width="200" height="200" fill="#0c242c"/>
+  <circle cx="100" cy="100" r="95" fill="#00cec9" opacity="0.1"/>
+  
+  <!-- Jinx clouds tattoo styling in background -->
+  <path d="M 30 140 C 40 120 70 120 80 140 C 90 120 120 120 130 140" fill="none" stroke="#00dec9" stroke-width="2" opacity="0.15"/>
+  
+  <!-- Body/Jumpsuit -->
+  <path d="M 60 200 L 70 155 L 130 155 L 140 200 Z" fill="#1a1c23"/>
+  <!-- Top straps -->
+  <path d="M 75 155 L 85 200 M 125 155 L 115 200" stroke="#111" stroke-width="4"/>
+  <!-- Neckband -->
+  <rect x="88" y="140" width="24" height="15" fill="#111"/>
+  <circle cx="100" cy="147" r="3" fill="#666"/>
+
+  <!-- Neck -->
+  <rect x="89" y="125" width="22" height="20" fill="#edd9d2"/>
+  
+  <!-- Head -->
+  <path d="M 72 110 C 65 78 75 62 100 62 C 125 62 135 78 128 110 C 124 128 118 132 100 132 C 82 132 76 128 72 110 Z" fill="#edd9d2"/>
+  
+  <!-- Neon Pink Eyes -->
+  <ellipse cx="86" cy="94" rx="8" ry="6" fill="#111"/>
+  <ellipse cx="114" cy="94" rx="8" ry="6" fill="#111"/>
+  <circle cx="86" cy="94" r="5" fill="#e84393"/>
+  <circle cx="114" cy="94" r="5" fill="#e84393"/>
+  <circle cx="85" cy="93" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="93" r="1.5" fill="#fff"/>
+  
+  <!-- Eyeliner & Makeup -->
+  <path d="M 74 94 L 92 92 M 126 94 L 108 92" stroke="#1e272e" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Nose (Sharp) -->
+  <path d="M 100 90 L 98 106 L 104 106" fill="none" stroke="#d7a492" stroke-width="1.5"/>
+
+  <!-- Mischievous Grin -->
+  <path d="M 85 116 Q 100 126 115 116" fill="none" stroke="#c23616" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Blue Hair (Bangs & side strands) -->
+  <path d="M 68 76 C 60 45 75 40 100 40 C 125 40 140 45 132 76 L 135 60 Q 100 45 65 60 Z" fill="#0984e3"/>
+  <!-- Long Side Bang framing face -->
+  <path d="M 72 65 Q 60 90 62 120" stroke="#0984e3" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M 128 65 Q 140 90 138 120" stroke="#0984e3" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Braids background -->
+  <path d="M 60 120 Q 40 150 48 180" stroke="#00cec9" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M 140 120 Q 160 150 152 180" stroke="#00cec9" stroke-width="10" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <radialGradient id="gold-smoke" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#5e4838"/>
+    <stop offset="100%" stop-color="#241910"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#gold-smoke)"/>
+  
+  <!-- Fur-trimmed coat collar -->
+  <path d="M 50 200 L 68 150 L 132 150 L 150 200 Z" fill="#2d3436"/>
+  <ellipse cx="100" cy="170" rx="35" ry="15" fill="#e5c298" opacity="0.8"/>
+
+  <!-- Neck -->
+  <rect x="90" y="125" width="20" height="25" fill="#fbe5d6"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 82 75 66 100 66 C 125 66 132 82 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#fbe5d6"/>
+  
+  <!-- Elegant Eyes (Blue, soft) -->
+  <ellipse cx="86" cy="95" rx="7" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="3.5" fill="#3498db"/>
+  <circle cx="114" cy="95" r="3.5" fill="#3498db"/>
+  <circle cx="85" cy="93" r="1" fill="#fff"/>
+  <circle cx="113" cy="93" r="1" fill="#fff"/>
+  
+  <!-- Nose (Delicate) -->
+  <path d="M 100 90 L 98 108 L 102 108" fill="none" stroke="#d5b290" stroke-width="1.5"/>
+
+  <!-- Red Lipstick Lip line -->
+  <path d="M 88 120 Q 100 128 112 120" stroke="#c0392b" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Blonde 1920s Wavy Hair -->
+  <!-- Left waves -->
+  <path d="M 74 72 C 60 70 54 90 60 110 Q 56 120 62 130 L 72 120 Z" fill="#f1c40f"/>
+  <circle cx="62" cy="85" r="10" fill="#f1c40f"/>
+  <circle cx="58" cy="105" r="10" fill="#f1c40f"/>
+  <!-- Right waves -->
+  <path d="M 126 72 C 140 70 146 90 140 110 Q 144 120 138 130 L 128 120 Z" fill="#f1c40f"/>
+  <circle cx="138" cy="85" r="10" fill="#f1c40f"/>
+  <circle cx="142" cy="105" r="10" fill="#f1c40f"/>
+  
+  <!-- Top hair volume -->
+  <path d="M 70 70 Q 100 50 130 70 L 124 60 Q 100 48 76 60 Z" fill="#f1c40f"/>
+  <!-- Gold highlights -->
+  <path d="M 72 75 Q 100 58 128 75" stroke="#ffeaa7" stroke-width="2" fill="none"/>
+</svg>

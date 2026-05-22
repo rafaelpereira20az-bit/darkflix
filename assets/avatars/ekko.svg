@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#301c0c"/>
+  <circle cx="100" cy="100" r="95" fill="#d35400" opacity="0.15"/>
+  
+  <!-- Body/Vest -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#2d3436"/>
+  <!-- Red scarf/collar -->
+  <path d="M 70 150 Q 100 175 130 150 L 120 165 Q 100 185 80 165 Z" fill="#d63031"/>
+  <!-- Neck -->
+  <rect x="90" y="125" width="20" height="25" fill="#5d4037"/>
+  <!-- Head -->
+  <path d="M 72 110 C 65 78 75 62 100 62 C 125 62 135 78 128 110 C 124 128 118 132 100 132 C 82 132 76 128 72 110 Z" fill="#5d4037"/>
+  
+  <!-- White Face Paint (Horizontal band across bridge of nose) -->
+  <path d="M 70 94 Q 100 90 130 94 L 129 104 Q 100 100 71 104 Z" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Eyes (Brown/Gold, intense) -->
+  <ellipse cx="86" cy="94" rx="8" ry="5.5" fill="#111"/>
+  <ellipse cx="114" cy="94" rx="8" ry="5.5" fill="#111"/>
+  <circle cx="86" cy="94" r="4" fill="#f1c40f"/>
+  <circle cx="114" cy="94" r="4" fill="#f1c40f"/>
+  <circle cx="85" cy="92" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="92" r="1.5" fill="#fff"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 98 106 L 103 106" fill="none" stroke="#463029" stroke-width="1.5"/>
+
+  <!-- Lip line -->
+  <path d="M 88 118 Q 100 123 112 118" stroke="#3e2723" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- White Mohawk/Dreadlocks -->
+  <path d="M 94 62 L 106 62 L 108 25 L 92 25 Z" fill="#ffffff"/>
+  <circle cx="100" cy="25" r="8" fill="#ffffff"/>
+  <!-- Side locks -->
+  <path d="M 95 38 L 82 20 Q 90 18 96 32" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 105 38 L 118 20 Q 110 18 104 32" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 98 46 L 85 28" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 102 46 L 115 28" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

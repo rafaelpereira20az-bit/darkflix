@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Iron Man red/gold gradient background -->
+  <rect width="200" height="200" fill="#8B0000"/>
+  <radialGradient id="ironbg" cx="50%" cy="40%" r="60%">
+    <stop offset="0%" stop-color="#c0392b"/>
+    <stop offset="100%" stop-color="#5a0000"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#ironbg)"/>
+
+  <!-- Helmet body - main shape -->
+  <path d="M 45 95 Q 42 155 55 185 Q 80 200 100 200 Q 120 200 145 185 Q 158 155 155 95 Q 150 60 100 50 Q 50 60 45 95 Z" fill="#c0392b"/>
+  
+  <!-- Helmet gold/yellow accents -->
+  <!-- Forehead band -->
+  <path d="M 55 90 Q 100 78 145 90 Q 148 96 145 100 Q 100 88 55 100 Q 52 96 55 90 Z" fill="#d4a017"/>
+  
+  <!-- Cheek gold panels -->
+  <path d="M 48 110 L 68 105 L 72 130 L 50 135 Z" fill="#c8950f"/>
+  <path d="M 152 110 L 132 105 L 128 130 L 150 135 Z" fill="#c8950f"/>
+  
+  <!-- Faceplate center -->
+  <rect x="68" y="100" width="64" height="70" rx="10" fill="#c0392b"/>
+  <!-- Faceplate highlight -->
+  <rect x="72" y="104" width="56" height="10" rx="5" fill="#d44" opacity="0.5"/>
+  
+  <!-- EYE PIECES - the iconic glowing eyes -->
+  <ellipse cx="78" cy="112" rx="18" ry="10" fill="#1a1a1a"/>
+  <ellipse cx="122" cy="112" rx="18" ry="10" fill="#1a1a1a"/>
+  <!-- Eye glow -->
+  <ellipse cx="78" cy="112" rx="14" ry="7" fill="#ffffff"/>
+  <ellipse cx="122" cy="112" rx="14" ry="7" fill="#ffffff"/>
+  <ellipse cx="78" cy="112" rx="12" ry="6" fill="#e0f0ff"/>
+  <ellipse cx="122" cy="112" rx="12" ry="6" fill="#e0f0ff"/>
+  <ellipse cx="78" cy="112" rx="9" ry="4.5" fill="#b0d8ff"/>
+  <ellipse cx="122" cy="112" rx="9" ry="4.5" fill="#b0d8ff"/>
+  <!-- Eye glow hotspot -->
+  <ellipse cx="78" cy="112" rx="5" ry="2.5" fill="white"/>
+  <ellipse cx="122" cy="112" rx="5" ry="2.5" fill="white"/>
+  <!-- Eye flare -->
+  <ellipse cx="75" cy="110" rx="3" ry="1.5" fill="white" opacity="0.9"/>
+  <ellipse cx="119" cy="110" rx="3" ry="1.5" fill="white" opacity="0.9"/>
+  
+  <!-- Nose area -->
+  <path d="M 90 125 L 94 142 L 106 142 L 110 125 Z" fill="#a03020" opacity="0.6"/>
+  
+  <!-- Mouth/chin grill -->
+  <rect x="78" y="148" width="44" height="16" rx="6" fill="#1a1a1a"/>
+  <!-- Grill slots -->
+  <rect x="82" y="151" width="36" height="3" rx="1.5" fill="#c0392b" opacity="0.6"/>
+  <rect x="82" y="157" width="36" height="3" rx="1.5" fill="#c0392b" opacity="0.6"/>
+  
+  <!-- Chin gold band -->
+  <path d="M 68 165 Q 100 172 132 165 Q 132 175 100 178 Q 68 175 68 165 Z" fill="#c8950f"/>
+  
+  <!-- Forehead center piece -->
+  <path d="M 88 82 Q 100 76 112 82 L 110 92 Q 100 88 90 92 Z" fill="#c8950f"/>
+  
+  <!-- Side head panels -->
+  <path d="M 45 95 Q 42 110 44 130 Q 48 118 50 105 Z" fill="#a02818"/>
+  <path d="M 155 95 Q 158 110 156 130 Q 152 118 150 105 Z" fill="#a02818"/>
+  
+  <!-- Arc reactor hint on chest (at bottom) -->
+  <circle cx="100" cy="195" r="12" fill="#1a1a1a"/>
+  <circle cx="100" cy="195" r="9" fill="#4a8fcc"/>
+  <circle cx="100" cy="195" r="6" fill="#80c0ff"/>
+  <circle cx="100" cy="195" r="3" fill="white"/>
+</svg>

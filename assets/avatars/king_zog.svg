@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#2ecc71"/>
+  <circle cx="100" cy="100" r="90" fill="#abebc6" opacity="0.3"/>
+  <!-- Body/Robe -->
+  <path d="M 50 200 L 60 140 L 140 140 L 150 200 Z" fill="#e67e22"/>
+  <!-- Fur Trim -->
+  <path d="M 60 140 Q 100 155 140 140 L 135 150 Q 100 162 65 150 Z" fill="#ffffff"/>
+  <!-- Neck -->
+  <rect x="85" y="120" width="30" height="30" fill="#e5c298"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="95" rx="38" ry="35" fill="#f0d2b4"/>
+  <!-- Nose (Huge round nose) -->
+  <circle cx="100" cy="95" r="14" fill="#f0d2b4" stroke="#d5b290" stroke-width="2"/>
+  <!-- Eyes -->
+  <circle cx="82" cy="85" r="10" fill="#ffffff"/>
+  <circle cx="118" cy="85" r="10" fill="#ffffff"/>
+  <circle cx="82" cy="85" r="3.5" fill="#333333"/>
+  <circle cx="118" cy="85" r="3.5" fill="#333333"/>
+  <!-- Mustache (Huge orange mustache) -->
+  <path d="M 65 110 Q 100 125 135 110 Q 145 130 120 130 Q 100 115 80 130 Q 55 130 65 110 Z" fill="#d35400" stroke="#ba4a00" stroke-width="1.5"/>
+  <!-- Crown (Gold with points) -->
+  <path d="M 75 62 L 70 38 L 85 48 L 100 32 L 115 48 L 130 38 L 125 62 Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="2"/>
+  <!-- Jewels on Crown -->
+  <circle cx="70" cy="38" r="2" fill="#e74c3c"/>
+  <circle cx="100" cy="32" r="2" fill="#e74c3c"/>
+  <circle cx="130" cy="38" r="2" fill="#e74c3c"/>
+  <!-- Orange Hair/Sideburns -->
+  <path d="M 62 95 Q 52 80 65 65 Q 75 65 72 80 Z" fill="#d35400"/>
+  <path d="M 138 95 Q 148 80 135 65 Q 125 65 128 80 Z" fill="#d35400"/>
+</svg>

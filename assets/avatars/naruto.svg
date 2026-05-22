@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Bright orange Naruto background -->
+  <rect width="200" height="200" fill="#e65c00"/>
+  <radialGradient id="narubg" cx="50%" cy="30%" r="70%">
+    <stop offset="0%" stop-color="#ff7900"/>
+    <stop offset="100%" stop-color="#c04a00"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#narubg)"/>
+
+  <!-- Body - orange ninja jacket -->
+  <path d="M 42 200 L 52 155 Q 62 140 100 138 Q 138 140 148 155 L 158 200 Z" fill="#ff6600"/>
+  <!-- Jacket details - zipper area -->
+  <rect x="94" y="140" width="12" height="60" fill="#cc4400"/>
+  <!-- Collar -->
+  <path d="M 78 148 Q 100 160 122 148 L 118 138 Q 100 148 82 138 Z" fill="#ff8800"/>
+  <!-- Swirl emblem on jacket -->
+  <circle cx="75" cy="165" r="10" fill="none" stroke="#cc4400" stroke-width="2"/>
+  <path d="M 75 155 Q 85 160 82 168 Q 79 174 72 172 Q 66 170 67 163 Q 68 157 75 155" fill="none" stroke="#cc4400" stroke-width="1.5"/>
+
+  <!-- Neck -->
+  <rect x="87" y="128" width="26" height="16" rx="5" fill="#f0c890"/>
+
+  <!-- Head -->
+  <ellipse cx="100" cy="97" rx="40" ry="44" fill="#f0c890"/>
+
+  <!-- Headband - metal plate on blue cloth -->
+  <path d="M 58 75 Q 100 65 142 75 L 144 85 Q 100 75 56 85 Z" fill="#4a8ac8"/>
+  <rect x="72" y="67" width="56" height="20" rx="3" fill="#c0c0c0"/>
+  <rect x="76" y="70" width="48" height="14" rx="2" fill="#a8a8a8"/>
+  <!-- Konoha leaf symbol on headband -->
+  <ellipse cx="100" cy="77" rx="10" ry="8" fill="none" stroke="#555" stroke-width="1.5"/>
+  <path d="M 94 77 L 100 70 L 106 77" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="100" y1="70" x2="100" y2="85" stroke="#555" stroke-width="1.5"/>
+  <!-- Headband cloth side tails -->
+  <path d="M 58 78 Q 48 82 42 90" stroke="#4a8ac8" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M 142 78 Q 155 82 160 90" stroke="#4a8ac8" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+  <!-- Spiky blonde hair under headband -->
+  <!-- Side hair spikes -->
+  <path d="M 60 90 Q 52 75 58 62 Q 64 72 68 85" fill="#e8c830"/>
+  <path d="M 68 82 Q 65 65 72 52 Q 76 64 78 80" fill="#f0d040"/>
+  <path d="M 140 90 Q 148 75 142 62 Q 136 72 132 85" fill="#e8c830"/>
+  <path d="M 132 82 Q 135 65 128 52 Q 124 64 122 80" fill="#f0d040"/>
+  <!-- Top hair spikes -->
+  <path d="M 78 72 Q 82 55 90 45 Q 94 58 95 72" fill="#e8c830"/>
+  <path d="M 95 70 Q 98 50 105 40 Q 108 54 108 70" fill="#f0d040"/>
+  <path d="M 108 70 Q 112 55 118 47 Q 120 60 118 72" fill="#e8c830"/>
+  <!-- Main hair fill -->
+  <ellipse cx="100" cy="72" rx="38" ry="22" fill="#e8c830"/>
+
+  <!-- Eyebrows - thick, expressive -->
+  <path d="M 70 93 Q 82 87 94 93" stroke="#c89820" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 106 93 Q 118 87 130 93" stroke="#c89820" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes - blue, round, determined -->
+  <ellipse cx="82" cy="104" rx="12" ry="11" fill="white"/>
+  <ellipse cx="118" cy="104" rx="12" ry="11" fill="white"/>
+  <ellipse cx="82" cy="104" rx="9" ry="9" fill="#4a80c8"/>
+  <ellipse cx="118" cy="104" rx="9" ry="9" fill="#4a80c8"/>
+  <ellipse cx="82" cy="104" rx="6" ry="6" fill="#2a50a0"/>
+  <ellipse cx="118" cy="104" rx="6" ry="6" fill="#2a50a0"/>
+  <ellipse cx="82" cy="104" rx="3" ry="3" fill="#0a1030"/>
+  <ellipse cx="118" cy="104" rx="3" ry="3" fill="#0a1030"/>
+  <!-- Eye highlights -->
+  <ellipse cx="85" cy="101" rx="2.5" ry="2" fill="white"/>
+  <ellipse cx="121" cy="101" rx="2.5" ry="2" fill="white"/>
+
+  <!-- WHISKER MARKS - 3 lines on each cheek (Naruto's signature) -->
+  <line x1="55" y1="108" x2="72" y2="112" stroke="#d4956a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="55" y1="116" x2="72" y2="116" stroke="#d4956a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="55" y1="124" x2="72" y2="120" stroke="#d4956a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="128" y1="112" x2="145" y2="108" stroke="#d4956a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="128" y1="116" x2="145" y2="116" stroke="#d4956a" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="128" y1="120" x2="145" y2="124" stroke="#d4956a" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <circle cx="96" cy="118" r="3" fill="#e0a870" opacity="0.7"/>
+  <circle cx="104" cy="118" r="3" fill="#e0a870" opacity="0.7"/>
+
+  <!-- Mouth - big grin -->
+  <path d="M 80 130 Q 100 142 120 130" stroke="#c07850" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 80 130 Q 100 140 120 130 Q 116 136 100 137 Q 84 136 80 130 Z" fill="#e89070" opacity="0.7"/>
+  <!-- Teeth -->
+  <rect x="90" y="130" width="20" height="6" rx="2" fill="white" opacity="0.9"/>
+
+  <!-- Ears -->
+  <ellipse cx="60" cy="104" rx="7" ry="10" fill="#f0c890"/>
+  <ellipse cx="140" cy="104" rx="7" ry="10" fill="#f0c890"/>
+</svg>

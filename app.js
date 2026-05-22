@@ -27,31 +27,99 @@ const AVATAR_CATEGORIES = [
   {
     title: 'La Casa de Papel & Berlim',
     avatars: [
+      { id: 'nairobi', name: 'Nairobi', url: 'assets/avatars/nairobi.svg' },
+      { id: 'rio', name: 'Rio', url: 'assets/avatars/rio.svg' },
+      { id: 'alicia_sierra', name: 'Alicia Sierra', url: 'assets/avatars/alicia_sierra.jpg' },
       { id: 'berlin', name: 'Berlin', url: 'assets/avatars/berlin.jpg' },
       { id: 'the_professor', name: 'O Professor', url: 'assets/avatars/the_professor.jpg' },
       { id: 'the_girl', name: 'Keila', url: 'assets/avatars/the_girl.jpg' },
       { id: 'cameron', name: 'Cameron', url: 'assets/avatars/cameron.jpg' },
       { id: 'bruce', name: 'Bruce', url: 'assets/avatars/bruce.jpg' },
-      { id: 'alicia_sierra', name: 'Alicia Sierra', url: 'assets/avatars/alicia_sierra.jpg' },
-      { id: 'money_heist', name: 'Dali', url: 'assets/avatars/money_heist.png' }
+      { id: 'money_heist', name: 'Máscara Dalí', url: 'assets/avatars/money_heist.svg' }
+    ]
+  },
+  {
+    title: '(Des)encanto',
+    avatars: [
+      { id: 'bean', name: 'Bean', url: 'assets/avatars/bean.svg' },
+      { id: 'luci', name: 'Luci', url: 'assets/avatars/luci.svg' },
+      { id: 'elfo', name: 'Elfo', url: 'assets/avatars/elfo.svg' },
+      { id: 'king_zog', name: 'Rei Zøg', url: 'assets/avatars/king_zog.svg' },
+      { id: 'queen_oona', name: 'Rainha Oona', url: 'assets/avatars/queen_oona.svg' },
+      { id: 'stan_executioner', name: 'Stan o Algoz', url: 'assets/avatars/stan_executioner.svg' }
+    ]
+  },
+  {
+    title: 'Big Mouth',
+    avatars: [
+      { id: 'andrew', name: 'Andrew', url: 'assets/avatars/andrew.svg' },
+      { id: 'connie', name: 'Connie', url: 'assets/avatars/connie.svg' },
+      { id: 'maury', name: 'Maury', url: 'assets/avatars/maury.svg' },
+      { id: 'jessi', name: 'Jessi', url: 'assets/avatars/jessi.svg' },
+      { id: 'jay', name: 'Jay', url: 'assets/avatars/jay.svg' },
+      { id: 'pillow', name: 'Cherry (Travesseiro)', url: 'assets/avatars/pillow.svg' }
+    ]
+  },
+  {
+    title: 'Arcane',
+    avatars: [
+      { id: 'jinx', name: 'Jinx', url: 'assets/avatars/jinx.svg' },
+      { id: 'vi', name: 'Vi', url: 'assets/avatars/vi.svg' },
+      { id: 'caitlyn', name: 'Caitlyn', url: 'assets/avatars/caitlyn.svg' },
+      { id: 'ekko', name: 'Ekko', url: 'assets/avatars/ekko.svg' },
+      { id: 'viktor', name: 'Viktor', url: 'assets/avatars/viktor.svg' },
+      { id: 'mel_medarda', name: 'Mel Medarda', url: 'assets/avatars/mel_medarda.svg' }
+    ]
+  },
+  {
+    title: 'Peaky Blinders: O Homem Imortal',
+    avatars: [
+      { id: 'tommy_shelby', name: 'Tommy Shelby', url: 'assets/avatars/tommy_shelby.svg' },
+      { id: 'arthur_shelby', name: 'Arthur Shelby', url: 'assets/avatars/arthur_shelby.svg' },
+      { id: 'grace_shelby', name: 'Grace Shelby', url: 'assets/avatars/grace_shelby.svg' },
+      { id: 'polly_gray', name: 'Polly Gray', url: 'assets/avatars/polly_gray.svg' }
+    ]
+  },
+  {
+    title: 'Lucifer',
+    avatars: [
+      { id: 'amenadiel', name: 'Amenadiel', url: 'assets/avatars/amenadiel.svg' },
+      { id: 'chloe_decker', name: 'Chloe Decker', url: 'assets/avatars/chloe_decker.svg' },
+      { id: 'dan_espinoza', name: 'Dan Espinoza', url: 'assets/avatars/dan_espinoza.svg' }
+    ]
+  },
+  {
+    title: 'Lupin',
+    avatars: [
+      { id: 'lupin_beard', name: 'Assane Diop (Barba)', url: 'assets/avatars/lupin_beard.svg' },
+      { id: 'lupin_glasses', name: 'Assane Diop (Óculos)', url: 'assets/avatars/lupin_glasses.svg' },
+      { id: 'lupin_hat', name: 'Assane Diop (Chapéu)', url: 'assets/avatars/lupin_hat.svg' }
+    ]
+  },
+  {
+    title: 'The Witcher',
+    avatars: [
+      { id: 'jaskier', name: 'Jaskier', url: 'assets/avatars/jaskier.svg' },
+      { id: 'roach', name: 'Carpeado (Roach)', url: 'assets/avatars/roach.svg' },
+      { id: 'witcher_creature', name: 'Criatura', url: 'assets/avatars/witcher_creature.svg' }
     ]
   },
   {
     title: 'Destaques e Clássicos',
     avatars: [
-      { id: 'wednesday', name: 'Wandinha', url: 'assets/avatars/wednesday.png' },
-      { id: 'breaking_bad', name: 'Walter White', url: 'assets/avatars/walter_white.png' },
-      { id: 'stranger_things', name: 'Eleven', url: 'assets/avatars/eleven.png' },
-      { id: 'interstellar', name: 'Cooper', url: 'assets/avatars/cooper.png' },
-      { id: 'avengers', name: 'Homem de Ferro', url: 'assets/avatars/iron_man.png' },
-      { id: 'matrix', name: 'Neo', url: 'assets/avatars/neo.png' }
+      { id: 'wednesday', name: 'Wandinha', url: 'assets/avatars/wednesday.svg' },
+      { id: 'breaking_bad', name: 'Heisenberg', url: 'assets/avatars/walter_white.svg' },
+      { id: 'stranger_things', name: 'Eleven', url: 'assets/avatars/eleven.svg' },
+      { id: 'interstellar', name: 'Cooper', url: 'assets/avatars/cooper.svg' },
+      { id: 'avengers', name: 'Iron Man', url: 'assets/avatars/iron_man.svg' },
+      { id: 'matrix', name: 'Neo', url: 'assets/avatars/neo.svg' }
     ]
   },
   {
     title: 'Animes',
     avatars: [
-      { id: 'naruto', name: 'Naruto', url: 'assets/avatars/naruto.png' },
-      { id: 'one_piece', name: 'Luffy', url: 'assets/avatars/luffy.png' },
+      { id: 'naruto', name: 'Naruto', url: 'assets/avatars/naruto.svg' },
+      { id: 'one_piece', name: 'Luffy', url: 'assets/avatars/luffy.svg' },
       { id: 'death_note', name: 'L', url: 'assets/avatars/l_deathnote.svg' },
       { id: 'demon_slayer', name: 'Tanjirou', url: 'assets/avatars/tanjirou.svg' }
     ]
@@ -1655,9 +1723,78 @@ const STATE = {
   }
 
 
+  // Generates Netflix-style movie poster grid in the background of the auth screen
+  function generateAuthBackdrop() {
+    const backdrop = document.querySelector('.auth-backdrop');
+    if (!backdrop) return;
+
+    const posters = [
+      "https://image.tmdb.org/t/p/w342/nCbkOyOMTEwlEV0LtCObySSRFhk.jpg", // Interestelar
+      "https://image.tmdb.org/t/p/w342/oJagOzBu9Rdd9BrciseCm3U3MCU.jpg", // O Poderoso Chefão
+      "https://image.tmdb.org/t/p/w342/qJ2tW6WMUDux911BytUESw3KFkt.jpg", // Batman: O Cavaleiro das Trevas
+      "https://image.tmdb.org/t/p/w342/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg", // Clube da Luta
+      "https://image.tmdb.org/t/p/w342/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg", // Inception
+      "https://image.tmdb.org/t/p/w342/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg", // Matrix
+      "https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg", // Parasita
+      "https://image.tmdb.org/t/p/w342/q6725aR8Zs4IwGMXzZT2CBlKAU.jpg", // Vingadores: Ultimato
+      "https://image.tmdb.org/t/p/w342/d5NXSklXo0qyIYkgV94XAgMIckC.jpg", // Duna
+      "https://image.tmdb.org/t/p/w342/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", // Oppenheimer
+      "https://image.tmdb.org/t/p/w342/49WJfeN0moxb9IPfGn8AIqMGskD.jpg", // Stranger Things
+      "https://image.tmdb.org/t/p/w342/ztkUQFLlC19CCMYHW73GM6EQ3GP.jpg", // Breaking Bad
+      "https://image.tmdb.org/t/p/w342/7vjaCdMw15FEbXyLQTVa04URsPm.jpg", // The Witcher
+      "https://image.tmdb.org/t/p/w342/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg", // Peaky Blinders
+      "https://image.tmdb.org/t/p/w342/vZloFAK7NmvMGKE7LsyBGSNiVJt.jpg", // John Wick 4
+      "https://image.tmdb.org/t/p/w342/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg", // Blade Runner 2049
+      "https://image.tmdb.org/t/p/w342/z2yahl2uefxDCl0nogcRBstwruJ.jpg", // A Casa do Dragão
+      "https://image.tmdb.org/t/p/w342/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg", // Gladiador II
+      "https://image.tmdb.org/t/p/w342/dDlEmuJpt0GhiD43596g5q17Z17.jpg", // Squid Game
+      "https://image.tmdb.org/t/p/w342/9PF5wZ1wNJaf06m5UFgKqnEDiXS.jpg", // Wednesday
+      "https://image.tmdb.org/t/p/w342/uKvH5j2tnVRS8cuQ1zN547rmiNi.jpg", // The Last of Us
+      "https://image.tmdb.org/t/p/w342/t6jnd21H6jZ58nui0tF07n15Jyq.jpg", // Avatar 2
+      "https://image.tmdb.org/t/p/w342/iiZZN643b6R1w8K2xC4UI29z7uW.jpg", // Spider-Man
+      "https://image.tmdb.org/t/p/w342/ekZobSpt12JXT36vU310j7RiiC5.jpg", // Lucifer
+      "https://image.tmdb.org/t/p/w342/fqldE2601pHRv23I75AvU36J6q7.jpg", // Arcane
+      "https://image.tmdb.org/t/p/w342/reks5n6m653scQvHryW5a4857bB.jpg", // La Casa de Papel
+      "https://image.tmdb.org/t/p/w342/5V1m1UGcwb2oM8p8ZE8Qv58v5H.jpg", // Lupin
+      "https://image.tmdb.org/t/p/w342/apbrggSuBzY9q922C0n9P1XoXWb.jpg", // Dark
+      "https://image.tmdb.org/t/p/w342/j57Z5TDhnv9hIMJHm136y2676xt.jpg", // Euphoria
+      "https://image.tmdb.org/t/p/w342/f496sduzlmvP5lu23o968S56RNg.jpg", // One Piece
+      "https://image.tmdb.org/t/p/w342/3bhkrj6PjOqabNmjjgk0U751AeW.jpg", // Naruto
+      "https://image.tmdb.org/t/p/w342/h8g6Q03z41mZ6kgvgvzV1045vlg.jpg", // Death Note
+      "https://image.tmdb.org/t/p/w342/xOMo8NET4x0uJZ6Imvhk4cwjPvY.jpg"  // Demon Slayer
+    ];
+
+    const numRows = 5;
+    let gridHtml = '<div class="auth-poster-grid">';
+
+    for (let r = 0; r < numRows; r++) {
+      const rowPosters = [...posters];
+      const shift = r * 7;
+      for (let s = 0; s < shift; s++) {
+        rowPosters.push(rowPosters.shift());
+      }
+
+      const doubled = [...rowPosters, ...rowPosters];
+      const duration = 65 + r * 12;
+
+      gridHtml += `<div class="auth-poster-row" style="animation-duration: ${duration}s; animation-direction: ${r % 2 === 0 ? 'normal' : 'reverse'}">`;
+      doubled.forEach(url => {
+        gridHtml += `<img src="${url}" alt="Poster" loading="lazy" onerror="this.style.display='none'">`;
+      });
+      gridHtml += '</div>';
+    }
+
+    gridHtml += '</div>';
+    gridHtml += '<div class="auth-backdrop-overlay"></div>';
+
+    backdrop.innerHTML = gridHtml;
+  }
 
   // ---------- Setup Core Event Bindings ----------
   function initApp() {
+    // Generate Netflix-style scrolling posters backdrop
+    generateAuthBackdrop();
+
     // Render and bind Mobile categories accordion
     if (DOM.mobileMoviesList && DOM.mobileSeriesList) {
       // 1. Populate Lists

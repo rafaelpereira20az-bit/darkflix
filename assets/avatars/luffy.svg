@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Ocean blue One Piece background -->
+  <rect width="200" height="200" fill="#0055aa"/>
+  <radialGradient id="opbg" cx="50%" cy="30%" r="70%">
+    <stop offset="0%" stop-color="#0077cc"/>
+    <stop offset="100%" stop-color="#002277"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#opbg)"/>
+  <!-- Ocean waves hint at bottom -->
+  <path d="M 0 185 Q 50 175 100 185 Q 150 195 200 185 L 200 200 L 0 200 Z" fill="#0044aa" opacity="0.5"/>
+  <path d="M 0 190 Q 40 183 80 190 Q 120 197 160 190 Q 180 186 200 190 L 200 200 L 0 200 Z" fill="#003399" opacity="0.4"/>
+
+  <!-- Body - red vest over blue background -->
+  <path d="M 38 200 L 48 155 Q 58 140 100 138 Q 142 140 152 155 L 162 200 Z" fill="#cc2200"/>
+  <!-- Vest details -->
+  <path d="M 84 148 Q 100 158 116 148 L 113 138 Q 100 146 87 138 Z" fill="#aa1a00"/>
+  <!-- Vest buttons -->
+  <circle cx="100" cy="152" r="2.5" fill="#880000"/>
+  <circle cx="100" cy="163" r="2.5" fill="#880000"/>
+  <circle cx="100" cy="174" r="2.5" fill="#880000"/>
+
+  <!-- Neck -->
+  <rect x="87" y="127" width="26" height="16" rx="5" fill="#f0c890"/>
+
+  <!-- Head - round, boyish -->
+  <ellipse cx="100" cy="97" rx="40" ry="44" fill="#f0c890"/>
+
+  <!-- STRAW HAT - Luffy's most iconic feature -->
+  <!-- Hat brim (wide) -->
+  <ellipse cx="100" cy="62" rx="70" ry="18" fill="#e8b830"/>
+  <ellipse cx="100" cy="62" rx="70" ry="18" fill="none" stroke="#c8980a" stroke-width="2"/>
+  <!-- Hat body (dome) -->
+  <path d="M 45 62 Q 50 28 100 24 Q 150 28 155 62 Z" fill="#f0c840"/>
+  <path d="M 50 62 Q 55 32 100 28 Q 145 32 150 62 Z" fill="#f0c840"/>
+  <!-- Hat dome top highlight -->
+  <ellipse cx="100" cy="42" rx="30" ry="12" fill="#f8d860" opacity="0.6"/>
+  <!-- Hat band - red -->
+  <path d="M 45 62 Q 100 68 155 62 Q 100 56 45 62 Z" fill="#cc2200" opacity="0.8"/>
+  <rect x="45" y="59" width="110" height="6" rx="2" fill="#cc2200" opacity="0.7"/>
+  <!-- Hat brim shadow -->
+  <ellipse cx="100" cy="65" rx="68" ry="10" fill="#b89010" opacity="0.3"/>
+  <!-- Hat cord hanging down sides -->
+  <path d="M 36 65 Q 30 75 32 85" stroke="#c89010" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 164 65 Q 170 75 168 85" stroke="#c89010" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Hair - short black under hat -->
+  <path d="M 62 74 Q 55 84 58 96" stroke="#1a1010" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M 138 74 Q 145 84 142 96" stroke="#1a1010" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <!-- Visible hair at sides -->
+  <path d="M 60 80 Q 58 90 60 100" stroke="#2a1a0a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 140 80 Q 142 90 140 100" stroke="#2a1a0a" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyebrows - thick, determined, childlike -->
+  <path d="M 68 92 Q 82 85 96 92" stroke="#2a1a0a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 104 92 Q 118 85 132 92" stroke="#2a1a0a" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes - round, black, One Piece manga style -->
+  <ellipse cx="82" cy="104" rx="13" ry="12" fill="white"/>
+  <ellipse cx="118" cy="104" rx="13" ry="12" fill="white"/>
+  <!-- Big black iris One Piece style -->
+  <ellipse cx="82" cy="104" rx="10" ry="10" fill="#0a0808"/>
+  <ellipse cx="118" cy="104" rx="10" ry="10" fill="#0a0808"/>
+  <!-- White eye highlight - large, manga style -->
+  <ellipse cx="86" cy="100" rx="4" ry="3.5" fill="white"/>
+  <ellipse cx="122" cy="100" rx="4" ry="3.5" fill="white"/>
+  <ellipse cx="79" cy="106" rx="2" ry="2" fill="white" opacity="0.6"/>
+  <ellipse cx="115" cy="106" rx="2" ry="2" fill="white" opacity="0.6"/>
+
+  <!-- SCAR under left eye - Luffy's scar from childhood -->
+  <path d="M 74 112 L 82 118" stroke="#c06040" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Two stitches on the scar -->
+  <path d="M 76 113 L 74 116" stroke="#c06040" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 80 116 L 78 119" stroke="#c06040" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Nose - round, button nose -->
+  <ellipse cx="100" cy="120" rx="6" ry="4" fill="#d8a870" opacity="0.7"/>
+
+  <!-- Mouth - huge goofy grin -->
+  <path d="M 74 130 Q 100 148 126 130" stroke="#c07050" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Teeth - big goofy smile -->
+  <path d="M 74 130 Q 100 146 126 130 Q 120 140 100 142 Q 80 140 74 130 Z" fill="#f0d0b0" opacity="0.7"/>
+  <rect x="83" y="130" width="34" height="10" rx="2" fill="white" opacity="0.9"/>
+  <!-- Tooth lines -->
+  <line x1="92" y1="130" x2="92" y2="140" stroke="#ddd" stroke-width="1"/>
+  <line x1="100" y1="130" x2="100" y2="140" stroke="#ddd" stroke-width="1"/>
+  <line x1="108" y1="130" x2="108" y2="140" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Ears -->
+  <ellipse cx="60" cy="105" rx="7" ry="10" fill="#f0c890"/>
+  <ellipse cx="140" cy="105" rx="7" ry="10" fill="#f0c890"/>
+</svg>

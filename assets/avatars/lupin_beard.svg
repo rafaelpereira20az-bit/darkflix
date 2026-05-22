@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#f1c40f"/>
+  <circle cx="100" cy="100" r="95" fill="#fdebd0" opacity="0.3"/>
+  
+  <!-- Purple Suit Jacket -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#8e44ad"/>
+  <!-- Shirt collar & Tie -->
+  <path d="M 85 150 L 100 170 L 115 150 Z" fill="#ffffff"/>
+  <path d="M 97 165 L 103 165 L 105 200 L 95 200 Z" fill="#2c3e50"/>
+
+  <!-- Neck -->
+  <rect x="91" y="125" width="18" height="25" fill="#4a2c11"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 82 75 66 100 66 C 125 66 132 82 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#4a2c11"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="86" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="4" fill="#111111"/>
+  <circle cx="114" cy="95" r="4" fill="#111111"/>
+  <circle cx="85" cy="93" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="93" r="1.5" fill="#fff"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 97 108 L 102 108" fill="none" stroke="#2b1a0a" stroke-width="1.5"/>
+
+  <!-- Smile -->
+  <path d="M 88 118 Q 100 124 112 118" stroke="#2b1a0a" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Short Hair -->
+  <path d="M 72 70 Q 100 52 128 70 L 125 64 Q 100 58 75 64 Z" fill="#111111"/>
+
+  <!-- Gray-speckled Neat Beard -->
+  <path d="M 78 112 Q 78 128 100 134 Q 122 128 122 112 L 125 112 Q 124 132 100 137 Q 76 132 75 112 Z" fill="#7f8c8d" stroke="#5d6d7e" stroke-width="1" opacity="0.95"/>
+  <!-- Beard texture lines -->
+  <path d="M 86 122 Q 100 126 114 122" stroke="#bdc3c7" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="2,2"/>
+</svg>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Dark green/black Matrix background -->
+  <rect width="200" height="200" fill="#040d04"/>
+  <!-- Matrix code rain effect - vertical green streaks -->
+  <g opacity="0.15" font-family="monospace" font-size="8" fill="#00ff41">
+    <text x="8" y="20">1</text><text x="8" y="30">0</text><text x="8" y="40">1</text><text x="8" y="50">0</text>
+    <text x="18" y="15">0</text><text x="18" y="25">1</text><text x="18" y="35">1</text>
+    <text x="175" y="25">1</text><text x="175" y="35">0</text><text x="175" y="45">1</text>
+    <text x="185" y="20">0</text><text x="185" y="30">1</text><text x="185" y="40">0</text>
+    <text x="8" y="170">0</text><text x="8" y="180">1</text><text x="8" y="190">0</text>
+    <text x="175" y="165">1</text><text x="175" y="175">0</text><text x="175" y="185">1</text>
+  </g>
+
+  <!-- Body - black coat/trench coat -->
+  <path d="M 30 200 L 40 155 Q 48 140 100 138 Q 152 140 160 155 L 170 200 Z" fill="#080808"/>
+  <!-- Trench coat flaps -->
+  <path d="M 100 138 L 85 155 L 80 200 L 100 200 Z" fill="#101010"/>
+  <path d="M 100 138 L 115 155 L 120 200 L 100 200 Z" fill="#101010"/>
+  <!-- Coat edge highlight -->
+  <path d="M 40 155 Q 48 140 100 138 Q 152 140 160 155" stroke="#1a2010" stroke-width="2" fill="none"/>
+  <!-- Shirt/turtleneck -->
+  <path d="M 82 145 Q 100 155 118 145 L 115 135 Q 100 143 85 135 Z" fill="#111"/>
+  
+  <!-- Neck -->
+  <rect x="88" y="126" width="24" height="16" rx="5" fill="#c8b8a0"/>
+  
+  <!-- Head -->
+  <ellipse cx="100" cy="96" rx="38" ry="44" fill="#c8b8a0"/>
+  
+  <!-- Short dark hair -->
+  <ellipse cx="100" cy="60" rx="38" ry="20" fill="#1a1410"/>
+  <path d="M 62 72 Q 58 82 60 95" stroke="#1a1410" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M 138 72 Q 142 82 140 95" stroke="#1a1410" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- SUNGLASSES - the iconic narrow Neo sunglasses -->
+  <!-- Left lens - narrow, oval -->
+  <ellipse cx="82" cy="96" rx="17" ry="8" fill="#0a0a0a"/>
+  <ellipse cx="82" cy="96" rx="15" ry="6" fill="#050505"/>
+  <!-- Right lens -->
+  <ellipse cx="118" cy="96" rx="17" ry="8" fill="#0a0a0a"/>
+  <ellipse cx="118" cy="96" rx="15" ry="6" fill="#050505"/>
+  <!-- Frame bridge -->
+  <path d="M 99 96 L 101 96" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+  <!-- Frame arms -->
+  <path d="M 65 96 L 55 93" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 135 96 L 145 93" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Lens frame border -->
+  <ellipse cx="82" cy="96" rx="17" ry="8" fill="none" stroke="#333" stroke-width="1.5"/>
+  <ellipse cx="118" cy="96" rx="17" ry="8" fill="none" stroke="#333" stroke-width="1.5"/>
+  <!-- Subtle green reflection on lenses -->
+  <ellipse cx="78" cy="93" rx="6" ry="3" fill="#003300" opacity="0.5"/>
+  <ellipse cx="114" cy="93" rx="6" ry="3" fill="#003300" opacity="0.5"/>
+  
+  <!-- Eyebrows above glasses -->
+  <path d="M 66 86 Q 82 80 98 86" stroke="#2a2010" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 102 86 Q 118 80 134 86" stroke="#2a2010" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Nose - strong -->
+  <path d="M 97 106 L 92 118 Q 100 122 108 118 L 103 106" fill="#b8a890" opacity="0.6"/>
+  <ellipse cx="92" cy="117" rx="4" ry="3" fill="#b09878"/>
+  <ellipse cx="108" cy="117" rx="4" ry="3" fill="#b09878"/>
+  
+  <!-- Mouth - subtle, determined -->
+  <path d="M 86 128 Q 100 131 114 128" stroke="#907060" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Ears -->
+  <ellipse cx="62" cy="98" rx="6" ry="9" fill="#c8b8a0"/>
+  <ellipse cx="138" cy="98" rx="6" ry="9" fill="#c8b8a0"/>
+  
+  <!-- Green Matrix glow around figure -->
+  <radialGradient id="neoglow" cx="50%" cy="60%" r="60%">
+    <stop offset="0%" stop-color="transparent"/>
+    <stop offset="80%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="#001a00" stop-opacity="0.8"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#neoglow)"/>
+</svg>

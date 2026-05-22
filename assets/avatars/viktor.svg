@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0f141c"/>
+  <circle cx="100" cy="100" r="95" fill="#f39c12" opacity="0.1"/>
+  
+  <!-- Body/Tunic -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#2d3436"/>
+  <!-- Gold Hextech detail on shoulder (viewer's left) -->
+  <circle cx="70" cy="165" r="6" fill="#f1c40f"/>
+  <line x1="70" y1="165" x2="80" y2="200" stroke="#f1c40f" stroke-width="2"/>
+  
+  <!-- High collar -->
+  <path d="M 80 150 L 85 135 L 115 135 L 120 150 Z" fill="#1e272e"/>
+  <!-- Neck -->
+  <rect x="91" y="125" width="18" height="20" fill="#edd0be"/>
+  <!-- Head (Hollow cheeks/thin shape) -->
+  <path d="M 74 110 C 68 82 75 62 100 62 C 125 62 132 82 126 110 C 122 126 114 132 100 132 C 86 132 78 126 74 110 Z" fill="#edd0be"/>
+  
+  <!-- Sunken eyes shadow -->
+  <ellipse cx="86" cy="94" rx="10" ry="8" fill="#4b3621" opacity="0.3"/>
+  <ellipse cx="114" cy="94" rx="10" ry="8" fill="#4b3621" opacity="0.3"/>
+
+  <!-- Eyes (Amber, tired/intense) -->
+  <ellipse cx="86" cy="94" rx="7" ry="5" fill="#111"/>
+  <ellipse cx="114" cy="94" rx="7" ry="5" fill="#111"/>
+  <circle cx="86" cy="94" r="3.5" fill="#d35400"/>
+  <circle cx="114" cy="94" r="3.5" fill="#d35400"/>
+  <circle cx="85" cy="92" r="1" fill="#fff"/>
+  <circle cx="113" cy="92" r="1" fill="#fff"/>
+
+  <!-- Nose (Thin/sharp) -->
+  <path d="M 100 88 L 97 106 L 102 106" fill="none" stroke="#b08b75" stroke-width="1.5"/>
+
+  <!-- Lip line -->
+  <path d="M 90 118 Q 100 122 110 118" stroke="#3e2723" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Messy Brown Hair -->
+  <path d="M 70 65 Q 60 40 76 35 Q 90 30 100 38 Q 110 30 124 35 Q 140 40 130 65 L 128 50 Q 100 42 72 50 Z" fill="#4b3621"/>
+  <path d="M 72 50 Q 64 75 68 95" stroke="#4b3621" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 128 50 Q 136 75 132 95" stroke="#4b3621" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>

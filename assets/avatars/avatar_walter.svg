@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#2d7d32"/>
+  
+  <!-- Neck -->
+  <rect x="82" y="138" width="36" height="40" rx="4" fill="#c8a882"/>
+  
+  <!-- Shirt collar -->
+  <ellipse cx="100" cy="185" rx="50" ry="25" fill="#4a4a4a"/>
+  <polygon points="90,150 100,170 110,150" fill="#555"/>
+  
+  <!-- Head -->
+  <ellipse cx="100" cy="100" rx="42" ry="50" fill="#c8a882"/>
+  
+  <!-- Skull top - bald -->
+  <ellipse cx="100" cy="72" rx="42" ry="38" fill="#c8a882"/>
+  
+  <!-- Glasses -->
+  <rect x="68" y="93" width="26" height="18" rx="8" fill="none" stroke="#333" stroke-width="2.5"/>
+  <rect x="106" y="93" width="26" height="18" rx="8" fill="none" stroke="#333" stroke-width="2.5"/>
+  <line x1="94" y1="102" x2="106" y2="102" stroke="#333" stroke-width="2.5"/>
+  <line x1="68" y1="102" x2="60" y2="100" stroke="#333" stroke-width="2.5"/>
+  <line x1="132" y1="102" x2="140" y2="100" stroke="#333" stroke-width="2.5"/>
+  
+  <!-- Eyes behind glasses -->
+  <ellipse cx="81" cy="102" rx="8" ry="6" fill="white"/>
+  <ellipse cx="119" cy="102" rx="8" ry="6" fill="white"/>
+  <ellipse cx="81" cy="102" rx="4" ry="4" fill="#4a3728"/>
+  <ellipse cx="119" cy="102" rx="4" ry="4" fill="#4a3728"/>
+  <ellipse cx="82" cy="101" rx="1.5" ry="1.5" fill="white"/>
+  <ellipse cx="120" cy="101" rx="1.5" ry="1.5" fill="white"/>
+  
+  <!-- Eyebrows -->
+  <path d="M 70 90 Q 81 86 92 90" stroke="#555" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 108 90 Q 119 86 130 90" stroke="#555" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Nose -->
+  <path d="M 100 108 L 95 122 Q 100 126 105 122 Z" fill="#b89470" opacity="0.7"/>
+  <ellipse cx="95" cy="121" rx="4" ry="3" fill="#b08060"/>
+  <ellipse cx="105" cy="121" rx="4" ry="3" fill="#b08060"/>
+  
+  <!-- Mouth - stern expression -->
+  <path d="M 88 134 Q 100 130 112 134" stroke="#8a6040" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Goatee -->
+  <ellipse cx="100" cy="140" rx="12" ry="8" fill="#777"/>
+  <path d="M 92 133 Q 100 138 108 133 Q 108 148 100 150 Q 92 148 92 133 Z" fill="#888"/>
+  
+  <!-- Mustache -->
+  <path d="M 88 130 Q 100 127 112 130 Q 106 135 100 133 Q 94 135 88 130 Z" fill="#777"/>
+  
+  <!-- Ear -->
+  <ellipse cx="58" cy="104" rx="7" ry="10" fill="#c8a882"/>
+  <ellipse cx="58" cy="104" rx="4" ry="7" fill="#b89070"/>
+  <ellipse cx="142" cy="104" rx="7" ry="10" fill="#c8a882"/>
+  <ellipse cx="142" cy="104" rx="4" ry="7" fill="#b89070"/>
+</svg>

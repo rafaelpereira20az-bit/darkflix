@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0c3022"/>
+  <circle cx="100" cy="100" r="95" fill="#00b894" opacity="0.15"/>
+  
+  <!-- Body/Jacket -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#2d3436"/>
+  <!-- Red jacket lapels -->
+  <path d="M 68 150 L 80 200 L 95 200 L 88 150 Z" fill="#b33939"/>
+  <path d="M 132 150 L 120 200 L 105 200 L 112 150 Z" fill="#b33939"/>
+  <!-- Neck -->
+  <rect x="89" y="125" width="22" height="25" fill="#edd9d2"/>
+  <!-- Head -->
+  <path d="M 72 110 C 65 78 75 62 100 62 C 125 62 135 78 128 110 C 124 128 118 132 100 132 C 82 132 76 128 72 110 Z" fill="#edd9d2"/>
+  
+  <!-- Eyes (Intense blue, confident) -->
+  <ellipse cx="86" cy="94" rx="8" ry="5.5" fill="#111"/>
+  <ellipse cx="114" cy="94" rx="8" ry="5.5" fill="#111"/>
+  <circle cx="86" cy="94" r="4.5" fill="#0984e3"/>
+  <circle cx="114" cy="94" r="4.5" fill="#0984e3"/>
+  <circle cx="85" cy="92" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="92" r="1.5" fill="#fff"/>
+
+  <!-- Eyebrows (Determined) -->
+  <path d="M 76 83 L 90 85" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 124 83 L 110 85" stroke="#111" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 98 106 L 104 106" fill="none" stroke="#d7a492" stroke-width="1.5"/>
+
+  <!-- Tattoo "VI" on left cheek (viewer's right) -->
+  <path d="M 112 112 L 116 120 L 120 112" stroke="#b33939" stroke-width="2" fill="none"/>
+  <line x1="123" y1="112" x2="123" y2="120" stroke="#b33939" stroke-width="2"/>
+  
+  <!-- Smile (Smirk) -->
+  <path d="M 88 116 Q 100 120 112 115" stroke="#b33939" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Pink Undercut Hair -->
+  <!-- Back shaved head (dark purple/magenta) -->
+  <path d="M 68 85 Q 60 70 70 58 Q 78 50 78 70 Z" fill="#6f1947"/>
+  <path d="M 132 85 Q 140 70 130 58 Q 122 50 122 70 Z" fill="#6f1947"/>
+  <!-- Top hair messy spikes -->
+  <path d="M 72 65 C 65 40 80 25 100 25 C 120 25 135 40 128 65 L 122 50 Q 100 35 78 50 Z" fill="#e84393"/>
+  <path d="M 75 52 Q 62 82 76 100" stroke="#e84393" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Small plaster on nose (Vi style) -->
+  <rect x="95" y="100" width="10" height="4" rx="1" fill="#f5cd79" stroke="#cf6a87" stroke-width="0.5"/>
+</svg>

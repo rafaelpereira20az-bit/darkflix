@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#3498db"/>
+  <circle cx="100" cy="100" r="95" fill="#aed6f1" opacity="0.3"/>
+  
+  <!-- Body/Shirt -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#95a5a6"/>
+  <!-- Police Badge in pocket -->
+  <path d="M 115 170 L 125 170 L 128 180 L 120 188 L 112 180 Z" fill="#f1c40f" stroke="#d4ac0d" stroke-width="0.5"/>
+  <circle cx="120" cy="178" r="3" fill="#ffffff"/>
+
+  <!-- Neck -->
+  <rect x="91" y="125" width="18" height="25" fill="#e5c298"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 82 75 66 100 66 C 125 66 132 82 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#e5c298"/>
+  
+  <!-- Eyes (Brown, friendly) -->
+  <ellipse cx="86" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="4.5" fill="#5c3a21"/>
+  <circle cx="114" cy="95" r="4.5" fill="#5c3a21"/>
+  <circle cx="85" cy="93" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="93" r="1.5" fill="#fff"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 98 108 L 102 108" fill="none" stroke="#d5b290" stroke-width="1.5"/>
+
+  <!-- Smile -->
+  <path d="M 86 118 Q 100 126 114 118" stroke="#7e2a1f" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Short Brown Hair -->
+  <path d="M 70 70 Q 100 50 130 70 L 126 62 Q 100 54 74 62 Z" fill="#6f4e37"/>
+  <!-- Short spikes -->
+  <path d="M 78 60 L 82 52 L 88 58 L 94 50 L 100 56 L 106 50 L 112 58 L 118 52 L 122 60 Z" fill="#6f4e37"/>
+  <!-- Sideburns -->
+  <rect x="71" y="70" width="3" height="15" fill="#6f4e37"/>
+  <rect x="126" y="70" width="3" height="15" fill="#6f4e37"/>
+</svg>

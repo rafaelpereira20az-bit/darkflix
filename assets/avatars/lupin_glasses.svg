@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#e84393"/>
+  <circle cx="100" cy="100" r="95" fill="#f8a5c2" opacity="0.3"/>
+  
+  <!-- Dark Coat -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#2c3e50"/>
+  <!-- High blue collar -->
+  <path d="M 80 150 L 85 135 L 115 135 L 120 150 Z" fill="#2980b9"/>
+
+  <!-- Neck -->
+  <rect x="91" y="125" width="18" height="20" fill="#4a2c11"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 82 75 66 100 66 C 125 66 132 82 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#4a2c11"/>
+  
+  <!-- Eyes -->
+  <ellipse cx="86" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7.5" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="4" fill="#111"/>
+  <circle cx="114" cy="95" r="4" fill="#111"/>
+  <circle cx="85" cy="93" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="93" r="1.5" fill="#fff"/>
+  
+  <!-- Silver-Framed Glasses (Lupin glasses) -->
+  <circle cx="85" cy="95" r="12" fill="none" stroke="#bdc3c7" stroke-width="2"/>
+  <circle cx="115" cy="95" r="12" fill="none" stroke="#bdc3c7" stroke-width="2"/>
+  <line x1="97" y1="95" x2="103" y2="95" stroke="#bdc3c7" stroke-width="2.5"/>
+  <path d="M 73 95 L 67 92" stroke="#bdc3c7" stroke-width="1.5"/>
+  <path d="M 127 95 L 133 92" stroke="#bdc3c7" stroke-width="1.5"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 97 108 L 102 108" fill="none" stroke="#2b1a0a" stroke-width="1.5"/>
+
+  <!-- Smile -->
+  <path d="M 88 118 Q 100 124 112 118" stroke="#2b1a0a" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Short Hair -->
+  <path d="M 72 70 Q 100 52 128 70 L 125 64 Q 100 58 75 64 Z" fill="#111111"/>
+</svg>

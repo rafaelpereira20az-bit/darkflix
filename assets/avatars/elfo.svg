@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#3498db"/>
+  <circle cx="100" cy="100" r="90" fill="#85c1e9" opacity="0.3"/>
+  <!-- Body/Clothes -->
+  <path d="M 60 200 L 70 160 L 130 160 L 140 200 Z" fill="#e74c3c"/>
+  <!-- Yellow collar -->
+  <path d="M 80 160 Q 100 175 120 160 L 115 160 Q 100 168 85 160 Z" fill="#f1c40f"/>
+  <!-- Neck -->
+  <rect x="92" y="140" width="16" height="25" fill="#58d68d"/>
+  <!-- Ears -->
+  <path d="M 70 110 Q 30 115 55 125 Z" fill="#58d68d"/>
+  <path d="M 130 110 Q 170 115 145 125 Z" fill="#58d68d"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="115" rx="32" ry="32" fill="#58d68d"/>
+  <!-- Eyes -->
+  <circle cx="85" cy="110" r="11" fill="#ffffff"/>
+  <circle cx="115" cy="110" r="11" fill="#ffffff"/>
+  <circle cx="85" cy="110" r="4" fill="#333333"/>
+  <circle cx="115" cy="110" r="4" fill="#333333"/>
+  <!-- Nose (Side-facing big round nose) -->
+  <path d="M 100 108 Q 112 118 100 128" stroke="#27ae60" stroke-width="3" fill="#58d68d"/>
+  <!-- Mouth (Happy, goofy) -->
+  <path d="M 90 132 Q 100 140 110 132" stroke="#27ae60" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Sideburns/Hair -->
+  <path d="M 68 115 Q 68 95 80 90 L 80 100 Z" fill="#27ae60"/>
+  <path d="M 132 115 Q 132 95 120 90 L 120 100 Z" fill="#27ae60"/>
+  <!-- Hat (Orange pointy hat with blue rim) -->
+  <path d="M 68 92 Q 100 20 132 92 Z" fill="#e67e22"/>
+  <path d="M 64 92 Q 100 86 136 92 L 132 98 Q 100 92 68 98 Z" fill="#9b59b6"/>
+</svg>

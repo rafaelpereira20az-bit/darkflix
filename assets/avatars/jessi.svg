@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#fd79a8"/>
+  <circle cx="100" cy="100" r="90" fill="#fbc531" opacity="0.2"/>
+  <!-- Ponytail background -->
+  <path d="M 130 110 Q 165 120 155 150 Q 140 160 132 130 Z" fill="#d35400"/>
+  <!-- Body/Clothes -->
+  <path d="M 60 200 L 70 155 L 130 155 L 140 200 Z" fill="#9b59b6"/>
+  <!-- Neck -->
+  <rect x="91" y="130" width="18" height="30" fill="#fbe5d6"/>
+  <!-- Head -->
+  <path d="M 70 115 C 65 75 75 62 100 62 C 125 62 135 75 130 115 C 128 132 118 138 100 138 C 82 138 72 132 70 115 Z" fill="#fbe5d6"/>
+  <!-- Big Eyes -->
+  <ellipse cx="85" cy="95" rx="13" ry="15" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+  <ellipse cx="115" cy="95" rx="13" ry="15" fill="#ffffff" stroke="#333333" stroke-width="1.5"/>
+  <circle cx="85" cy="95" r="4.5" fill="#333333"/>
+  <circle cx="115" cy="95" r="4.5" fill="#333333"/>
+  <!-- Eyebrows (Slightly cynical angle) -->
+  <path d="M 72 76 Q 84 74 94 80" stroke="#333333" stroke-width="2.5" fill="none"/>
+  <path d="M 128 76 Q 116 74 106 80" stroke="#333333" stroke-width="2.5" fill="none"/>
+  <!-- Nose (Tiny dot-like curves) -->
+  <path d="M 100 95 Q 102 105 98 108" stroke="#d35400" stroke-width="2" fill="none"/>
+  <!-- Mouth (Sarcastic straight line/smirk) -->
+  <path d="M 88 122 Q 100 125 112 121" stroke="#333333" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Hair (Red-orange bangs and side framing) -->
+  <path d="M 66 82 C 60 70 70 48 100 48 C 130 48 138 70 134 82 L 132 60 Q 100 50 68 60 Z" fill="#d35400"/>
+  <path d="M 68 70 Q 75 88 72 105" stroke="#d35400" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 132 70 Q 125 88 128 105" stroke="#d35400" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Hair tie -->
+  <ellipse cx="132" cy="115" rx="5" ry="3" fill="#ffffff"/>
+</svg>

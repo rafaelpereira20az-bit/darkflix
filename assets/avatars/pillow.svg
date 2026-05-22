@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#ff7675"/>
+  <circle cx="100" cy="100" r="90" fill="#ffeaa7" opacity="0.2"/>
+  <!-- Pillow Shadow -->
+  <rect x="44" y="44" width="112" height="112" rx="20" fill="#d63031" opacity="0.3"/>
+  <!-- Pillow Body (White, puffy) -->
+  <rect x="40" y="40" width="120" height="120" rx="24" fill="#ffffff" stroke="#dfe6e9" stroke-width="2"/>
+  <!-- Corner Tufts/Creases -->
+  <path d="M 45 45 Q 60 55 50 65" stroke="#b2bec3" stroke-width="1.5" fill="none"/>
+  <path d="M 155 45 Q 140 55 150 65" stroke="#b2bec3" stroke-width="1.5" fill="none"/>
+  <path d="M 45 155 Q 60 145 50 135" stroke="#b2bec3" stroke-width="1.5" fill="none"/>
+  <path d="M 155 155 Q 140 145 150 135" stroke="#b2bec3" stroke-width="1.5" fill="none"/>
+  <!-- Seductive Eyes -->
+  <!-- Left Eye -->
+  <path d="M 65 92 Q 80 82 90 95" stroke="#2d3436" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Right Eye -->
+  <path d="M 110 92 Q 120 82 135 95" stroke="#2d3436" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Eyelashes -->
+  <path d="M 70 87 L 65 80 M 78 86 L 75 78 M 85 89 L 85 81 M 115 89 L 115 81 M 122 86 L 125 78 M 130 87 L 135 80" stroke="#2d3436" stroke-width="2" stroke-linecap="round"/>
+  <!-- Blushing cheeks -->
+  <ellipse cx="65" cy="105" rx="10" ry="6" fill="#ff7675" opacity="0.4"/>
+  <ellipse cx="135" cy="105" rx="10" ry="6" fill="#ff7675" opacity="0.4"/>
+  <!-- Huge Pink/Red Seductive Lips -->
+  <path d="M 80 112 Q 100 132 120 112 Q 100 108 80 112 Z" fill="#fd79a8" stroke="#e84393" stroke-width="1.5"/>
+  <!-- Inner mouth line -->
+  <path d="M 83 112 C 90 110 110 110 117 112" stroke="#d63031" stroke-width="1"/>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <radialGradient id="smoky-brown" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#3d2c20"/>
+    <stop offset="100%" stop-color="#140e0a"/>
+  </radialGradient>
+  <rect width="200" height="200" fill="url(#smoky-brown)"/>
+  
+  <!-- Suit & Bowtie -->
+  <path d="M 50 200 L 65 145 L 135 145 L 150 200 Z" fill="#1c252c"/>
+  <!-- Shirt collar -->
+  <path d="M 85 145 L 100 162 L 115 145 Z" fill="#ffffff"/>
+  <!-- Bowtie -->
+  <path d="M 92 154 L 86 148 L 86 160 Z" fill="#111"/>
+  <path d="M 108 154 L 114 148 L 114 160 Z" fill="#111"/>
+  <circle cx="100" cy="154" r="3" fill="#111"/>
+
+  <!-- Neck -->
+  <rect x="90" y="125" width="20" height="25" fill="#e5c298"/>
+  
+  <!-- Head -->
+  <path d="M 74 110 C 68 85 75 68 100 68 C 125 68 132 85 126 110 C 122 126 114 130 100 130 C 86 130 78 126 74 110 Z" fill="#e5c298"/>
+  
+  <!-- Eyes (Determined/haggard look) -->
+  <ellipse cx="86" cy="95" rx="7" ry="4.5" fill="#111"/>
+  <ellipse cx="114" cy="95" rx="7" ry="4.5" fill="#111"/>
+  <circle cx="86" cy="95" r="3" fill="#4a5a6a"/>
+  <circle cx="114" cy="95" r="3" fill="#4a5a6a"/>
+  <circle cx="85" cy="93" r="1" fill="#fff"/>
+  <circle cx="113" cy="93" r="1" fill="#fff"/>
+  
+  <!-- Nose -->
+  <path d="M 100 90 L 97 108 L 102 108" fill="none" stroke="#c09d7e" stroke-width="1.5"/>
+
+  <!-- Arthur's Signature Handlebar Mustache (Very thick and curled) -->
+  <path d="M 68 116 Q 100 110 132 116 Q 138 126 130 126 Q 100 120 70 126 Q 62 126 68 116 Z" fill="#3e2723" stroke="#271c19" stroke-width="1"/>
+
+  <!-- Side shaved crop haircut -->
+  <path d="M 72 90 L 74 72" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 128 90 L 126 72" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Flat Cap -->
+  <ellipse cx="100" cy="55" rx="35" ry="16" fill="#2d3436" stroke="#1e272e" stroke-width="1"/>
+  <path d="M 68 62 Q 100 70 132 62" stroke="#111111" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

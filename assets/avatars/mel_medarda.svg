@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#2d132c"/>
+  <circle cx="100" cy="100" r="95" fill="#f1c40f" opacity="0.1"/>
+  
+  <!-- Body/Dress (White with gold lining) -->
+  <path d="M 55 200 L 68 150 L 132 150 L 145 200 Z" fill="#ffffff"/>
+  <!-- Gold Collar -->
+  <path d="M 68 150 L 80 160 Q 100 175 120 160 L 132 150 Z" fill="#f1c40f"/>
+  <!-- Neck -->
+  <rect x="90" y="125" width="20" height="25" fill="#4a2c11"/>
+  <!-- Head -->
+  <path d="M 72 110 C 65 78 75 62 100 62 C 125 62 135 78 128 110 C 124 128 118 132 100 132 C 82 132 76 128 72 110 Z" fill="#4a2c11"/>
+  
+  <!-- Eyes (Warm brown, elegant/intelligent) -->
+  <ellipse cx="86" cy="94" rx="8" ry="5.5" fill="#111"/>
+  <ellipse cx="114" cy="94" rx="8" ry="5.5" fill="#111"/>
+  <circle cx="86" cy="94" r="4.5" fill="#5c3a21"/>
+  <circle cx="114" cy="94" r="4.5" fill="#5c3a21"/>
+  <circle cx="85" cy="92" r="1.5" fill="#fff"/>
+  <circle cx="113" cy="92" r="1.5" fill="#fff"/>
+
+  <!-- Gold Facial Jewelry/Dots (Viewer's left/right cheek) -->
+  <circle cx="86" cy="104" r="2" fill="#f1c40f"/>
+  <circle cx="114" cy="104" r="2" fill="#f1c40f"/>
+  <circle cx="100" cy="80" r="2" fill="#f1c40f"/>
+
+  <!-- Nose -->
+  <path d="M 100 90 L 98 106 L 103 106" fill="none" stroke="#2b1a0a" stroke-width="1.5"/>
+
+  <!-- Lip line -->
+  <path d="M 88 118 Q 100 123 112 118" stroke="#2b1a0a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Dark Braids with Gold Threads -->
+  <!-- Back hair volume -->
+  <path d="M 70 70 Q 50 85 55 140 L 68 140 Q 62 85 70 70 Z" fill="#111"/>
+  <path d="M 130 70 Q 150 85 145 140 L 132 140 Q 138 85 130 70 Z" fill="#111"/>
+  <!-- Gold thread spirals in braids -->
+  <path d="M 58 90 Q 54 100 62 110" stroke="#f1c40f" stroke-width="2" fill="none"/>
+  <path d="M 142 90 Q 146 100 138 110" stroke="#f1c40f" stroke-width="2" fill="none"/>
+  
+  <!-- Crown/Hairpiece (Gold elegant band) -->
+  <path d="M 72 65 Q 100 50 128 65" stroke="#f1c40f" stroke-width="5" fill="none"/>
+</svg>

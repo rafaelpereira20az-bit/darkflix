@@ -1071,7 +1071,7 @@ ul, ol {
   top: 0;
   left: 0;
   width: 100%; /* Cover the entire top edge of the iframe player */
-  height: 55px; /* Height to completely cover the watermark */
+  height: 70px; /* Height to completely cover the watermark */
   background-color: #000 !important;
   z-index: 9999 !important; /* Ensure it stays strictly on top of the iframe */
   pointer-events: auto !important; /* Absorb clicks so user doesn't click on the logo underneath */
@@ -1079,13 +1079,13 @@ ul, ol {
 
 @media (max-width: 768px) {
   .cinema-player-blocker-top {
-    height: 45px;
+    height: 55px;
   }
 }
 
 @media (max-width: 480px) {
   .cinema-player-blocker-top {
-    height: 38px;
+    height: 48px;
   }
 }
 

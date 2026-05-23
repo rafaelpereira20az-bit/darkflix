@@ -263,6 +263,7 @@ const STATE = {
       movies: $('#page-movies'),
       series: $('#page-series'),
       animes: $('#page-animes'),
+      canais: $('#page-canais'),
       search: $('#page-search')
     },
     
@@ -535,6 +536,7 @@ const STATE = {
     // Trailers stop
     stopMainHeroTrailer();
     closeDetail();
+    stopCanalPlayer();
     
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -544,6 +546,7 @@ const STATE = {
     else if (page === 'movies') renderMoviesPage();
     else if (page === 'series') renderSeriesPage();
     else if (page === 'animes') renderAnimesPage();
+    else if (page === 'canais') renderCanaisPage();
     else if (page === 'profiles') renderProfilesPage();
   }
 
@@ -1363,6 +1366,140 @@ const STATE = {
     } catch (err) {
       console.error("Erro ao carregar animes:", err);
       showErrorState(DOM.animesGridAll, "Erro ao conectar com o TMDB e carregar os animes.");
+    }
+  }
+
+  // ---------- Canais 24 Horas ao Vivo ----------
+  const listaCanais = [
+    {
+      nome: "NickToons",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Nicktoons_2023_logo.png",
+      url: "https://stmv2.srvif.com/nicktoons/nicktoons/playlist.m3u8"
+    },
+    {
+      nome: "Nickelodeon",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/71/Nickelodeon_2023_logo.svg",
+      url: "https://x1co.com.br/hls/stream.m3u8"
+    },
+    {
+      nome: "SBT",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFkL6YgXliqq5tf35NK2b8VFk4b-NGErBH1w&s",
+      url: "https://cdn.jmvstream.com/w/LVW-10801/LVW10801_Xvg4R0u57n/playlist.m3u8"
+    },
+    {
+      nome: "Record TV",
+      logo: "https://logodownload.org/wp-content/uploads/2013/12/record-tv-logo.png",
+      url: "https://cdn.jmvstream.com/w/LVW-10842/LVW10842_513N26MDBL/playlist.m3u8"
+    },
+    {
+      nome: "TV Cultura",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/8/82/Cultura_logo_2013.svg",
+      url: "https://player-tvcultura.stream.uol.com.br/live/tvcultura.m3u8"
+    },
+    {
+      nome: "TBC GOIÁS",
+      logo: "https://tbc.go.gov.br/images/logo-tbc.png",
+      url: "https://tbc.zoeweb.tv/tbc/tbc/playlist.m3u8"
+    }
+  ];
+
+  let canalPlayer = null;
+
+  function stopCanalPlayer() {
+    if (canalPlayer) {
+      try {
+        canalPlayer.destroy();
+      } catch (e) {
+        console.warn("Erro ao destruir player de canal:", e);
+      }
+      canalPlayer = null;
+    }
+    const playerWrapper = document.getElementById('canal-wrapper-player');
+    const infoContainer = document.getElementById('canal-info-container');
+    if (playerWrapper) playerWrapper.style.display = 'none';
+    if (infoContainer) infoContainer.style.display = 'none';
+  }
+
+  function renderCanaisPage() {
+    const grid = document.getElementById('grid-canais');
+    if (!grid) return;
+    
+    // Clear and build
+    grid.innerHTML = '';
+    
+    listaCanais.forEach((canal, index) => {
+      const item = document.createElement('div');
+      item.className = 'canal-item';
+      
+      // Se este canal já for o canal ativo no player
+      if (canalPlayer && canalPlayer.options && canalPlayer.options.source === canal.url) {
+        item.className += ' active';
+      }
+      
+      item.onclick = () => carregarCanal(index);
+      item.innerHTML = `
+        <img src="${canal.logo}" onerror="this.src='https://via.placeholder.com/100x70?text=LOGO'">
+        <span>${canal.nome}</span>
+      `;
+      grid.appendChild(item);
+    });
+  }
+
+  function carregarCanal(index) {
+    const canal = listaCanais[index];
+    if (!canal) return;
+
+    const playerWrapper = document.getElementById('canal-wrapper-player');
+    const infoContainer = document.getElementById('canal-info-container');
+    const nameEl = document.getElementById('canal-current-name');
+    const logoEl = document.getElementById('canal-current-logo');
+
+    // Tornar elementos visíveis
+    if (playerWrapper) playerWrapper.style.display = 'block';
+    if (infoContainer) infoContainer.style.display = 'flex';
+
+    // Atualizar textos e logos
+    if (nameEl) nameEl.innerText = canal.nome;
+    if (logoEl) logoEl.src = canal.logo;
+
+    // Destacar item ativo na grade
+    const grid = document.getElementById('grid-canais');
+    if (grid) {
+      grid.querySelectorAll('.canal-item').forEach((item, idx) => {
+        item.classList.toggle('active', idx === index);
+      });
+    }
+
+    // Instanciação do Clappr Player
+    if (typeof Clappr === 'undefined') {
+      showToast('Erro: Biblioteca Clappr não foi carregada.', 'error');
+      return;
+    }
+
+    try {
+      if (!canalPlayer) {
+        canalPlayer = new Clappr.Player({
+          source: canal.url,
+          parentId: "#canal-player",
+          autoPlay: true,
+          width: '100%',
+          height: '100%'
+        });
+      } else {
+        // Se já existe, configura apenas a nova fonte
+        canalPlayer.configure({ source: canal.url, autoPlay: true });
+        canalPlayer.play();
+      }
+      
+      showToast(`Carregando canal: ${canal.nome}...`, 'success');
+      
+      // Scroll suave para o player
+      const targetScroll = playerWrapper.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      
+    } catch (e) {
+      console.error("Erro ao sintonizar Clappr player:", e);
+      showToast("Erro ao sintonizar o canal.", "error");
     }
   }
 

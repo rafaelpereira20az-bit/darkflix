@@ -3074,3 +3074,114 @@ ul, ol {
   }
 }
 
+/* ============================================================
+   Canais 24 Horas ao Vivo - Estilos Customizados
+   ============================================================ */
+
+.canais-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 24px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.canal-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: transform var(--transition-spring), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+.canal-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(229, 9, 20, 0.08) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.canal-item:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(229, 9, 20, 0.08);
+  border-color: rgba(229, 9, 20, 0.3);
+}
+
+.canal-item:hover::before {
+  opacity: 1;
+}
+
+.canal-item img {
+  width: 100%;
+  max-width: 110px;
+  height: 65px;
+  object-fit: contain;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform var(--transition-smooth);
+}
+
+.canal-item:hover img {
+  transform: scale(1.08);
+}
+
+.canal-item span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: color var(--transition-fast);
+}
+
+.canal-item:hover span {
+  color: var(--text-primary);
+}
+
+.canal-item.active {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-accent);
+}
+
+.canal-item.active span {
+  color: var(--accent-hover);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+@media (max-width: 600px) {
+  .canais-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .canal-item {
+    padding: 16px 12px;
+  }
+  .canal-item img {
+    height: 50px;
+    margin-bottom: 12px;
+  }
+  .canal-item span {
+    font-size: 0.75rem;
+  }
+  .canal-current-info {
+    padding: 12px 20px !important;
+  }
+}
+

@@ -291,6 +291,7 @@ const STATE = {
     modalGenres: $('#modal-genres'),
     modalDescription: $('#modal-description'),
     modalWatchBtn: $('#modal-watch-btn'),
+    modalWvcBtn: $('#modal-wvc-btn'),
     modalFavoriteBtn: $('#modal-favorite-btn'),
     modalFavoriteText: $('#modal-favorite-text'),
     modalCloseBtn: $('#modal-close-btn'),
@@ -1397,9 +1398,29 @@ const STATE = {
       url: "https://player-tvcultura.stream.uol.com.br/live/tvcultura.m3u8"
     },
     {
-      nome: "TBC GOIÁS",
-      logo: "https://tbc.go.gov.br/images/logo-tbc.png",
-      url: "https://tbc.zoeweb.tv/tbc/tbc/playlist.m3u8"
+      nome: "Band",
+      logo: "https://e7.pngegg.com/pngimages/1008/95/png-clipart-tv-bandeirantes-campinas-logo-tv-bandeirantes-rio-de-janeiro-band-logo-band.png",
+      url: "https://5b7f3c45ab7c2.streamlock.net/arapuan/ngrp:arapuan_all/chunklist.m3u8"
+    },
+    {
+      nome: "Discovery Turbo",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Discovery_Turbo_logo.svg/1280px-Discovery_Turbo_logo.svg.png",
+      url: "https://cdn-5.nxplay.com.br/DISCOVERY_TURBO_NX/index.m3u8"
+    },
+    {
+      nome: "Discovery Channel",
+      logo: "https://toppng.com/uploads/preview/discovery-channel-logo-vector-11574229905pblh5eesph.png",
+      url: "https://cdn-5.nxplay.com.br/DISCOVERY_CHANNEL_NX/index.m3u8"
+    },
+    {
+      nome: "Lifetime",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkGjad5yikdf-t1f8RTk1gfdEIE3Nvx7f7Cw&s",
+      url: "https://cdn-3.nxplay.com.br/LIFE_TIME_TK/index.m3u8"
+    },
+    {
+      nome: "Rede Brasil",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Rede_Brasil_de_Televis%C3%A3o_Logo2023.png",
+      url: "https://video09.logicahost.com.br/redebrasiloficial/redebrasiloficial/playlist.m3u8"
     }
   ];
 
@@ -1567,10 +1588,18 @@ const STATE = {
       durationLabel = movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : 'Filme';
       DOM.modalWatchBtn.style.display = 'inline-flex';
       DOM.modalSeriesSelector.style.display = 'none';
+      if (DOM.modalWvcBtn) {
+        const wvcUrl = `https://embed.warezcdn.link/filme/${movie.id}`;
+        DOM.modalWvcBtn.href = `wvc-x-callback://open?url=${encodeURIComponent(wvcUrl)}&title=${encodeURIComponent(title)}`;
+        DOM.modalWvcBtn.style.display = 'inline-flex';
+      }
     } else {
       durationLabel = movie.number_of_seasons ? `${movie.number_of_seasons} Temporada(s)` : 'Série';
       DOM.modalWatchBtn.style.display = 'none';
       DOM.modalSeriesSelector.style.display = 'block';
+      if (DOM.modalWvcBtn) {
+        DOM.modalWvcBtn.style.display = 'none';
+      }
 
       loadSeasonsDropdown(movie);
     }
@@ -1797,9 +1826,17 @@ const STATE = {
 
     DOM.cinemaExternalBtn.href = embedUrl;
 
+    // Use a direct embed link (WarezCDN) for Web Video Cast to ensure a clean playback page with zero selector screens
+    let wvcUrl = '';
+    if (type === 'movie') {
+      wvcUrl = `https://embed.warezcdn.link/filme/${tmdbId}`;
+    } else {
+      wvcUrl = `https://embed.warezcdn.link/serie/${tmdbId}/${season}/${episode}`;
+    }
+
     const cinemaWvcBtn = document.getElementById('cinema-wvc-btn');
     if (cinemaWvcBtn) {
-      cinemaWvcBtn.href = `wvc-x-callback://open?url=${encodeURIComponent(embedUrl)}&title=${encodeURIComponent(title)}`;
+      cinemaWvcBtn.href = `wvc-x-callback://open?url=${encodeURIComponent(wvcUrl)}&title=${encodeURIComponent(title)}`;
     }
 
     DOM.cinemaMode.classList.add('active');

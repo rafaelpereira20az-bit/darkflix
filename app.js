@@ -1421,6 +1421,61 @@ const STATE = {
       nome: "Rede Brasil",
       logo: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Rede_Brasil_de_Televis%C3%A3o_Logo2023.png",
       url: "https://video09.logicahost.com.br/redebrasiloficial/redebrasiloficial/playlist.m3u8"
+    },
+    {
+      nome: "Globo",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/94/Tvglobo_logo_2021.png",
+      url: "http://hls1.sua.tv/live/globotvbahiafhdbr2/s.m3u8"
+    },
+    {
+      nome: "PlayTV",
+      logo: "https://static.wikia.nocookie.net/logofic/images/f/f9/Playtv.png/revision/latest/scale-to-width-down/785?cb=20200518115119&path-prefix=pt-br",
+      url: "https://isaocorp.cloudecast.com/playtv/index.m3u8"
+    },
+    {
+      nome: "GE TV",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/GE_TV_logo.png",
+      url: "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8"
+    },
+    {
+      nome: "Gospel Cartoon",
+      logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-l/f0a3c3c7b9a651e847d86dd71bbb5551.webp",
+      url: "https://stmv1.srvif.com/gospelcartoon/gospelcartoon/playlist.m3u8"
+    },
+    {
+      nome: "Gospel Movies Television",
+      logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiM_jxvdheT60ZpD3nThvOsVJgZ6LCnU8X1iX8l1OW544agWFu5pFUr8pnDzwjrh5VfiYPMrP-Lc-xkuFRjkt4HpLYhStsS-KbUFoW-5ptE_yrbh9dXLkcCj_AiK_DKcJ9YlV4Zj7-VKNnQ5hj9fDykTEn3tCrKGjbsohC2nkLmZXyrqEjOWTZVCzdcaTw/w1200-h630-p-k-no-nu/GOSPEL%20MOVIES%20TELEVISION.webp",
+      url: "https://stmv1.srvif.com/gospelf/gospelf/playlist.m3u8"
+    },
+    {
+      nome: "Kuriakakos Kids",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtlQdZuh4ehWK6jV38JyJ1ERiivxWS2Rw_9A&s",
+      url: "https://w2.manasat.com/kkids/smil:kkids.smil/playlist.m3u8"
+    },
+    {
+      nome: "Loading TV",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Logo_loading.png",
+      url: "https://stmv1.srvif.com/loadingtv/loadingtv/playlist.m3u8"
+    },
+    {
+      nome: "Record News",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/46/Record_News_logo_2023.svg",
+      url: "https://rnw-rn.otteravision.com/rnw/rn/rnw_rn.m3u8"
+    },
+    {
+      nome: "TV Serie",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Canal%2B_S%C3%A9ries_2013.svg",
+      url: "https://stmv1.srvif.com/tvserie/tvserie/playlist.m3u8"
+    },
+    {
+      nome: "TV NBN",
+      logo: "https://www.tvnbn.com.br/wp-content/uploads/2018/08/logo-TVNBN-300-100.png",
+      url: "https://cdn.jmvstream.com/w/LVW-8410/LVW8410_uiZOVm6vz1/playlist.m3u8"
+    },
+    {
+      nome: "CazéTV",
+      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Caz%C3%A9TV_logo.svg/1280px-Caz%C3%A9TV_logo.svg.png",
+      url: "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8"
     }
   ];
 

@@ -1682,6 +1682,55 @@ const STATE = {
       categoria: "fechado",
       logo: "https://w7.pngwing.com/pngs/290/842/png-transparent-baby-shark-typography-texts-thumbnail.png",
       url: "https://c0c65b821b3542c3a4dca92702f59944.mediatailor.us-east-1.amazonaws.com/v1/master/04fd913bb278d8775298c26fdca9d9841f37601f/RakutenTV-eu_BabySharkTV/playlist.m3u8"
+    },
+    {
+      id: "pbs-kids",
+      nome: "PBS Kids",
+      categoria: "fechado",
+      logo: "https://static.wikia.nocookie.net/logopedia/images/1/15/PBS_Kids_Dash_%281999%29.svg/revision/latest?cb=20170814134849",
+      url: "https://2-fss-2.streamhoster.com/pl_140/amlst:200914-1298290/playlist.m3u8"
+    },
+    {
+      id: "record-news",
+      nome: "Record News",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Record_News_logo_2022.svg/3840px-Record_News_logo_2022.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail",
+      url: "https://5cf4a2c2512a2.streamlock.net/8016/8016/playlist.m3u8"
+    },
+    {
+      id: "cartoon-network-eua",
+      nome: "Cartoon Network EUA",
+      categoria: "fechado",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg03tGdzwFGhIq7SRC3sV5Bq7NlnGooNe9RQ&s",
+      url: "http://23.237.104.106:8080/USA_CARTOON_NETWORK/index.m3u8"
+    },
+    {
+      id: "mtv-eua",
+      nome: "MTV EUA",
+      categoria: "fechado",
+      logo: "https://logospng.org/wp-content/uploads/mtv.png",
+      url: "http://23.237.104.106:8080/USA_MTV/index.m3u8"
+    },
+    {
+      id: "fx-eua",
+      nome: "FX EUA",
+      categoria: "fechado",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyOIIGva_5J-a3YoeT0zh4LhqQ9fwzGPB6Jw&s",
+      url: "http://23.237.104.106:8080/USA_FX/index.m3u8"
+    },
+    {
+      id: "espn-eua",
+      nome: "ESPN EUA",
+      categoria: "fechado",
+      logo: "https://logosmarcas.net/wp-content/uploads/2020/12/ESPN-Logo-650x366.png",
+      url: "http://23.237.104.106:8080/USA_ESPNU/index.m3u8"
+    },
+    {
+      id: "cinemax-eua",
+      nome: "Cinemax EUA",
+      categoria: "fechado",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Cinemax_logo.svg",
+      url: "http://23.237.104.106:8080/USA_CINEMAX/index.m3u8"
     }
   ];
 
@@ -1700,6 +1749,8 @@ const STATE = {
     const infoContainer = document.getElementById('canal-info-container');
     if (playerWrapper) playerWrapper.style.display = 'none';
     if (infoContainer) infoContainer.style.display = 'none';
+    const httpTip = document.getElementById('canal-http-tip');
+    if (httpTip) httpTip.style.display = 'none';
   }
 
   function renderCanaisPage() {
@@ -1759,6 +1810,16 @@ const STATE = {
     // Tornar elementos visíveis
     if (playerWrapper) playerWrapper.style.display = 'block';
     if (infoContainer) infoContainer.style.display = 'flex';
+
+    // Exibir ou ocultar dica de fluxo inseguro (HTTP)
+    const httpTip = document.getElementById('canal-http-tip');
+    if (httpTip) {
+      if (canal.url.startsWith('http://')) {
+        httpTip.style.display = 'block';
+      } else {
+        httpTip.style.display = 'none';
+      }
+    }
 
     // Atualizar textos e logos
     if (nameEl) nameEl.innerText = canal.nome;

@@ -1425,7 +1425,7 @@ const STATE = {
     {
       nome: "Globo",
       logo: "https://upload.wikimedia.org/wikipedia/commons/9/94/Tvglobo_logo_2021.png",
-      url: "http://hls1.sua.tv/live/globotvbahiafhdbr2/s.m3u8"
+      url: "https://hls1.sua.tv/live/globotvbahiafhdbr2/s.m3u8"
     },
     {
       nome: "PlayTV",
@@ -1476,6 +1476,81 @@ const STATE = {
       nome: "CazéTV",
       logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Caz%C3%A9TV_logo.svg/1280px-Caz%C3%A9TV_logo.svg.png",
       url: "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8"
+    },
+    {
+      nome: "Mr. Bean Animated",
+      logo: "https://e7.pngegg.com/pngimages/618/786/png-clipart-video-youtube-animated-cartoon-animated-series-mr-bean-dance.png",
+      url: "https://amg00627-banijay-amg00627c35-tcl-us-4282.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanbr-tclus/playlist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Moranguinho ᴴᴰ",
+      logo: "https://i.pinimg.com/originals/7e/a7/45/7ea745bd319c3ac14646a8d3b2d95b21.png",
+      url: "https://ssai-ads.api.leiniao.com/global-adinsertion-api/hls/live/v2/15d2d4a8f740492cb0f81cbb1feb5123/playlist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Ministério Infantil ᴴᴰ",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNKPvTYobDU-Uu73q07GSR4yPc4uucTHmPA&s",
+      url: "https://stmv4.voxtvhd.com.br/1990/1990/playlist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Jetsons TV",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/5/59/The_Jetsons_%28television_series_logo%29.png",
+      url: "https://stmv1.srvif.com/jetsontv/jetsontv/playlist.m3u8"
+    },
+    {
+      nome: "Medo TV ᴴᴰ",
+      logo: "https://png.pngtree.com/png-vector/20250825/ourmid/pngtree-ghostface-scream-movie-night-retro-1980s-horror-comic-cover-art-png-image_17207103.webp",
+      url: "https://ffalconnow.api.leiniao.com/media-channel-api/ffalconLive/v1/68c7aa9ee9e90f4e11dd42ea/bunnycontent_main.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Malhação Fast ᴴᴰ",
+      logo: "https://image.tmdb.org/t/p/original/ly24fGsZNMCF36Z2Dt5khGovNib.png",
+      url: "https://amg00716-globo-amg00716c4-tcl-br-9499.playouts.now.amagi.tv/playlist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Run:Time Cine Espanto ᴴᴰ",
+      logo: "https://cinesiageek.com.br/wp-content/uploads/2022/04/logo-CINE-HORROR-2019-cine-preto.png",
+      url: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=4865"
+    },
+    {
+      nome: "Run:Time Crime ᴴᴰ",
+      logo: "https://images.seeklogo.com/logo-png/20/2/crime-rock-band-logo-png_seeklogo-209741.png",
+      url: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=4864"
+    },
+    {
+      nome: "Anime TV",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/e2/AnimeCentral.PNG",
+      url: "https://stmv2.painelvideocast.com.br/animetv/animetv/chunklist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Hallo Anime ᴴᴰ",
+      logo: "https://image.pngaaa.com/352/1697352-middle.png",
+      url: "https://cdn-3.nxplay.com.br/HALLOANIME/index.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Otaku Sign TV ᴴᴰ",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_dbjREOJ8G0HpLjXRiBoYyAB5Kphb3y12Sw&s",
+      url: "https://stmv1.srvif.com/anime/anime/playlist.m3u8?hls_ctx=9o6p063n"
+    },
+    {
+      nome: "MojiTV ᴴᴰ",
+      logo: "https://logowik.com/content/uploads/images/moji9857.logowik.com.webp",
+      url: "https://d29h829bjuxghm.cloudfront.net/hls/master.m3u8?ads.xumo_channelId=99992140&ads.xumo_streamId=99992140&ads.channelId=99992140&ads.csid=lgchannels_br_odmediabrazil_ssai&ads.channelName=odmediabrazil_br&ads.xumo_contentName=ODMediaBrazil&ads.xumo_contentId=3193&ads.xumo_providerName=ODMediaBrazil&ads.xumo_providerId=3193&ads.content_category=IAB6&ads.content_genre=kids&ads.content_language=pt&ads.content_rating=tv-g&ads.coppa=1&ads.did=[IFA]&ads.is_lat=[LMT]&ads.us_privacy=[US_PRIVACY]&ads.gdpr=[GDPR]&ads.gdpr_consent=[GDPR_CONSENT]&ads.devicemake=[DEVICE_MAKE]&ads.appName=[APP_NAME]&ads.app_bundle=[APP_BUNDLE]&ads.app_version=[APP_VERSION]&ads.fck=[FCK]&ads.viewsize=[VIEWSIZE]&ads.givn=[NONCE]&ads.app_storeurl=[APP_STOREURL]"
+    },
+    {
+      nome: "PlayKids ᴴᴰ",
+      logo: "https://static.wikia.nocookie.net/logopedia/images/5/54/PlayKids_logo_.png/revision/latest?cb=20210303134057",
+      url: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=274"
+    },
+    {
+      nome: "Sonic",
+      logo: "https://www.citypng.com/public/uploads/preview/sonic-logo-word-art-free-png-701751694708949q5sudrfmc1.png",
+      url: "https://d1si3n1st4nkgb.cloudfront.net/10000/88876021/hls/master.m3u8?ads.xumo_channelId=88876021"
+    },
+    {
+      nome: "Urban Kids ᴴᴰ",
+      logo: "https://static.wixstatic.com/media/1df067_7f5656a6b39e487c834571d69df4a2ba~mv2.png/v1/fill/w_560,h_560,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.png",
+      url: "http://200.194.238.229:8383/live/urbankids/playlist.m3u8?ROGERIOTORRES"
     }
   ];
 
@@ -1542,6 +1617,12 @@ const STATE = {
     const canalWvcBtn = document.getElementById('canal-wvc-btn');
     if (canalWvcBtn) {
       canalWvcBtn.href = `wvc-x-callback://open?url=${encodeURIComponent(canal.url)}&title=${encodeURIComponent('DarkFlix Live — ' + canal.nome)}`;
+    }
+
+    // Atualizar link de transmissão externa
+    const canalExternalBtn = document.getElementById('canal-external-btn');
+    if (canalExternalBtn) {
+      canalExternalBtn.href = canal.url;
     }
 
     // Destacar item ativo na grade

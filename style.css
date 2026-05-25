@@ -3187,8 +3187,13 @@ ul, ol {
     gap: 12px !important;
     text-align: center !important;
   }
-  .canal-current-info #canal-wvc-btn {
+  #canal-actions-container {
     margin-left: 0 !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  #canal-actions-container .btn {
     width: 100% !important;
     justify-content: center !important;
   }

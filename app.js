@@ -1423,19 +1423,9 @@ const STATE = {
       url: "https://video09.logicahost.com.br/redebrasiloficial/redebrasiloficial/playlist.m3u8"
     },
     {
-      nome: "Globo",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/9/94/Tvglobo_logo_2021.png",
-      url: "https://hls1.sua.tv/live/globotvbahiafhdbr2/s.m3u8"
-    },
-    {
       nome: "PlayTV",
       logo: "https://static.wikia.nocookie.net/logofic/images/f/f9/Playtv.png/revision/latest/scale-to-width-down/785?cb=20200518115119&path-prefix=pt-br",
       url: "https://isaocorp.cloudecast.com/playtv/index.m3u8"
-    },
-    {
-      nome: "GE TV",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/GE_TV_logo.png",
-      url: "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8"
     },
     {
       nome: "Gospel Cartoon",
@@ -1458,11 +1448,6 @@ const STATE = {
       url: "https://stmv1.srvif.com/loadingtv/loadingtv/playlist.m3u8"
     },
     {
-      nome: "Record News",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/4/46/Record_News_logo_2023.svg",
-      url: "https://rnw-rn.otteravision.com/rnw/rn/rnw_rn.m3u8"
-    },
-    {
       nome: "TV Serie",
       logo: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Canal%2B_S%C3%A9ries_2013.svg",
       url: "https://stmv1.srvif.com/tvserie/tvserie/playlist.m3u8"
@@ -1471,11 +1456,6 @@ const STATE = {
       nome: "TV NBN",
       logo: "https://www.tvnbn.com.br/wp-content/uploads/2018/08/logo-TVNBN-300-100.png",
       url: "https://cdn.jmvstream.com/w/LVW-8410/LVW8410_uiZOVm6vz1/playlist.m3u8"
-    },
-    {
-      nome: "CazéTV",
-      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Caz%C3%A9TV_logo.svg/1280px-Caz%C3%A9TV_logo.svg.png",
-      url: "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8"
     },
     {
       nome: "Mr. Bean Animated",
@@ -1500,16 +1480,6 @@ const STATE = {
     {
       nome: "Medo TV ᴴᴰ",
       logo: "https://png.pngtree.com/png-vector/20250825/ourmid/pngtree-ghostface-scream-movie-night-retro-1980s-horror-comic-cover-art-png-image_17207103.webp",
-      url: "https://ffalconnow.api.leiniao.com/media-channel-api/ffalconLive/v1/68c7aa9ee9e90f4e11dd42ea/bunnycontent_main.m3u8?ROGERIOTORRES"
-    },
-    {
-      nome: "Malhação Fast ᴴᴰ",
-      logo: "https://image.tmdb.org/t/p/original/ly24fGsZNMCF36Z2Dt5khGovNib.png",
-      url: "https://amg00716-globo-amg00716c4-tcl-br-9499.playouts.now.amagi.tv/playlist.m3u8?ROGERIOTORRES"
-    },
-    {
-      nome: "Run:Time Cine Espanto ᴴᴰ",
-      logo: "https://cinesiageek.com.br/wp-content/uploads/2022/04/logo-CINE-HORROR-2019-cine-preto.png",
       url: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=4865"
     },
     {
@@ -1538,19 +1508,89 @@ const STATE = {
       url: "https://d29h829bjuxghm.cloudfront.net/hls/master.m3u8?ads.xumo_channelId=99992140&ads.xumo_streamId=99992140&ads.channelId=99992140&ads.csid=lgchannels_br_odmediabrazil_ssai&ads.channelName=odmediabrazil_br&ads.xumo_contentName=ODMediaBrazil&ads.xumo_contentId=3193&ads.xumo_providerName=ODMediaBrazil&ads.xumo_providerId=3193&ads.content_category=IAB6&ads.content_genre=kids&ads.content_language=pt&ads.content_rating=tv-g&ads.coppa=1&ads.did=[IFA]&ads.is_lat=[LMT]&ads.us_privacy=[US_PRIVACY]&ads.gdpr=[GDPR]&ads.gdpr_consent=[GDPR_CONSENT]&ads.devicemake=[DEVICE_MAKE]&ads.appName=[APP_NAME]&ads.app_bundle=[APP_BUNDLE]&ads.app_version=[APP_VERSION]&ads.fck=[FCK]&ads.viewsize=[VIEWSIZE]&ads.givn=[NONCE]&ads.app_storeurl=[APP_STOREURL]"
     },
     {
-      nome: "PlayKids ᴴᴰ",
-      logo: "https://static.wikia.nocookie.net/logopedia/images/5/54/PlayKids_logo_.png/revision/latest?cb=20210303134057",
-      url: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=274"
-    },
-    {
       nome: "Sonic",
       logo: "https://www.citypng.com/public/uploads/preview/sonic-logo-word-art-free-png-701751694708949q5sudrfmc1.png",
       url: "https://d1si3n1st4nkgb.cloudfront.net/10000/88876021/hls/master.m3u8?ads.xumo_channelId=88876021"
     },
     {
-      nome: "Urban Kids ᴴᴰ",
-      logo: "https://static.wixstatic.com/media/1df067_7f5656a6b39e487c834571d69df4a2ba~mv2.png/v1/fill/w_560,h_560,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Image-empty-state.png",
-      url: "http://200.194.238.229:8383/live/urbankids/playlist.m3u8?ROGERIOTORRES"
+      nome: "Tv Max",
+      logo: "https://static.wixstatic.com/media/0f057e_8a28dc905a0949ecaeba9368cd313d0d~mv2.png/v1/fill/w_289,h_289,al_c/0f057e_8a28dc905a0949ecaeba9368cd313d0d~mv2.png",
+      url: "https://video09.logicahost.com.br/tvmax/tvmax/chunklist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "The Walking Dead ᴴᴰ",
+      logo: "https://e1.pngegg.com/pngimages/364/48/png-clipart-the-walking-dead-serie-folders-the-walking-dead-logo.png",
+      url: "https://amg01822-amc-amg01822c1-lg-br-8375.playouts.now.amagi.tv/playlist/amg01822-amcnetworkslatinamericallcfast-thewalkingdeadbyamcbr-lgbr/playlist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Top tv",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/94/LOGO_TOP_TV_HD.png",
+      url: "https://isaocorp.cloudecast.com/toptv/tracks-v1a1/mono.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Filmes top mix",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8Sw_OY0ty-j2lLRlDf5mv-GjQBxH-t_MAA&s",
+      url: "https://video03.logicahost.com.br/filmestopmixtv/filmestopmixtv/chunklist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Classics ᴴᴰ",
+      logo: "https://thumbs.dreamstime.com/b/carimbo-de-borracha-cl%C3%A1ssico-dos-filmes-12384807.jpg",
+      url: "https://spt-sonyoneclassicas-1-br.samsung.wurl.tv/playlist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Xumo Filmes ᴴᴰ",
+      logo: "https://images.seeklogo.com/logo-png/31/2/hd-filmes-logo-png_seeklogo-316948.png",
+      url: "https://d29h829bjuxghm.cloudfront.net/hls/master.m3u8?ads.xumo_channelId=99992307&ads.xumo_streamId=99992307&ads.channelId=99992307&ads.csid=lgchannels_br_xumofreemoviesbrazil_ssai&ads.channelName=xumofreemoviesbrazil_br&ads.xumo_contentName=XumoFreeMoviesBrazil&ads.xumo_contentId=5&ads.xumo_providerName=XumoFreeMoviesBrazil&ads.xumo_providerId=5&ads.content_category=IAB1-7&ads.content_genre=Movies&ads.content_language=en&ads.content_rating=tv-ma&ads.coppa=0&ads.did=[IFA]&ads.is_lat=[LMT]&ads.us_privacy=[US_PRIVACY]&ads.gdpr=[GDPR]&ads.gdpr_consent=[GDPR_CONSENT]&ads.devicemake=[DEVICE_MAKE]&ads.appName=[APP_NAME]&ads.app_bundle=[APP_BUNDLE]&ads.app_version=[APP_VERSION]&ads.fck=[FCK]&ads.viewsize=[VIEWSIZE]&ads.givn=[NONCE]&ads.app_storeurl=[APP_STOREURL]"
+    },
+    {
+      nome: "Spark TV ᴴᴰ",
+      logo: "https://play-lh.googleusercontent.com/jPdDehFaN04fiUdh_rlBYu1ft_j1Qv5X7L1AfWGbZwO-F8bvd6XGOCd50nOBF8m_04abe_AgIObgvUZOUjMEXA",
+      url: "https://d25usgadhphvwi.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-sr15nxkp06uk9/playlist.m3u8?ROGERIOTORRES"
+    },
+    {
+      nome: "Teletubbies",
+      logo: "https://upload.wikimedia.org/wikipedia/pt/5/57/Teletubbies_logo.png",
+      url: "https://dv8lsrd8fecw9.cloudfront.net/master.m3u8"
+    },
+    {
+      nome: "HappyKids",
+      logo: "https://static.wikia.nocookie.net/logosfake/images/9/90/Happy_Kids_logo_2004.png/revision/latest?cb=20140525234116",
+      url: "https://dil9xdvretp0f.cloudfront.net/index.m3u8"
+    },
+    {
+      nome: "Disney XD",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/2009_Disney_XD_logo.svg/3840px-2009_Disney_XD_logo.svg.png",
+      url: "http://23.237.104.106:8080/USA_DISNEY_XD/index.m3u8"
+    },
+    {
+      nome: "Boomerang EUA",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/41/Boomerang_tv_logo.png",
+      url: "http://23.237.104.106:8080/USA_BOOMERANG/index.m3u8"
+    },
+    {
+      nome: "The LEGO Channel",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/960px-LEGO_logo.svg.png",
+      url: "https://dltiqboxjw21d.cloudfront.net/index.m3u8"
+    },
+    {
+      nome: "Tom And Jerry",
+      logo: "https://pngimg.com/uploads/tom_and_jerry/tom_and_jerry_PNG42.png",
+      url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8"
+    },
+    {
+      nome: "Minimax",
+      logo: "https://images.seeklogo.com/logo-png/52/2/minimax-logo-png_seeklogo-522746.png",
+      url: "https://vodzong.mjunoon.tv:8087/streamtest/disckids-157-1/playlist.m3u8"
+    },
+    {
+      nome: "Disney Junior",
+      logo: "https://logosmarcas.net/wp-content/uploads/2022/02/Disney-Junior-Logo.png",
+      url: "http://23.237.104.106:8080/USA_DISNEY_JUNIOR/index.m3u8"
+    },
+    {
+      nome: "Baby Shark",
+      logo: "https://w7.pngwing.com/pngs/290/842/png-transparent-baby-shark-typography-texts-thumbnail.png",
+      url: "https://c0c65b821b3542c3a4dca92702f59944.mediatailor.us-east-1.amazonaws.com/v1/master/04fd913bb278d8775298c26fdca9d9841f37601f/RakutenTV-eu_BabySharkTV/playlist.m3u8"
     }
   ];
 
@@ -1960,7 +2000,9 @@ const STATE = {
     DOM.cinemaIframe.style.display = 'block';
     DOM.cinemaBlockerTop.style.display = 'block';
 
-    DOM.cinemaExternalBtn.href = embedUrl;
+    if (DOM.cinemaExternalBtn) {
+      DOM.cinemaExternalBtn.href = embedUrl;
+    }
 
     // Use a direct embed link (WarezCDN) for Web Video Cast to ensure a clean playback page with zero selector screens
     let wvcUrl = '';

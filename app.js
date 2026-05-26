@@ -1731,6 +1731,104 @@ const STATE = {
       categoria: "fechado",
       logo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Cinemax_logo.svg",
       url: "http://23.237.104.106:8080/USA_CINEMAX/index.m3u8"
+    },
+    {
+      id: "tv-sao-luis",
+      nome: "TV São Luís",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/pt/9/97/Logotipo_da_TV_S%C3%A3o_Lu%C3%ADs.png",
+      url: "https://stmv1.srvif.com/tvsaoluis8/tvsaoluis8/playlist.m3u8"
+    },
+    {
+      id: "redetv-mais",
+      nome: "RedeTV! Mais",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/pt/0/05/Logotipo_da_RedeTV%21_%282015%E2%80%932019%29.png",
+      url: "https://cdn.live.br1.jmvstream.com/webtv/AVJ-15235/playlist/playlist.m3u8"
+    },
+    {
+      id: "tv-pampa",
+      nome: "TV Pampa",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Logotipo_da_TV_Pampa.png",
+      url: "https://video04.logicahost.com.br/tvpampa/tvpampa/playlist.m3u8"
+    },
+    {
+      id: "sic-tv",
+      nome: "SIC TV",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/pt/f/f9/Logotipo_da_SIC_TV.png",
+      url: "https://parecisfmlive.brasilstream.com.br/hls/parecisfmlive/index.m3u8"
+    },
+    {
+      id: "tv-catve",
+      nome: "TV CATVE (PR)",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/6/67/Catve.png",
+      url: "http://wowza4.catve.com.br:1935/live/livestream/chunklist_w529672192.m3u8"
+    },
+    {
+      id: "master-tv",
+      nome: "MASTER TV (PR)",
+      categoria: "aberto",
+      logo: "https://lh6.googleusercontent.com/proxy/pbyreWhPyFcni4oTIK8oQImzEx4-Tg13fm5BvYgZUlDycQAppweNBChD5LDuZP-FqYw8_hOoQrAqEqGp2E63_Do8TCPoMM6qvR6BIap2Xg0",
+      url: "http://wowza4.catve.com.br:1935/mastertv/livestream/chunklist_w1821412394.m3u8"
+    },
+    {
+      id: "tv-brasil-hd",
+      nome: "TV Brasil HD",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/TV_Brasil_logo_2009.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
+      url: "http://streaming.procergs.com.br:1935/tve/stve/playlist.m3u8"
+    },
+    {
+      id: "tv-camara-1",
+      nome: "TV Câmara 1",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Marca_TV_C%C3%A2mara_-_2018.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original",
+      url: "https://stream3.camara.gov.br/tv1/manifest.m3u8"
+    },
+    {
+      id: "tv-assembleia-mg",
+      nome: "TV Assembleia (MG)",
+      categoria: "aberto",
+      logo: "https://cdn.mitvstatic.com/channels/br_tv-assembleia-de-minas-gerais_m.png",
+      url: "http://streaming.almg.gov.br/live/tvalmg2.m3u8"
+    },
+    {
+      id: "tv-litoral-panorama",
+      nome: "TV Litoral Panorama",
+      categoria: "aberto",
+      logo: "https://www.panorama.tv.br/wp-content/uploads/sites/15/2021/03/tv-litoral-panorama.png",
+      url: "http://streaming03.zas.media:1935/panorama/panorama/live.m3u8"
+    },
+    {
+      id: "tv-terceiro-anjo",
+      nome: "TV Terceiro Anjo",
+      categoria: "aberto",
+      logo: "https://yt3.googleusercontent.com/YgN2a0uoD1DKJjS0hmojDlvuxFHvBF99_a2EkiMw-l-oo_ylmfszdWeA6A65_uK83oqVjwrGPjs=s900-c-k-c0x00ffffff-no-rj",
+      url: "http://streamer1.streamhost.org:1935/salive/GMI3anjoh/livestream.m3u8"
+    },
+    {
+      id: "canale-7-italia",
+      nome: "Canale 7 [Italia]",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/24/Canale_7.png",
+      url: "http://wms.shared.streamshow.it:1935/canale7/canale7/live.m3u8"
+    },
+    {
+      id: "tv-guarapari",
+      nome: "TV Guarapari",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/pt/d/d3/Logotipo_da_TV_Guararapes.png",
+      url: "http://video.welltecnologia.com.br:1935/tvguarapari/tvguarapari/live.m3u8"
+    },
+    {
+      id: "nova-era-tv",
+      nome: "Nova Era TV",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/pt/a/a6/Logotipo_da_TV_Nova_Era.png",
+      url: "http://wz3.dnip.com.br:1935/novaeratv/novaeratv.sdp/live.m3u8"
     }
   ];
 

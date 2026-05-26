@@ -166,7 +166,8 @@ const STATE = {
   modalTrailerPlaying: true,
   modalTrailerMuted: false,
   selectedCanalCategory: 'aberto',
-  maintenanceChannels: {}
+  maintenanceChannels: {},
+  hiddenChannels: {}
 };
 
   // ---------- Genre Maps ----------
@@ -1861,9 +1862,12 @@ const STATE = {
     // 1. Organizar por ordem alfabética
     const sortedCanais = [...listaCanais].sort((a, b) => a.nome.localeCompare(b.nome));
     
-    // 2. Filtrar pela categoria ativa
+    // 2. Filtrar pela categoria ativa e ocultar canais marcados como invisíveis
     const category = STATE.selectedCanalCategory || 'aberto';
-    const filteredCanais = sortedCanais.filter(canal => canal.categoria === category);
+    const filteredCanais = sortedCanais.filter(canal => {
+      const isHidden = STATE.hiddenChannels && STATE.hiddenChannels[canal.id] === true;
+      return canal.categoria === category && !isHidden;
+    });
     
     if (filteredCanais.length === 0) {
       grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-secondary);">Nenhum canal nesta categoria.</div>`;
@@ -1999,28 +2003,64 @@ const STATE = {
     if (listContainer) {
       // Ordenar canais alfabeticamente
       const sortedCanais = [...listaCanais].sort((a, b) => a.nome.localeCompare(b.nome));
-      
-      listContainer.innerHTML = sortedCanais.map(canal => {
+      const canaisAbertos = sortedCanais.filter(c => c.categoria === 'aberto');
+      const canaisFechados = sortedCanais.filter(c => c.categoria === 'fechado');
+
+      const buildChannelItemHtml = (canal) => {
         const isMaint = STATE.maintenanceChannels && STATE.maintenanceChannels[canal.id] === true;
+        const isHidden = STATE.hiddenChannels && STATE.hiddenChannels[canal.id] === true;
         return `
-          <div class="channel-control-item">
-            <img src="${canal.logo}" onerror="this.src='https://via.placeholder.com/60x30?text=LOGO'">
-            <div class="channel-control-info">
-              <div class="channel-control-name">${canal.nome}</div>
-              <div class="channel-control-category">${canal.categoria === 'aberto' ? '📺 Aberto' : '🔒 Fechado'}</div>
+          <div class="channel-control-item" style="display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 12px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-md); margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0;">
+              <img src="${canal.logo}" onerror="this.src='https://via.placeholder.com/60x30?text=LOGO'" style="width: 50px; height: 30px; object-fit: contain; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm);">
+              <div style="min-width: 0; flex: 1;">
+                <div class="channel-control-name" style="font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary);">${canal.nome}</div>
+                <div class="channel-control-category" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px;">${canal.categoria === 'aberto' ? '📺 Aberto' : '🔒 Fechado'}</div>
+              </div>
             </div>
-            <div class="channel-control-switch">
-              <span>${isMaint ? '🔴 Manutenção' : '🟢 Ativo'}</span>
-              <label class="toggle-switch">
-                <input type="checkbox" class="admin-channel-toggle" data-id="${canal.id}" ${!isMaint ? 'checked' : ''}>
-                <span class="toggle-slider"></span>
-              </label>
+            <div class="channel-control-switches" style="display: flex; gap: 20px; align-items: center;">
+              <div class="channel-control-switch" style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 0.75rem; font-weight: 500; color: ${isMaint ? '#ef4444' : '#22c55e'};">${isMaint ? 'Manutenção' : 'Ativo'}</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" class="admin-channel-toggle" data-id="${canal.id}" ${!isMaint ? 'checked' : ''}>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="channel-control-switch" style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 0.75rem; font-weight: 500; color: ${isHidden ? '#9ca3af' : '#60a5fa'};">${isHidden ? 'Oculto' : 'Visível'}</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" class="admin-channel-hide-toggle" data-id="${canal.id}" ${!isHidden ? 'checked' : ''}>
+                  <span class="toggle-slider" style="background-color: #4b5563;"></span>
+                </label>
+              </div>
             </div>
           </div>
         `;
-      }).join('');
+      };
 
-      // Adicionar listeners para os toggles de canal do admin
+      listContainer.innerHTML = `
+        <div style="margin-bottom: 25px;">
+          <h4 style="margin: 0 0 12px 0; color: var(--accent); border-left: 3px solid var(--accent); padding-left: 8px; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; display: flex; justify-content: space-between;">
+            <span>📺 Canais Abertos</span>
+            <span style="font-size: 0.75rem; opacity: 0.8; font-weight: 500; font-family: 'Montserrat', sans-serif;">${canaisAbertos.length} no total</span>
+          </h4>
+          <div class="channels-sublist-group">
+            ${canaisAbertos.map(buildChannelItemHtml).join('')}
+          </div>
+        </div>
+        
+        <div>
+          <h4 style="margin: 0 0 12px 0; color: #a855f7; border-left: 3px solid #a855f7; padding-left: 8px; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; display: flex; justify-content: space-between;">
+            <span>🔒 Canais Fechados</span>
+            <span style="font-size: 0.75rem; opacity: 0.8; font-weight: 500; font-family: 'Montserrat', sans-serif;">${canaisFechados.length} no total</span>
+          </h4>
+          <div class="channels-sublist-group">
+            ${canaisFechados.map(buildChannelItemHtml).join('')}
+          </div>
+        </div>
+      `;
+
+      // Adicionar listeners para os toggles de manutenção
       listContainer.querySelectorAll('.admin-channel-toggle').forEach(input => {
         input.onchange = async () => {
           const canalId = input.dataset.id;
@@ -2033,8 +2073,25 @@ const STATE = {
           } catch (e) {
             console.error("Erro ao atualizar status do canal:", e);
             showToast("Erro ao atualizar o canal.", "error");
-            // Reverter toggle se falhar
             input.checked = !isFuncionando;
+          }
+        };
+      });
+
+      // Adicionar listeners para os toggles de ocultação
+      listContainer.querySelectorAll('.admin-channel-hide-toggle').forEach(input => {
+        input.onchange = async () => {
+          const canalId = input.dataset.id;
+          const isVisivel = input.checked;
+          
+          try {
+            showToast(`${isVisivel ? 'Exibindo' : 'Ocultando'} canal no banco de dados...`, 'info');
+            await set(ref(db, `stats/hidden_channels/${canalId}`), !isVisivel);
+            showToast(`Visibilidade do canal atualizada com sucesso!`, 'success');
+          } catch (e) {
+            console.error("Erro ao atualizar visibilidade do canal:", e);
+            showToast("Erro ao atualizar o canal.", "error");
+            input.checked = !isVisivel;
           }
         };
       });
@@ -3428,6 +3485,20 @@ const STATE = {
       const maintRef = ref(db, 'stats/maintenance_channels');
       onValue(maintRef, (snap) => {
         STATE.maintenanceChannels = snap.val() || {};
+        // Se a página de canais estiver ativa, re-renderizar para atualizar visualmente
+        if (STATE.currentPage === 'canais') {
+          renderCanaisPage();
+        }
+        // Se a página de admin estiver ativa, atualizar painel
+        if (STATE.currentPage === 'admin') {
+          renderAdminDashboard();
+        }
+      });
+
+      // Escutar alterações de canais ocultos em tempo real
+      const hiddenRef = ref(db, 'stats/hidden_channels');
+      onValue(hiddenRef, (snap) => {
+        STATE.hiddenChannels = snap.val() || {};
         // Se a página de canais estiver ativa, re-renderizar para atualizar visualmente
         if (STATE.currentPage === 'canais') {
           renderCanaisPage();

@@ -167,7 +167,10 @@ const STATE = {
   modalTrailerMuted: false,
   selectedCanalCategory: 'aberto',
   maintenanceChannels: {},
-  hiddenChannels: {}
+  hiddenChannels: {},
+  watchStart: null,
+  watchInterval: null,
+  currentWatchItem: null
 };
 
   // ---------- Genre Maps ----------
@@ -699,19 +702,27 @@ const STATE = {
     let progressIndicatorHTML = '';
 
     if (prog) {
+      let progressDiv = '';
+      let episodeBadge = '';
+
       if (prog.percent) {
-        progressIndicatorHTML = `
+        progressDiv = `
           <div class="card-progress-bar" style="position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: rgba(255, 255, 255, 0.3); z-index: 5;">
             <div style="height: 100%; width: ${prog.percent}%; background: var(--accent); transition: width 0.3s ease;"></div>
           </div>
         `;
-      } else if (prog.season) {
-        progressIndicatorHTML = `
-          <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(229, 9, 20, 0.9); padding: 3px 8px; font-size: 0.65rem; color: white; text-align: right; font-weight: 700; z-index: 5; border-bottom-left-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm);">
+      }
+      
+      if (prog.season) {
+        const bottomOffset = prog.percent ? '4px' : '0';
+        episodeBadge = `
+          <div style="position: absolute; bottom: ${bottomOffset}; left: 0; right: 0; background: rgba(229, 9, 20, 0.9); padding: 3px 8px; font-size: 0.65rem; color: white; text-align: right; font-weight: 700; z-index: 5; ${bottomOffset === '0' ? 'border-bottom-left-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm);' : ''}">
             T${prog.season}:E${prog.episode}
           </div>
         `;
       }
+
+      progressIndicatorHTML = progressDiv + episodeBadge;
     }
 
     return `
@@ -2437,21 +2448,75 @@ const STATE = {
 
   // ---------- Cinema Player Mode ----------
   function openCinema(tmdbId, title, type, season = null, episode = null) {
-    // Salvar progresso com metadados completos de STATE.currentMovieDetail antes de fechar o modal
-    if (type === 'movie') {
-      saveWatchProgress(tmdbId, title, 'movie', {
-        timestamp: Date.now(),
-        type: 'movie',
-        percent: 60 // Mock progress bar representation
-      });
-    } else {
-      saveWatchProgress(tmdbId, title, 'tv', {
-        timestamp: Date.now(),
-        type: 'tv',
-        season: parseInt(season),
-        episode: parseInt(episode)
-      });
+    if (STATE.watchInterval) {
+      clearInterval(STATE.watchInterval);
+      STATE.watchInterval = null;
     }
+
+    // Load existing progress from memory
+    const existingProgress = STATE.inProgress.find(x => Number(x.id) === Number(tmdbId));
+    let initialElapsedTime = 0;
+    
+    if (existingProgress) {
+      if (type === 'tv') {
+        if (parseInt(existingProgress.season) === parseInt(season) && parseInt(existingProgress.episode) === parseInt(episode)) {
+          initialElapsedTime = existingProgress.elapsedTime || 0;
+        }
+      } else {
+        initialElapsedTime = existingProgress.elapsedTime || 0;
+      }
+    }
+
+    if (initialElapsedTime > 0) {
+      const minutes = Math.floor(initialElapsedTime / 60);
+      const seconds = initialElapsedTime % 60;
+      showToast(`Retomando de onde parou: ${minutes}m ${seconds}s`, 'info');
+    }
+
+    // Save initial progress record in Firebase if not existing
+    const runtimeMinutes = (type === 'tv') ? 45 : ((STATE.currentMovieDetail && STATE.currentMovieDetail.runtime) || 120);
+    const runtimeSeconds = runtimeMinutes * 60;
+    const initialPercent = Math.min(95, Math.round((initialElapsedTime / runtimeSeconds) * 100));
+
+    saveWatchProgress(tmdbId, title, type, {
+      timestamp: Date.now(),
+      type: type,
+      elapsedTime: initialElapsedTime,
+      percent: initialPercent || 5,
+      season: season ? parseInt(season) : null,
+      episode: episode ? parseInt(episode) : null
+    });
+
+    // Start watch tracker state
+    STATE.watchStart = Date.now();
+    STATE.currentWatchItem = {
+      id: tmdbId,
+      title: title,
+      type: type,
+      season: season ? parseInt(season) : null,
+      episode: episode ? parseInt(episode) : null,
+      initialElapsedTime: initialElapsedTime,
+      runtimeSeconds: runtimeSeconds
+    };
+
+    // Track progress every 15 seconds
+    STATE.watchInterval = setInterval(() => {
+      if (DOM.cinemaMode.classList.contains('active') && STATE.currentWatchItem) {
+        const elapsedSeconds = Math.round((Date.now() - STATE.watchStart) / 1000);
+        const totalElapsed = STATE.currentWatchItem.initialElapsedTime + elapsedSeconds;
+        const cappedElapsed = Math.min(STATE.currentWatchItem.runtimeSeconds - 10, totalElapsed);
+        const percent = Math.min(95, Math.round((cappedElapsed / STATE.currentWatchItem.runtimeSeconds) * 100));
+
+        saveWatchProgress(STATE.currentWatchItem.id, STATE.currentWatchItem.title, STATE.currentWatchItem.type, {
+          timestamp: Date.now(),
+          type: STATE.currentWatchItem.type,
+          elapsedTime: cappedElapsed,
+          percent: percent,
+          season: STATE.currentWatchItem.season,
+          episode: STATE.currentWatchItem.episode
+        });
+      }
+    }, 15000);
 
     stopMainHeroTrailer();
     closeDetail(); // closeDetail limpa com segurança STATE.currentMovieDetail agora!
@@ -2459,11 +2524,12 @@ const STATE = {
     DOM.cinemaTitle.textContent = title;
     
     let embedUrl = '';
+    const startParam = initialElapsedTime ? `&start=${initialElapsedTime}&t=${initialElapsedTime}&time=${initialElapsedTime}` : '';
 
     if (type === 'movie') {
-      embedUrl = `https://myembed.biz/filme/${tmdbId}`;
+      embedUrl = `https://myembed.biz/filme/${tmdbId}?autoplay=1${startParam}`;
     } else {
-      embedUrl = `https://myembed.biz/serie/${tmdbId}/${season}/${episode}`;
+      embedUrl = `https://myembed.biz/serie/${tmdbId}/${season}/${episode}?autoplay=1${startParam}`;
     }
 
     DOM.cinemaVideo.style.display = 'none';
@@ -2480,9 +2546,9 @@ const STATE = {
     // Use a direct embed link (WarezCDN) for Web Video Cast to ensure a clean playback page with zero selector screens
     let wvcUrl = '';
     if (type === 'movie') {
-      wvcUrl = `https://embed.warezcdn.link/filme/${tmdbId}`;
+      wvcUrl = `https://embed.warezcdn.link/filme/${tmdbId}?start=${initialElapsedTime}`;
     } else {
-      wvcUrl = `https://embed.warezcdn.link/serie/${tmdbId}/${season}/${episode}`;
+      wvcUrl = `https://embed.warezcdn.link/serie/${tmdbId}/${season}/${episode}?start=${initialElapsedTime}`;
     }
 
     const cinemaWvcBtn = document.getElementById('cinema-wvc-btn');
@@ -2497,6 +2563,29 @@ const STATE = {
   }
 
   function closeCinema() {
+    // Save final progress
+    if (STATE.watchInterval) {
+      clearInterval(STATE.watchInterval);
+      STATE.watchInterval = null;
+    }
+
+    if (STATE.currentWatchItem) {
+      const elapsedSeconds = Math.round((Date.now() - STATE.watchStart) / 1000);
+      const totalElapsed = STATE.currentWatchItem.initialElapsedTime + elapsedSeconds;
+      const cappedElapsed = Math.min(STATE.currentWatchItem.runtimeSeconds - 10, totalElapsed);
+      const percent = Math.min(95, Math.round((cappedElapsed / STATE.currentWatchItem.runtimeSeconds) * 100));
+
+      saveWatchProgress(STATE.currentWatchItem.id, STATE.currentWatchItem.title, STATE.currentWatchItem.type, {
+        timestamp: Date.now(),
+        type: STATE.currentWatchItem.type,
+        elapsedTime: cappedElapsed,
+        percent: percent,
+        season: STATE.currentWatchItem.season,
+        episode: STATE.currentWatchItem.episode
+      });
+      STATE.currentWatchItem = null;
+    }
+
     DOM.cinemaMode.classList.remove('active');
     DOM.cinemaIframe.src = '';
     DOM.cinemaIframe.style.display = 'none';

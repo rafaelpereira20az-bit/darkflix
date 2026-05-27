@@ -295,7 +295,6 @@ const STATE = {
     modalGenres: $('#modal-genres'),
     modalDescription: $('#modal-description'),
     modalWatchBtn: $('#modal-watch-btn'),
-    modalWvcBtn: $('#modal-wvc-btn'),
     modalFavoriteBtn: $('#modal-favorite-btn'),
     modalFavoriteText: $('#modal-favorite-text'),
     modalCloseBtn: $('#modal-close-btn'),
@@ -2246,18 +2245,10 @@ const STATE = {
       durationLabel = movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : 'Filme';
       DOM.modalWatchBtn.style.display = 'inline-flex';
       DOM.modalSeriesSelector.style.display = 'none';
-      if (DOM.modalWvcBtn) {
-        const wvcUrl = `https://embed.warezcdn.link/filme/${movie.id}`;
-        DOM.modalWvcBtn.href = `wvc-x-callback://open?url=${encodeURIComponent(wvcUrl)}&title=${encodeURIComponent(title)}`;
-        DOM.modalWvcBtn.style.display = 'inline-flex';
-      }
     } else {
       durationLabel = movie.number_of_seasons ? `${movie.number_of_seasons} Temporada(s)` : 'Série';
       DOM.modalWatchBtn.style.display = 'none';
       DOM.modalSeriesSelector.style.display = 'block';
-      if (DOM.modalWvcBtn) {
-        DOM.modalWvcBtn.style.display = 'none';
-      }
 
       loadSeasonsDropdown(movie);
     }

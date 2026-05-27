@@ -2564,6 +2564,13 @@ const STATE = {
       STATE.watchInterval = null;
     }
 
+    if (window.activeCinemaPipWindow) {
+      try {
+        window.activeCinemaPipWindow.close();
+      } catch (e) {}
+      window.activeCinemaPipWindow = null;
+    }
+
     if (STATE.currentWatchItem) {
       const elapsedSeconds = Math.round((Date.now() - STATE.watchStart) / 1000);
       const totalElapsed = STATE.currentWatchItem.initialElapsedTime + elapsedSeconds;
@@ -3167,6 +3174,8 @@ const STATE = {
         cinemaPipBtn.onclick = async (e) => {
           e.preventDefault();
           const cinemaVid = DOM.cinemaVideo;
+          
+          // Caso 1: Se estiver reproduzindo um vídeo local direto
           if (cinemaVid && DOM.cinemaMode.classList.contains('active') && cinemaVid.style.display !== 'none') {
             try {
               if (document.pictureInPictureElement) {
@@ -3180,8 +3189,82 @@ const STATE = {
               console.error("Erro ao ativar PiP no cinema:", err);
               showToast("Não foi possível minimizar o player.", "error");
             }
+            return;
+          }
+
+          // Caso 2: Se estiver usando o iframe (players externos), usamos o Document Picture-in-Picture no PC
+          if ('documentPictureInPicture' in window) {
+            try {
+              if (window.activeCinemaPipWindow) {
+                window.activeCinemaPipWindow.close();
+                return;
+              }
+
+              const playerWrapper = document.querySelector('.cinema-player');
+              const originalParent = playerWrapper.parentElement;
+              const originalSibling = playerWrapper.nextElementSibling;
+
+              const pipWindow = await window.documentPictureInPicture.requestWindow({
+                width: 854,
+                height: 480
+              });
+
+              window.activeCinemaPipWindow = pipWindow;
+              showToast("Modo minimizado (PiP) ativado!", "success");
+
+              // Copiar estilos para a nova janela PiP
+              [...document.styleSheets].forEach((styleSheet) => {
+                try {
+                  const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
+                  const style = document.createElement('style');
+                  style.textContent = cssRules;
+                  pipWindow.document.head.appendChild(style);
+                } catch (e) {
+                  const link = document.createElement('link');
+                  link.rel = 'stylesheet';
+                  link.href = styleSheet.href;
+                  pipWindow.document.head.appendChild(link);
+                }
+              });
+
+              // Estilizar a janela flutuante
+              pipWindow.document.body.style.margin = '0';
+              pipWindow.document.body.style.backgroundColor = '#000';
+              pipWindow.document.body.style.overflow = 'hidden';
+
+              // Fazer o wrapper ocupar toda a janela PiP
+              playerWrapper.style.width = '100vw';
+              playerWrapper.style.height = '100vh';
+              playerWrapper.style.position = 'fixed';
+              playerWrapper.style.top = '0';
+              playerWrapper.style.left = '0';
+
+              pipWindow.document.body.append(playerWrapper);
+
+              // Ao fechar a janela, restaurar para a página original
+              pipWindow.addEventListener("pagehide", () => {
+                window.activeCinemaPipWindow = null;
+                playerWrapper.style.width = '';
+                playerWrapper.style.height = '';
+                playerWrapper.style.position = '';
+                playerWrapper.style.top = '';
+                playerWrapper.style.left = '';
+                
+                if (originalSibling) {
+                  originalParent.insertBefore(playerWrapper, originalSibling);
+                } else {
+                  originalParent.appendChild(playerWrapper);
+                }
+                showToast("Saindo do modo minimizado (PiP)", "info");
+              });
+
+            } catch (err) {
+              console.error("Erro ao abrir Document PiP:", err);
+              showToast("Permita pop-ups/janelas separadas para este site usar o PiP!", "error");
+            }
           } else {
-            showToast("O player do filme não suporta minimização direta ou está usando o player externo.", "info");
+            // Caso 3: Celular ou navegadores antigos
+            showToast("📱 Celular: Ative a tela cheia no player do filme e volte à tela inicial do celular para ativar o PiP nativo!", "info");
           }
         };
       }

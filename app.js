@@ -60,6 +60,16 @@ const AVATAR_CATEGORIES = [
     avatars: [
       { id: 'daenerys', name: 'Daenerys', url: 'assets/avatars/daenerys.png' }
     ]
+  },
+  {
+    title: 'Hora de Aventura',
+    avatars: [
+      { id: 'finn', name: 'Finn', url: 'assets/avatars/finn.jpg' },
+      { id: 'jake', name: 'Jake', url: 'assets/avatars/jake.jpg' },
+      { id: 'marceline', name: 'Marceline', url: 'assets/avatars/marceline.jpg' },
+      { id: 'bmo', name: 'BMO', url: 'assets/avatars/bmo.jpg' },
+      { id: 'the_lich', name: 'The Lich', url: 'assets/avatars/the_lich.jpg' }
+    ]
   }
 ];
 

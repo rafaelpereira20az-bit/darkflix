@@ -24,17 +24,13 @@ const db = getDatabase(app);
 
 const AVATAR_CATEGORIES = [
   {
-    title: 'La Casa de Papel & Berlim',
+    title: 'Invocação do Mal',
     avatars: [
-      { id: 'nairobi', name: 'Nairobi', url: 'assets/avatars/nairobi.svg' },
-      { id: 'rio', name: 'Rio', url: 'assets/avatars/rio.svg' },
-      { id: 'alicia_sierra', name: 'Alicia Sierra', url: 'assets/avatars/alicia_sierra.jpg' },
-      { id: 'berlin', name: 'Berlin', url: 'assets/avatars/berlin.jpg' },
-      { id: 'the_professor', name: 'O Professor', url: 'assets/avatars/the_professor.jpg' },
-      { id: 'the_girl', name: 'Keila', url: 'assets/avatars/the_girl.jpg' },
-      { id: 'cameron', name: 'Cameron', url: 'assets/avatars/cameron.jpg' },
-      { id: 'bruce', name: 'Bruce', url: 'assets/avatars/bruce.jpg' },
-      { id: 'money_heist', name: 'Máscara Dalí', url: 'assets/avatars/money_heist.svg' }
+      { id: 'annabelle', name: 'Annabelle', url: 'assets/avatars/annabelle.jpg' },
+      { id: 'homem_torto', name: 'Homem Torto', url: 'assets/avatars/homem_torto.jpg' },
+      { id: 'a_freira', name: 'A Freira', url: 'assets/avatars/a_freira.jpg' },
+      { id: 'lorraine_warren', name: 'Lorraine Warren', url: 'assets/avatars/lorraine_warren.jpg' },
+      { id: 'ed_warren', name: 'Ed Warren', url: 'assets/avatars/ed_warren.jpg' }
     ]
   },
   {
@@ -95,13 +91,7 @@ const AVATAR_CATEGORIES = [
 
 const PRESET_AVATARS = AVATAR_CATEGORIES.flatMap(cat => cat.avatars);
 
-const COLOR_AVATARS = [
-  { id: 'color_blue', name: 'Azul', url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%232b90d9"/><text x="50" y="55" font-size="30" fill="white" font-family="sans-serif" text-anchor="middle">👤</text></svg>' },
-  { id: 'color_green', name: 'Verde', url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%233ebd5c"/><text x="50" y="55" font-size="30" fill="white" font-family="sans-serif" text-anchor="middle">👤</text></svg>' },
-  { id: 'color_yellow', name: 'Amarelo', url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%23e3b31a"/><text x="50" y="55" font-size="30" fill="white" font-family="sans-serif" text-anchor="middle">👤</text></svg>' },
-  { id: 'color_purple', name: 'Roxo', url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%23943ebd"/><text x="50" y="55" font-size="30" fill="white" font-family="sans-serif" text-anchor="middle">👤</text></svg>' },
-  { id: 'color_red', name: 'Vermelho', url: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100%" height="100%" fill="%23e50914"/><text x="50" y="55" font-size="30" fill="white" font-family="sans-serif" text-anchor="middle">👤</text></svg>' }
-];
+
 
 // ---------- State ----------
 const STATE = {
@@ -3676,24 +3666,7 @@ const STATE = {
       `;
     });
 
-    // Add colors
-    let colorsHtml = '';
-    COLOR_AVATARS.forEach(a => {
-      const isActive = STATE.selectedAvatarUrl === a.url ? ' active' : '';
-      colorsHtml += `
-        <div class="avatar-pick-item${isActive}" data-url="${a.url}">
-          <img src="${a.url}" alt="${a.name}">
-        </div>
-      `;
-    });
-    sectionsHtml += `
-      <div class="avatar-picker-group">
-        <h3>Cores</h3>
-        <div class="avatar-picker-grid">
-          ${colorsHtml}
-        </div>
-      </div>
-    `;
+
 
     DOM.avatarPickerSectionsContainer.innerHTML = sectionsHtml;
 

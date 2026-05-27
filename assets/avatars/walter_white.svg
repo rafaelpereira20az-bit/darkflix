@@ -1,78 +1,97 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
   <!-- Dark green/yellow Breaking Bad background -->
   <rect width="200" height="200" fill="#1a2a00"/>
-  <radialGradient id="brbg" cx="50%" cy="40%" r="65%">
+  <radialGradient id="brbg" cx="50%" cy="45%" r="60%">
     <stop offset="0%" stop-color="#2d4a00"/>
     <stop offset="100%" stop-color="#0a1500"/>
   </radialGradient>
   <rect width="200" height="200" fill="url(#brbg)"/>
-  <!-- Chemical flask silhouette background hint -->
-  <path d="M 30 180 Q 25 160 40 140 L 50 110 L 50 90 L 70 90 L 70 110 L 85 140 Q 95 160 90 180 Z" fill="#2a4800" opacity="0.3"/>
+  
+  <!-- Chemical formula subtle background -->
+  <text x="20" y="30" font-size="12" fill="#1e3500" opacity="0.4" font-family="monospace">CH₃</text>
+  <text x="140" y="190" font-size="10" fill="#1e3500" opacity="0.3" font-family="monospace">C₁₀H₁₅N</text>
 
-  <!-- Body - dark jacket -->
-  <path d="M 38 200 L 48 152 Q 58 138 100 136 Q 142 138 152 152 L 162 200 Z" fill="#1a1a1a"/>
+  <!-- Body - dark jacket (higher placement) -->
+  <path d="M 40 195 L 50 160 Q 62 145 100 143 Q 138 145 150 160 L 160 195 Z" fill="#1a1a1a"/>
   <!-- Shirt underneath - dark green -->
-  <path d="M 84 148 Q 100 158 116 148 L 113 138 Q 100 146 87 138 Z" fill="#2a3a1a"/>
+  <path d="M 86 155 Q 100 163 114 155 L 112 145 Q 100 152 88 145 Z" fill="#2a3a1a"/>
 
   <!-- Neck -->
-  <rect x="87" y="127" width="26" height="15" rx="5" fill="#d0b898"/>
+  <rect x="88" y="133" width="24" height="14" rx="5" fill="#d0b898"/>
 
-  <!-- Head - round, bald -->
-  <ellipse cx="100" cy="96" rx="42" ry="46" fill="#d0b898"/>
+  <!-- Head - bald, slightly raised for better framing -->
+  <ellipse cx="100" cy="100" rx="40" ry="44" fill="#d0b898"/>
   <!-- Bald shine -->
-  <ellipse cx="88" cy="68" rx="15" ry="8" fill="#dcc8a8" opacity="0.6"/>
+  <ellipse cx="90" cy="72" rx="14" ry="7" fill="#dcc8a8" opacity="0.5"/>
 
-  <!-- Completely bald top - slight skin tone variation -->
-  <ellipse cx="100" cy="62" rx="42" ry="24" fill="#d0b898"/>
+  <!-- Bald top skin -->
+  <ellipse cx="100" cy="66" rx="40" ry="22" fill="#d0b898"/>
+  <!-- Stubble shadow -->
+  <ellipse cx="100" cy="62" rx="38" ry="20" fill="#c8b090" opacity="0.25"/>
 
-  <!-- Stubble/shadow on head top for baldness -->
-  <ellipse cx="100" cy="58" rx="40" ry="22" fill="#c8b090" opacity="0.3"/>
+  <!-- Glasses - round wire-frame (Heisenberg signature) -->
+  <circle cx="82" cy="97" r="16" fill="none" stroke="#4a4a4a" stroke-width="2.5"/>
+  <circle cx="118" cy="97" r="16" fill="none" stroke="#4a4a4a" stroke-width="2.5"/>
+  <!-- Bridge -->
+  <line x1="98" y1="97" x2="102" y2="97" stroke="#4a4a4a" stroke-width="2.5"/>
+  <!-- Temple arms -->
+  <line x1="66" y1="95" x2="58" y2="93" stroke="#4a4a4a" stroke-width="2"/>
+  <line x1="134" y1="95" x2="142" y2="93" stroke="#4a4a4a" stroke-width="2"/>
+  
+  <!-- Lens tint - subtle -->
+  <circle cx="82" cy="97" r="14" fill="#2a4800" opacity="0.12"/>
+  <circle cx="118" cy="97" r="14" fill="#2a4800" opacity="0.12"/>
 
-  <!-- Eyebrows - thin, slightly arched -->
-  <path d="M 68 84 Q 82 78 96 83" stroke="#5a4030" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M 104 83 Q 118 78 132 84" stroke="#5a4030" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Eyebrows - thin, slightly arched above glasses -->
+  <path d="M 68 82 Q 80 76 94 81" stroke="#5a4030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 106 81 Q 120 76 132 82" stroke="#5a4030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
 
-  <!-- Eyes - intense, blue-grey -->
-  <ellipse cx="82" cy="96" rx="12" ry="10" fill="white"/>
-  <ellipse cx="118" cy="96" rx="12" ry="10" fill="white"/>
-  <ellipse cx="82" cy="96" rx="9" ry="9" fill="#5a7888"/>
-  <ellipse cx="118" cy="96" rx="9" ry="9" fill="#5a7888"/>
-  <ellipse cx="82" cy="96" rx="6" ry="6" fill="#3a5868"/>
-  <ellipse cx="118" cy="96" rx="6" ry="6" fill="#3a5868"/>
-  <ellipse cx="82" cy="96" rx="3.5" ry="3.5" fill="#0a1018"/>
-  <ellipse cx="118" cy="96" rx="3.5" ry="3.5" fill="#0a1018"/>
-  <ellipse cx="84" cy="93" rx="2" ry="1.5" fill="white" opacity="0.9"/>
-  <ellipse cx="120" cy="93" rx="2" ry="1.5" fill="white" opacity="0.9"/>
-  <!-- Under-eye bags - tired look -->
-  <path d="M 70 103 Q 82 107 94 103" stroke="#b89878" stroke-width="1.5" fill="none" opacity="0.6"/>
-  <path d="M 106 103 Q 118 107 130 103" stroke="#b89878" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- Eyes - intense, visible through glasses -->
+  <ellipse cx="82" cy="97" rx="8" ry="7" fill="white"/>
+  <ellipse cx="118" cy="97" rx="8" ry="7" fill="white"/>
+  <ellipse cx="82" cy="97" rx="5.5" ry="5.5" fill="#5a7888"/>
+  <ellipse cx="118" cy="97" rx="5.5" ry="5.5" fill="#5a7888"/>
+  <ellipse cx="82" cy="97" rx="3.5" ry="3.5" fill="#3a5868"/>
+  <ellipse cx="118" cy="97" rx="3.5" ry="3.5" fill="#3a5868"/>
+  <ellipse cx="82" cy="97" rx="2" ry="2" fill="#0a1018"/>
+  <ellipse cx="118" cy="97" rx="2" ry="2" fill="#0a1018"/>
+  <!-- Eye shine -->
+  <ellipse cx="84" cy="95" rx="1.5" ry="1" fill="white" opacity="0.9"/>
+  <ellipse cx="120" cy="95" rx="1.5" ry="1" fill="white" opacity="0.9"/>
 
-  <!-- Nose - prominent -->
-  <path d="M 97 107 L 91 120 Q 100 126 109 120 L 103 107" fill="#c0a880" opacity="0.7"/>
-  <ellipse cx="91" cy="119" rx="5" ry="4" fill="#b8987a"/>
-  <ellipse cx="109" cy="119" rx="5" ry="4" fill="#b8987a"/>
+  <!-- Nose -->
+  <path d="M 97 108 L 92 118 Q 100 123 108 118 L 103 108" fill="#c0a880" opacity="0.6"/>
+  <ellipse cx="92" cy="117" rx="4.5" ry="3.5" fill="#b8987a"/>
+  <ellipse cx="108" cy="117" rx="4.5" ry="3.5" fill="#b8987a"/>
 
   <!-- Goatee - Heisenberg signature -->
   <!-- Mustache -->
-  <path d="M 82 131 Q 91 127 100 129 Q 109 127 118 131 Q 112 137 100 135 Q 88 137 82 131 Z" fill="#555"/>
+  <path d="M 84 128 Q 92 124 100 126 Q 108 124 116 128 Q 110 133 100 131 Q 90 133 84 128 Z" fill="#505050"/>
   <!-- Soul patch / goatee -->
-  <path d="M 92 135 Q 100 133 108 135 L 108 150 Q 100 155 92 150 Z" fill="#4a4a4a"/>
+  <path d="M 93 131 Q 100 129 107 131 L 107 144 Q 100 148 93 144 Z" fill="#454545"/>
   <!-- Beard shadow -->
-  <ellipse cx="100" cy="143" rx="18" ry="10" fill="#606060" opacity="0.5"/>
+  <ellipse cx="100" cy="139" rx="16" ry="8" fill="#555" opacity="0.4"/>
 
   <!-- Mouth under mustache -->
-  <path d="M 89 131 Q 100 133 111 131" stroke="#888" stroke-width="1.5" fill="none"/>
+  <path d="M 90 128 Q 100 130 110 128" stroke="#888" stroke-width="1.2" fill="none"/>
 
   <!-- Ears -->
-  <ellipse cx="58" cy="98" rx="7" ry="10" fill="#d0b898"/>
-  <ellipse cx="142" cy="98" rx="7" ry="10" fill="#d0b898"/>
-  <ellipse cx="58" cy="98" rx="4" ry="7" fill="#c0a888"/>
-  <ellipse cx="142" cy="98" rx="4" ry="7" fill="#c0a888"/>
+  <ellipse cx="60" cy="100" rx="6" ry="9" fill="#d0b898"/>
+  <ellipse cx="140" cy="100" rx="6" ry="9" fill="#d0b898"/>
+  <ellipse cx="60" cy="100" rx="3.5" ry="6" fill="#c0a888"/>
+  <ellipse cx="140" cy="100" rx="3.5" ry="6" fill="#c0a888"/>
 
-  <!-- I AM THE DANGER subtle glow effect around him -->
+  <!-- Hat - Heisenberg Pork Pie Hat -->
+  <ellipse cx="100" cy="62" rx="48" ry="10" fill="#1a1a1a"/>
+  <rect x="62" y="38" width="76" height="24" rx="4" fill="#222222"/>
+  <ellipse cx="100" cy="38" rx="38" ry="6" fill="#2a2a2a"/>
+  <!-- Hat band -->
+  <rect x="62" y="55" width="76" height="5" fill="#333"/>
+
+  <!-- "I AM THE DANGER" vignette glow -->
   <radialGradient id="wwglow" cx="50%" cy="50%" r="50%">
-    <stop offset="60%" stop-color="transparent"/>
-    <stop offset="100%" stop-color="#1a3000" stop-opacity="0.9"/>
+    <stop offset="55%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="#0a1500" stop-opacity="0.85"/>
   </radialGradient>
   <rect width="200" height="200" fill="url(#wwglow)"/>
 </svg>

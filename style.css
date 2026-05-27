@@ -1619,6 +1619,8 @@ ul, ol {
     border-left: 1px solid var(--border);
     transition: right var(--transition-smooth);
     z-index: 999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav.open {

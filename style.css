@@ -1644,52 +1644,51 @@ ul, ol {
 
   .nav-search:focus {
     width: 100%;
-  }  .header-profile-wrapper {
+  }
+  
+  .header-profile-wrapper {
     order: -2;
     margin-left: 0;
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     position: relative;
   }
 
   .profile-menu-btn {
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 8px;
     background: transparent;
-    padding: 8px;
+    padding: 6px;
     cursor: pointer;
-    width: auto;
+    justify-content: center;
   }
 
   .header-avatar {
-    width: 64px !important;
-    height: 64px !important;
-    border-radius: 50% !important;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: var(--radius-sm) !important;
     object-fit: cover;
+    object-position: center;
   }
 
   .profile-dropdown {
     position: absolute;
-    top: calc(100% + 4px);
+    top: 100%;
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    background: rgba(14, 14, 22, 0.98) !important;
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.95) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: var(--radius-md) !important;
-    width: 200px;
+    border-radius: var(--radius-sm) !important;
+    width: 190px;
     box-shadow: var(--shadow-lg) !important;
     display: none;
     flex-direction: column;
     z-index: 1100;
+    margin-top: 10px;
     padding: 10px 0;
   }
 
@@ -1701,19 +1700,27 @@ ul, ol {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 8px 16px;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     width: 100%;
     text-align: left;
+  }
+
+  .dropdown-profile-item img {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    object-position: center;
   }
 
   .profile-dropdown-actions button {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 8px 16px;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     text-align: left;
     width: 100%;

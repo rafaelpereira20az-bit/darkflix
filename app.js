@@ -467,13 +467,16 @@ const STATE = {
   async function saveWatchProgress(id, title, type, details = {}) {
     if (!STATE.currentUser || !STATE.currentProfile) return;
 
-    const movie = STATE.currentMovieDetail || {};
+    // Try to find the item in STATE.inProgress to preserve existing metadata
+    const existing = STATE.inProgress.find(x => Number(x.id) === Number(id));
+    const movie = STATE.currentMovieDetail || existing || {};
+
     const progressItem = {
       id: Number(id),
       title: movie.title || movie.name || title,
       name: movie.name || movie.title || title,
-      poster_path: movie.poster_path || '',
-      backdrop_path: movie.backdrop_path || '',
+      poster_path: movie.poster_path || details.poster_path || '',
+      backdrop_path: movie.backdrop_path || details.backdrop_path || '',
       vote_average: movie.vote_average || 0,
       release_date: movie.release_date || movie.first_air_date || '',
       first_air_date: movie.first_air_date || movie.release_date || '',
@@ -702,27 +705,19 @@ const STATE = {
     let progressIndicatorHTML = '';
 
     if (prog) {
-      let progressDiv = '';
-      let episodeBadge = '';
-
-      if (prog.percent) {
-        progressDiv = `
+      if (mediaType === 'movie' && prog.percent) {
+        progressIndicatorHTML = `
           <div class="card-progress-bar" style="position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: rgba(255, 255, 255, 0.3); z-index: 5;">
             <div style="height: 100%; width: ${prog.percent}%; background: var(--accent); transition: width 0.3s ease;"></div>
           </div>
         `;
-      }
-      
-      if (prog.season) {
-        const bottomOffset = prog.percent ? '4px' : '0';
-        episodeBadge = `
-          <div style="position: absolute; bottom: ${bottomOffset}; left: 0; right: 0; background: rgba(229, 9, 20, 0.9); padding: 3px 8px; font-size: 0.65rem; color: white; text-align: right; font-weight: 700; z-index: 5; ${bottomOffset === '0' ? 'border-bottom-left-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm);' : ''}">
+      } else if (prog.season) {
+        progressIndicatorHTML = `
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(229, 9, 20, 0.9); padding: 3px 8px; font-size: 0.65rem; color: white; text-align: right; font-weight: 700; z-index: 5; border-bottom-left-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm);">
             T${prog.season}:E${prog.episode}
           </div>
         `;
       }
-
-      progressIndicatorHTML = progressDiv + episodeBadge;
     }
 
     return `
@@ -2470,7 +2465,7 @@ const STATE = {
     if (initialElapsedTime > 0) {
       const minutes = Math.floor(initialElapsedTime / 60);
       const seconds = initialElapsedTime % 60;
-      showToast(`Retomando de onde parou: ${minutes}m ${seconds}s`, 'info');
+      showToast(`🍿 Progresso salvo: ${minutes}m ${seconds}s. Se o player iniciar do início, basta arrastar a barra para este ponto!`, 'info');
     }
 
     // Save initial progress record in Firebase if not existing

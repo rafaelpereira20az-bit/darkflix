@@ -1391,6 +1391,13 @@ const STATE = {
       url: "https://x1co.com.br/hls/stream.m3u8"
     },
     {
+      id: "novo-canal",
+      nome: "NOVO CANAL",
+      categoria: "aberto",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/ab/NOVO_CANAL_-_LOGO.jpg",
+      url: "http://189.86.89.116/hls-live/livenc/_definst_/liveevent/livestream.m3u8"
+    },
+    {
       id: "sbt",
       nome: "SBT",
       categoria: "aberto",
@@ -1424,6 +1431,13 @@ const STATE = {
       categoria: "aberto",
       logo: "https://upload.wikimedia.org/wikipedia/pt/3/39/Rede_Boas_Novas.png",
       url: "https://cdn.jmvstream.com/w/LVW-9375/LVW9375_6i0wPBCHYc/playlist.m3u8?checkedby:iptvcat.com"
+    },
+    {
+      id: "bob-leponge-uk",
+      nome: "Bob L'eponge UK",
+      categoria: "fechado",
+      logo: "https://toppng.com/uploads/preview/spongebob-squarepants-image-bob-esponja-logo-115629249569phjmqytif.png",
+      url: "https://jmp2.uk/stvp-FRAJ3800010QO"
     },
     {
       id: "discovery-turbo",
@@ -1608,6 +1622,13 @@ const STATE = {
       url: "https://video03.logicahost.com.br/filmestopmixtv/filmestopmixtv/chunklist.m3u8?ROGERIOTORRES"
     },
     {
+      id: "fifa-plus-hispanic",
+      nome: "FIFA+ Hispanic America (720p)",
+      categoria: "fechado",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/0/01/FIFA%2B.svg",
+      url: "https://6c849fb3.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctbXhfRklGQVBsdXNTcGFuaXNoLTFfSExT/playlist.m3u8?checkedby:iptvcat.com"
+    },
+    {
       id: "classics-hd",
       nome: "Classics ᴴᴰ",
       categoria: "fechado",
@@ -1636,11 +1657,25 @@ const STATE = {
       url: "https://dv8lsrd8fecw9.cloudfront.net/master.m3u8"
     },
     {
+      id: "telemax",
+      nome: "Telemax",
+      categoria: "fechado",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Telemax.png",
+      url: "https://stream-gtlc.telecentro.net.ar/hls/telemaxhls/main.m3u8?checkedby:iptvcat.com"
+    },
+    {
       id: "happykids",
       nome: "HappyKids",
       categoria: "fechado",
       logo: "https://static.wikia.nocookie.net/logosfake/images/9/90/Happy_Kids_logo_2004.png/revision/latest?cb=20140525234116",
       url: "https://dil9xdvretp0f.cloudfront.net/index.m3u8"
+    },
+    {
+      id: "icarly-uk",
+      nome: "iCarly UK",
+      categoria: "fechado",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/3/31/ICarly_2021_logo.png",
+      url: "https://jmp2.uk/stvp-FRAJ38000061J"
     },
     {
       id: "disney-xd",
@@ -1671,6 +1706,13 @@ const STATE = {
       url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8"
     },
     {
+      id: "tortues-ninja-uk",
+      nome: "Tortues Ninja UK",
+      categoria: "fechado",
+      logo: "https://upload.wikimedia.org/wikipedia/fr/b/b6/Tortues_Ninja.png",
+      url: "https://jmp2.uk/stvp-FRBA3300046W4"
+    },
+    {
       id: "minimax",
       nome: "Minimax",
       categoria: "fechado",
@@ -1697,6 +1739,13 @@ const STATE = {
       categoria: "fechado",
       logo: "https://static.wikia.nocookie.net/logopedia/images/1/15/PBS_Kids_Dash_%281999%29.svg/revision/latest?cb=20170814134849",
       url: "https://2-fss-2.streamhoster.com/pl_140/amlst:200914-1298290/playlist.m3u8"
+    },
+    {
+      id: "pocoyo-uk",
+      nome: "Pocoyo UK",
+      categoria: "fechado",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Pocoyo_2024_logo.svg/1280px-Pocoyo_2024_logo.svg.png",
+      url: "https://jmp2.uk/stvp-FR700001VJ"
     },
     {
       id: "record-news",
@@ -1808,7 +1857,7 @@ const STATE = {
       nome: "TV Assembleia (MG)",
       categoria: "aberto",
       logo: "https://cdn.mitvstatic.com/channels/br_tv-assembleia-de-minas-gerais_m.png",
-      url: "http://streaming.almg.gov.br/live/tvalmg2.m3u8"
+      url: "http://streaming.almg.gov.br:80/live/tvalmg.m3u8"
     },
     {
       id: "tv-litoral-panorama",

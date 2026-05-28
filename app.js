@@ -4145,139 +4145,143 @@ const STATE = {
       nicknameInput.value = localStorage.getItem('darkflix_device_nickname') || "";
     }
 
-    const sessionsRef = ref(db, `users/${STATE.currentUser.uid}/sessions`);
-    
-    STATE.devicesListenerRef = onValue(sessionsRef, (snapshot) => {
-      if (!listContainer || STATE.currentPage !== 'devices') {
-        // Se saiu da página, parar de ouvir
-        if (STATE.devicesListenerRef) {
-          STATE.devicesListenerRef();
-          STATE.devicesListenerRef = null;
-        }
-        return;
-      }
-
-      if (!snapshot.exists()) {
-        listContainer.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-muted);">Nenhum dispositivo registrado.</div>`;
-        return;
-      }
-
-      const sessions = snapshot.val();
-      const currentSid = obterSessionId();
-      let html = '';
-
-      Object.keys(sessions).forEach(sid => {
-        const sess = sessions[sid];
-        // Se por algum motivo o registro estiver vazio ou revogado, ignorar
-        if (!sess || sess.revoked === true) return;
-
-        const isCurrent = sid === currentSid;
-        const devInfo = sess.deviceInfo || {};
-        const isOnline = Date.now() - (sess.lastActive || 0) < 120000; // Últimos 2 minutos
-        
-        const deviceTitle = devInfo.nickname ? devInfo.nickname : devInfo.device;
-        const deviceSub = devInfo.nickname ? `${devInfo.device} • ${devInfo.os}` : devInfo.os;
-
-        const avatarHTML = sess.profileAvatar 
-          ? `<div style="display:flex; align-items:center; gap:8px;">
-               <img src="${sess.profileAvatar}" style="width:20px; height:20px; border-radius:var(--radius-xs); object-fit:cover;">
-               <span style="font-size:0.82rem; color:var(--text-secondary);">
-                 <strong>${sess.profileName}</strong> <span style="opacity:0.6;">(Última sessão)</span>
-               </span>
-             </div>`
-          : `<div style="display:flex; align-items:center; gap:8px;">
-               <span style="font-size:0.82rem; color:var(--text-muted);">Sem perfil ativo</span>
-             </div>`;
-
-        let watchingHTML = '';
-        if (sess.currentlyWatching) {
-          const w = sess.currentlyWatching;
-          const label = w.type === 'canal' ? '📺 Assistindo Canal ao Vivo:' : '🎬 Assistindo agora:';
-          watchingHTML = `
-            <div class="device-watching-badge" style="display:flex; align-items:center; gap:8px; background:rgba(229, 9, 20, 0.08); border:1px dashed rgba(229,9,20,0.3); border-radius:var(--radius-sm); padding:8px 12px; margin-top:4px;">
-              <span style="font-size:0.6rem; animation: pulse 1.5s infinite;">🔴</span>
-              <div style="display:flex; flex-direction:column; gap:2px; min-width:0;">
-                <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--accent); font-weight:700;">
-                  ${label}
-                </span>
-                <span style="font-size:0.82rem; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${w.title}">
-                  ${w.title}
-                </span>
-              </div>
-            </div>
-          `;
+    try {
+      const sessionsRef = ref(db, `users/${STATE.currentUser.uid}/sessions`);
+      
+      STATE.devicesListenerRef = onValue(sessionsRef, (snapshot) => {
+        if (!listContainer || STATE.currentPage !== 'devices') {
+          // Se saiu da página, parar de ouvir
+          if (STATE.devicesListenerRef) {
+            STATE.devicesListenerRef();
+            STATE.devicesListenerRef = null;
+          }
+          return;
         }
 
-        const activeStatusHTML = isOnline 
-          ? `<span class="device-badge-active" style="color:#22c55e; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:6px;">
-               <span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; animation:pulse 1.5s infinite;"></span>
-               Online agora
-             </span>`
-          : `<span style="font-size:0.8rem; color:var(--text-muted); display:inline-flex; align-items:center; gap:4px;">
-               🕒 ${new Date(sess.lastActive).toLocaleString('pt-BR')}
-             </span>`;
+        if (!snapshot.exists()) {
+          listContainer.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-muted);">Nenhum dispositivo registrado.</div>`;
+          return;
+        }
 
-        html += `
-          <div class="device-item-card${isCurrent ? ' current' : ''}">
-            
-            <!-- Card Header: Device Name & Sign Out Action -->
-            <div style="display:flex; align-items:center; justify-content:space-between; width:100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom:14px;">
-              <div style="display:flex; align-items:center; gap:12px; min-width:0;">
-                <div class="device-icon-box">
-                  ${devInfo.icon || '💻'}
+        const sessions = snapshot.val();
+        const currentSid = obterSessionId();
+        let html = '';
+
+        Object.keys(sessions).forEach(sid => {
+          const sess = sessions[sid];
+          // Se por algum motivo o registro estiver vazio ou revogado, ignorar
+          if (!sess || sess.revoked === true) return;
+
+          const isCurrent = sid === currentSid;
+          const devInfo = sess.deviceInfo || {};
+          const isOnline = Date.now() - (sess.lastActive || 0) < 120000; // Últimos 2 minutos
+          
+          const deviceTitle = devInfo.nickname ? devInfo.nickname : devInfo.device;
+          const deviceSub = devInfo.nickname ? `${devInfo.device} • ${devInfo.os}` : devInfo.os;
+
+          const avatarHTML = sess.profileAvatar 
+            ? `<div style="display:flex; align-items:center; gap:8px;">
+                 <img src="${sess.profileAvatar}" style="width:20px; height:20px; border-radius:var(--radius-xs); object-fit:cover;">
+                 <span style="font-size:0.82rem; color:var(--text-secondary);">
+                   <strong>${sess.profileName}</strong> <span style="opacity:0.6;">(Última sessão)</span>
+                 </span>
+               </div>`
+            : `<div style="display:flex; align-items:center; gap:8px;">
+                 <span style="font-size:0.82rem; color:var(--text-muted);">Sem perfil ativo</span>
+               </div>`;
+
+          let watchingHTML = '';
+          if (sess.currentlyWatching) {
+            const w = sess.currentlyWatching;
+            const label = w.type === 'canal' ? '📺 Assistindo Canal ao Vivo:' : '🎬 Assistindo agora:';
+            watchingHTML = `
+              <div class="device-watching-badge" style="display:flex; align-items:center; gap:8px; background:rgba(229, 9, 20, 0.08); border:1px dashed rgba(229,9,20,0.3); border-radius:var(--radius-sm); padding:8px 12px; margin-top:4px;">
+                <span style="font-size:0.6rem; animation: pulse 1.5s infinite;">🔴</span>
+                <div style="display:flex; flex-direction:column; gap:2px; min-width:0;">
+                  <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--accent); font-weight:700;">
+                    ${label}
+                  </span>
+                  <span style="font-size:0.82rem; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${w.title}">
+                    ${w.title}
+                  </span>
                 </div>
-                <div style="min-width:0;">
-                  <h4 style="margin:0; font-size:1.05rem; font-weight:700; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${deviceTitle}">
-                    ${deviceTitle}
-                  </h4>
-                  <p style="margin:2px 0 0 0; font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${deviceSub} — ${devInfo.browser || 'Navegador'}">
-                    ${deviceSub} — ${devInfo.browser || 'Navegador'}
-                  </p>
+              </div>
+            `;
+          }
+
+          const activeStatusHTML = isOnline 
+            ? `<span class="device-badge-active" style="color:#22c55e; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:6px;">
+                 <span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; animation:pulse 1.5s infinite;"></span>
+                 Online agora
+               </span>`
+            : `<span style="font-size:0.8rem; color:var(--text-muted); display:inline-flex; align-items:center; gap:4px;">
+                 🕒 ${new Date(sess.lastActive).toLocaleString('pt-BR')}
+               </span>`;
+
+          html += `
+            <div class="device-item-card${isCurrent ? ' current' : ''}">
+              
+              <!-- Card Header: Device Name & Sign Out Action -->
+              <div style="display:flex; align-items:center; justify-content:space-between; width:100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom:14px;">
+                <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+                  <div class="device-icon-box">
+                    ${devInfo.icon || '💻'}
+                  </div>
+                  <div style="min-width:0;">
+                    <h4 style="margin:0; font-size:1.05rem; font-weight:700; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${deviceTitle}">
+                      ${deviceTitle}
+                    </h4>
+                    <p style="margin:2px 0 0 0; font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${deviceSub} — ${devInfo.browser || 'Navegador'}">
+                      ${deviceSub} — ${devInfo.browser || 'Navegador'}
+                    </p>
+                  </div>
+                </div>
+                
+                <div>
+                  ${isCurrent 
+                    ? `<button class="btn-device-logout" style="opacity: 0.6; cursor: not-allowed; padding: 6px 14px; font-size: 0.78rem;" disabled>Atual</button>`
+                    : `<button class="btn-device-logout btn-action-revoke" data-session-id="${sid}" style="padding: 6px 14px; font-size: 0.78rem; border-color: rgba(255,255,255,0.15); background: transparent;">Sair</button>`
+                  }
+                </div>
+              </div>
+
+              <!-- Card Body: User Profile, Currently Watching & Timestamp/Online info -->
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                ${avatarHTML}
+                ${watchingHTML}
+                <div style="margin-top:4px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+                  ${activeStatusHTML}
+                  ${isCurrent ? '<span class="device-badge-current" style="margin-left:auto;">Este Aparelho</span>' : ''}
                 </div>
               </div>
               
-              <div>
-                ${isCurrent 
-                  ? `<button class="btn-device-logout" style="opacity: 0.6; cursor: not-allowed; padding: 6px 14px; font-size: 0.78rem;" disabled>Atual</button>`
-                  : `<button class="btn-device-logout btn-action-revoke" data-session-id="${sid}" style="padding: 6px 14px; font-size: 0.78rem; border-color: rgba(255,255,255,0.15); background: transparent;">Sair</button>`
-                }
-              </div>
             </div>
+          `;
+        });
 
-            <!-- Card Body: User Profile, Currently Watching & Timestamp/Online info -->
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              ${avatarHTML}
-              ${watchingHTML}
-              <div style="margin-top:4px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-                ${activeStatusHTML}
-                ${isCurrent ? '<span class="device-badge-current" style="margin-left:auto;">Este Aparelho</span>' : ''}
-              </div>
-            </div>
-            
-          </div>
-        `;
-      });
+        listContainer.innerHTML = html || `<div style="text-align:center; padding:20px; color:var(--text-muted);">Nenhum dispositivo ativo.</div>`;
 
-      listContainer.innerHTML = html || `<div style="text-align:center; padding:20px; color:var(--text-muted);">Nenhum dispositivo ativo.</div>`;
-
-      // Bind botão de revogar (Sair)
-      listContainer.querySelectorAll('.btn-action-revoke').forEach(btn => {
-        btn.onclick = async () => {
-          const sidToRevoke = btn.dataset.sessionId;
-          if (confirm("Tem certeza que deseja desconectar este dispositivo remotamente? A conta sairá instantaneamente no aparelho dele.")) {
-            showToast("Desconectando aparelho...", "info");
-            try {
-              // Marcar como revogada no Firebase
-              await update(ref(db, `users/${STATE.currentUser.uid}/sessions/${sidToRevoke}`), { revoked: true });
-              showToast("Aparelho desconectado com sucesso!", "success");
-            } catch (err) {
-              console.error("Erro ao revogar sessão:", err);
-              showToast("Erro ao desconectar aparelho.", "error");
+        // Bind botão de revogar (Sair)
+        listContainer.querySelectorAll('.btn-action-revoke').forEach(btn => {
+          btn.onclick = async () => {
+            const sidToRevoke = btn.dataset.sessionId;
+            if (confirm("Tem certeza que deseja desconectar este dispositivo remotamente? A conta sairá instantaneamente no aparelho dele.")) {
+              showToast("Desconectando aparelho...", "info");
+              try {
+                // Marcar como revogada no Firebase
+                await update(ref(db, `users/${STATE.currentUser.uid}/sessions/${sidToRevoke}`), { revoked: true });
+                showToast("Aparelho desconectado com sucesso!", "success");
+              } catch (err) {
+                console.error("Erro ao revogar sessão:", err);
+                showToast("Erro ao desconectar aparelho.", "error");
+              }
             }
-          }
-        };
+          };
+        });
+      }, (e) => {
+        console.error("Erro ao carregar aparelhos em tempo real:", e);
+        listContainer.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-muted);">Erro ao carregar dispositivos.</div>`;
       });
-
     } catch (e) {
       console.error("Erro ao carregar aparelhos:", e);
       listContainer.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-muted);">Erro ao carregar dispositivos.</div>`;

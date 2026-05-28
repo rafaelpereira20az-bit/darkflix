@@ -8,19 +8,56 @@ import { getDatabase, ref, set, get, update, child, remove, onValue } from "http
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD8-QC4CiWHU_lXuAPE1It68iEupLP-pRY",
-  authDomain: "darkflix-e7a8d.firebaseapp.com",
-  databaseURL: "https://darkflix-e7a8d-default-rtdb.firebaseio.com",
-  projectId: "darkflix-e7a8d",
-  storageBucket: "darkflix-e7a8d.firebasestorage.app",
-  messagingSenderId: "136265036172",
-  appId: "1:136265036172:web:d407505cdd85e9becea6a9",
-  measurementId: "G-RETWHJEYT0"
+  apiKey: "AIzaSyC8nDC1-eZPWop3nF04aYgrYNudWXVNKEw",
+  authDomain: "darkflix-3f2df.firebaseapp.com",
+  databaseURL: "https://darkflix-3f2df-default-rtdb.firebaseio.com",
+  projectId: "darkflix-3f2df",
+  storageBucket: "darkflix-3f2df.firebasestorage.app",
+  messagingSenderId: "354806151076",
+  appId: "1:354806151076:web:c6fda2ef9915718c6d3331",
+  measurementId: "G-526CZRBS2M"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
+
+// ============================================================
+// Segurança contra Inspeção e Proteção de Dados
+// ============================================================
+(function() {
+  // Desativar clique direito (Menu de contexto)
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Bloquear atalhos do teclado comuns para inspeção e ver código-fonte
+  document.addEventListener('keydown', event => {
+    // F12 (Código 123)
+    if (event.keyCode === 123) {
+      event.preventDefault();
+      return false;
+    }
+    // Ctrl+Shift+I (Código 73), Ctrl+Shift+J (Código 74), Ctrl+Shift+C (Código 67)
+    if (event.ctrlKey && event.shiftKey && (event.keyCode === 73 || event.keyCode === 74 || event.keyCode === 67)) {
+      event.preventDefault();
+      return false;
+    }
+    // Ctrl+U (Ver código-fonte, Código 85)
+    if (event.ctrlKey && event.keyCode === 85) {
+      event.preventDefault();
+      return false;
+    }
+    // Ctrl+S (Salvar página, Código 83)
+    if (event.ctrlKey && event.keyCode === 83) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
+  // Loop de depuração para congelar o inspetor de elementos se estiver aberto
+  setInterval(() => {
+    debugger;
+  }, 100);
+})();
 
 const AVATAR_CATEGORIES = [
   {

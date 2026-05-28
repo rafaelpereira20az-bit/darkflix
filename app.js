@@ -1769,7 +1769,7 @@ const STATE = {
       nome: "Pocoyo UK",
       categoria: "fechado",
       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Pocoyo_2024_logo.svg/1280px-Pocoyo_2024_logo.svg.png",
-      url: "https://jmp2.uk/stvp-FR700001VJ"
+      url: "https://d1570v675fzhld.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-5h16j0n72d5nr/Pocoyo_FR.m3u8?ads.device_did=%7BPSID%7D&ads.device_dnt=%7BTARGETOPT%7D&ads.app_domain=%7BAPP_DOMAIN%7D&ads.app_name=%7BAPP_NAME%7D&ads.consent=%7BTC_STRING%7D&ads.ssai_vendor=SSSLIVE&ads.service_id=FR700001VJ&coppa=1"
     },
     {
       id: "record-news",

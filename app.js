@@ -3,19 +3,19 @@
 // ============================================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getDatabase, ref, set, get, update, child, remove, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC8nDC1-eZPWop3nF04aYgrYNudWXVNKEw",
-  authDomain: "darkflix-3f2df.firebaseapp.com",
-  databaseURL: "https://darkflix-3f2df-default-rtdb.firebaseio.com",
-  projectId: "darkflix-3f2df",
-  storageBucket: "darkflix-3f2df.firebasestorage.app",
-  messagingSenderId: "354806151076",
-  appId: "1:354806151076:web:c6fda2ef9915718c6d3331",
-  measurementId: "G-526CZRBS2M"
+  apiKey: "AIzaSyBbFh3nO5sZlqzWJQL6TeTmmUXoQRgsIUM",
+  authDomain: "darkflix-76576.firebaseapp.com",
+  databaseURL: "https://darkflix-76576-default-rtdb.firebaseio.com",
+  projectId: "darkflix-76576",
+  storageBucket: "darkflix-76576.firebasestorage.app",
+  messagingSenderId: "153852150813",
+  appId: "1:153852150813:web:511f245f28b8eafd6b32f4",
+  measurementId: "G-7GTWH9VPMJ"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -3158,8 +3158,23 @@ const STATE = {
     DOM.authForm.onsubmit = (e) => handleAuthSubmit(e);
     DOM.btnAuthSwitch.onclick = (e) => {
       e.preventDefault();
-      switchAuthMode();
+      if (STATE.authMode === 'forgot') {
+        setAuthMode('login');
+      } else {
+        switchAuthMode();
+      }
     };
+
+    const btnForgotPassword = document.getElementById('btn-forgot-password');
+    if (btnForgotPassword) {
+      btnForgotPassword.style.transition = 'color 0.2s ease';
+      btnForgotPassword.onclick = (e) => {
+        e.preventDefault();
+        setAuthMode('forgot');
+      };
+      btnForgotPassword.onmouseenter = () => btnForgotPassword.style.color = '#e50914';
+      btnForgotPassword.onmouseleave = () => btnForgotPassword.style.color = '#a0aec0';
+    }
 
     // Password visibility toggle buttons
     document.querySelectorAll('.btn-toggle-password').forEach(btn => {
@@ -3914,40 +3929,109 @@ const STATE = {
   }
 
   // ---------- Authentication Logic ----------
-  function switchAuthMode() {
-    if (STATE.authMode === 'login') {
-      STATE.authMode = 'signup';
-      DOM.authTitle.textContent = "Criar Conta";
-      DOM.btnAuthSubmit.textContent = "Criar Conta";
-      DOM.authSwitchText.textContent = "Já tem uma conta?";
-      DOM.btnAuthSwitch.textContent = "Entrar agora.";
-      // Show confirm password field
-      if (DOM.authConfirmGroup) {
-        DOM.authConfirmGroup.style.display = 'block';
-        DOM.authConfirmPassword.setAttribute('required', 'required');
-      }
-    } else {
-      STATE.authMode = 'login';
+  function setAuthMode(mode) {
+    STATE.authMode = mode;
+    const passwordGroup = DOM.authPassword ? DOM.authPassword.closest('.input-group') : null;
+    const authExtraOptions = document.getElementById('auth-extra-options');
+    
+    if (mode === 'login') {
       DOM.authTitle.textContent = "Entrar";
       DOM.btnAuthSubmit.textContent = "Entrar";
       DOM.authSwitchText.textContent = "Novo por aqui?";
       DOM.btnAuthSwitch.textContent = "Criar conta";
-      // Hide confirm password field
+      
+      if (passwordGroup) {
+        passwordGroup.style.display = 'block';
+        DOM.authPassword.setAttribute('required', 'required');
+      }
+      
       if (DOM.authConfirmGroup) {
         DOM.authConfirmGroup.style.display = 'none';
         DOM.authConfirmPassword.removeAttribute('required');
         DOM.authConfirmPassword.value = '';
       }
+      
+      if (authExtraOptions) authExtraOptions.style.display = 'flex';
+      
+    } else if (mode === 'signup') {
+      DOM.authTitle.textContent = "Criar Conta";
+      DOM.btnAuthSubmit.textContent = "Criar Conta";
+      DOM.authSwitchText.textContent = "Já tem uma conta?";
+      DOM.btnAuthSwitch.textContent = "Entrar agora.";
+      
+      if (passwordGroup) {
+        passwordGroup.style.display = 'block';
+        DOM.authPassword.setAttribute('required', 'required');
+      }
+      
+      if (DOM.authConfirmGroup) {
+        DOM.authConfirmGroup.style.display = 'block';
+        DOM.authConfirmPassword.setAttribute('required', 'required');
+      }
+      
+      if (authExtraOptions) authExtraOptions.style.display = 'none';
+      
+    } else if (mode === 'forgot') {
+      DOM.authTitle.textContent = "Recuperar Senha";
+      DOM.btnAuthSubmit.textContent = "Enviar Link de Recuperação";
+      DOM.authSwitchText.textContent = "Lembrou da senha?";
+      DOM.btnAuthSwitch.textContent = "Voltar ao login";
+      
+      if (passwordGroup) {
+        passwordGroup.style.display = 'none';
+        DOM.authPassword.removeAttribute('required');
+        DOM.authPassword.value = '';
+      }
+      
+      if (DOM.authConfirmGroup) {
+        DOM.authConfirmGroup.style.display = 'none';
+        DOM.authConfirmPassword.removeAttribute('required');
+        DOM.authConfirmPassword.value = '';
+      }
+      
+      if (authExtraOptions) authExtraOptions.style.display = 'none';
+    }
+  }
+
+  function switchAuthMode() {
+    if (STATE.authMode === 'login') {
+      setAuthMode('signup');
+    } else {
+      setAuthMode('login');
     }
   }
 
   async function handleAuthSubmit(e) {
     e.preventDefault();
     const email = DOM.authEmail.value.trim();
-    const password = DOM.authPassword.value;
 
-    if (!email || !password) {
-      showToast("Preencha todos os campos.", "error");
+    if (!email) {
+      showToast("Preencha o campo de email.", "error");
+      return;
+    }
+
+    if (STATE.authMode === 'forgot') {
+      try {
+        showToast("Enviando email de recuperação...", "info");
+        await sendPasswordResetEmail(auth, email);
+        showToast("Email de recuperação enviado! Verifique sua caixa de entrada.", "success");
+        setAuthMode('login');
+      } catch (err) {
+        console.error("Forgot password error:", err);
+        let errorMsg = "Erro ao enviar email de recuperação.";
+        if (err.code === 'auth/user-not-found') {
+          errorMsg = "Nenhum usuário cadastrado com este email.";
+        } else if (err.code === 'auth/invalid-email') {
+          errorMsg = "Email inválido.";
+        }
+        showToast(errorMsg, "error");
+      }
+      return;
+    }
+
+    const password = DOM.authPassword.value;
+    if (!password) {
+      showToast("Preencha o campo de senha.", "error");
       return;
     }
 
@@ -4489,6 +4573,7 @@ const STATE = {
       if (adminLink) adminLink.style.display = 'none';
 
       DOM.headerProfileWrapper.style.display = 'none';
+      setAuthMode('login');
       navigateTo('auth');
     }
   });

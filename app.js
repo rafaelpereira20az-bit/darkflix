@@ -3,7 +3,7 @@
 // ============================================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, EmailAuthProvider, reauthenticateWithCredential, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getDatabase, ref, set, get, update, child, remove, onValue, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 // Your web app's Firebase configuration
@@ -3218,19 +3218,25 @@ const STATE = {
     // Bind Acesso e Aparelhos button
     const btnDropdownDevices = document.getElementById('btn-dropdown-devices');
     if (btnDropdownDevices) {
-      btnDropdownDevices.onclick = (e) => {
+      btnDropdownDevices.onclick = async (e) => {
         e.preventDefault();
         DOM.profileDropdown.classList.remove('active');
         DOM.headerProfileWrapper.classList.remove('open');
-        navigateTo('devices');
+        const autorizado = await verificarAcessoAparelhos();
+        if (autorizado) {
+          navigateTo('devices');
+        }
       };
     }
 
     const btnProfilesDevices = document.getElementById('btn-profiles-devices');
     if (btnProfilesDevices) {
-      btnProfilesDevices.onclick = (e) => {
+      btnProfilesDevices.onclick = async (e) => {
         e.preventDefault();
-        navigateTo('devices');
+        const autorizado = await verificarAcessoAparelhos();
+        if (autorizado) {
+          navigateTo('devices');
+        }
       };
     }
 
@@ -4082,9 +4088,307 @@ const STATE = {
     }
   }
 
+
   // ============================================================
   // Gerenciamento de Acesso & Aparelhos (Netflix-Style)
   // ============================================================
+
+  // Mascara o email para exibição segura (ex: ind***5@gmail.com)
+  function mascararEmail(email) {
+    if (!email) return '***@***';
+    const [local, domain] = email.split('@');
+    if (local.length <= 2) return local[0] + '***@' + domain;
+    return local[0] + local[1] + '***' + local[local.length - 1] + '@' + domain;
+  }
+
+  // Modal que exige verificação por email antes de permitir criar o PIN
+  function mostrarModalVerificacaoEmail() {
+    return new Promise((resolve) => {
+      const oldModal = document.getElementById('modal-verificacao-email-pin');
+      if (oldModal) oldModal.remove();
+
+      const email = STATE.currentUser ? STATE.currentUser.email : '';
+      const emailMasked = mascararEmail(email);
+
+      const modal = document.createElement('div');
+      modal.id = 'modal-verificacao-email-pin';
+      modal.className = 'modal-backdrop active';
+      modal.style.zIndex = '99999';
+
+      modal.innerHTML = `
+        <div class="pin-container" style="box-shadow: var(--shadow-lg); background: #12121a; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px 28px; text-align: center; position: relative; max-width: 380px; width: 90%;">
+          <button class="pin-close" id="btn-cancelar-verificacao-email" style="position: absolute; right: 15px; top: 15px; background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; transition: color 0.2s;">✕</button>
+          
+          <div style="margin: 10px auto 20px; width: 64px; height: 64px; background: rgba(229, 9, 20, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(229, 9, 20, 0.2);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          
+          <h2 style="font-size: 1.25rem; margin-bottom: 8px; font-weight: 700; color: var(--text-primary); font-family: 'Montserrat', sans-serif;">Verificação do Dono</h2>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 22px; line-height: 1.6; font-family: 'Montserrat', sans-serif; max-width: 300px; margin-left: auto; margin-right: auto;">
+            Para proteger sua conta, é necessário confirmar que você é o <strong style="color: var(--text-primary);">dono deste email</strong> antes de criar o PIN de segurança dos aparelhos.
+          </p>
+          
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; justify-content: center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span style="font-size: 0.88rem; color: var(--text-primary); font-weight: 600; font-family: 'Montserrat', sans-serif;">${emailMasked}</span>
+          </div>
+          
+          <button id="btn-enviar-verificacao-email" style="width: 100%; padding: 13px 20px; background: var(--accent); color: white; border: none; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all 0.2s ease; letter-spacing: 0.3px;">
+            Enviar Link de Verificação
+          </button>
+          
+          <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 16px; line-height: 1.5; font-family: 'Montserrat', sans-serif;">
+            Um link será enviado para o seu email.<br>Clique nele para criar seu PIN de aparelhos.
+          </p>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+
+      const sendBtn = modal.querySelector('#btn-enviar-verificacao-email');
+      sendBtn.onclick = () => {
+        modal.remove();
+        document.body.style.overflow = '';
+        resolve({ action: 'send' });
+      };
+      sendBtn.onmouseenter = () => { sendBtn.style.background = '#c40812'; sendBtn.style.transform = 'scale(1.02)'; };
+      sendBtn.onmouseleave = () => { sendBtn.style.background = ''; sendBtn.style.transform = 'scale(1)'; };
+
+      const cancelBtn = modal.querySelector('#btn-cancelar-verificacao-email');
+      cancelBtn.onclick = () => {
+        modal.remove();
+        document.body.style.overflow = '';
+        resolve({ action: 'cancel' });
+      };
+      cancelBtn.onmouseenter = () => cancelBtn.style.color = 'var(--text-primary)';
+      cancelBtn.onmouseleave = () => cancelBtn.style.color = 'var(--text-muted)';
+    });
+  }
+  
+  async function verificarAcessoAparelhos() {
+    if (!STATE.currentUser) return false;
+
+    try {
+      const pinRef = ref(db, `users/${STATE.currentUser.uid}/devices_pin`);
+      const snap = await get(pinRef);
+      const pinSalvo = snap.val();
+
+      if (!pinSalvo) {
+        // PIN não existe — exigir verificação por email antes de criar
+        // Isso impede que alguém que pegou a conta emprestada crie o PIN primeiro
+        const res = await mostrarModalVerificacaoEmail();
+        if (res.action === 'send') {
+          await iniciarRedefinicaoPin();
+        }
+        return false;
+      } else {
+        let tentarNovamente = true;
+        while (tentarNovamente) {
+          const res = await mostrarModalPinDono(false);
+          if (res.action === 'submit' && res.pin) {
+            if (String(res.pin) === String(pinSalvo)) {
+              return true;
+            } else {
+              showToast("PIN incorreto! Tente novamente.", "error");
+            }
+          } else if (res.action === 'forgot') {
+            await iniciarRedefinicaoPin();
+            tentarNovamente = false;
+            return false;
+          } else {
+            tentarNovamente = false;
+            return false;
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Erro ao verificar acesso aos aparelhos:", err);
+      showToast("Erro de conexão com o banco de dados.", "error");
+      return false;
+    }
+  }
+
+  function mostrarModalPinDono(isCreation = false) {
+    return new Promise((resolve) => {
+      const oldModal = document.getElementById('modal-confirmar-pin-dono');
+      if (oldModal) oldModal.remove();
+
+      const modal = document.createElement('div');
+      modal.id = 'modal-confirmar-pin-dono';
+      modal.className = 'modal-backdrop active';
+      modal.style.zIndex = '99999';
+
+      const title = isCreation ? "Criar PIN de Aparelhos" : "Acesso Protegido";
+      const subtitle = isCreation 
+        ? "Defina um PIN de 4 dígitos para proteger o gerenciamento de Acesso e Aparelhos." 
+        : "Insira o PIN de aparelhos do dono para gerenciar os dispositivos.";
+
+      modal.innerHTML = `
+        <div class="pin-container" style="box-shadow: var(--shadow-lg); background: #12121a; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px; text-align: center; position: relative;">
+          <button class="pin-close" id="btn-cancelar-pin-dono" style="position: absolute; right: 15px; top: 15px; background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">✕</button>
+          <h2 class="pin-title" style="font-size: 1.3rem; margin-bottom: 8px; font-weight: 700; color: var(--text-primary); font-family: 'Montserrat', sans-serif;">${title}</h2>
+          <p class="pin-subtitle" style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.5; font-family: 'Montserrat', sans-serif; max-width: 280px; margin-left: auto; margin-right: auto;">${subtitle}</p>
+          
+          <div class="pin-display" id="pin-display-dono" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
+            <div class="pin-dot" style="width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; transition: all 0.2s ease;"></div>
+            <div class="pin-dot" style="width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; transition: all 0.2s ease;"></div>
+            <div class="pin-dot" style="width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; transition: all 0.2s ease;"></div>
+            <div class="pin-dot" style="width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; transition: all 0.2s ease;"></div>
+          </div>
+
+          <div class="pin-keyboard" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 220px; margin: 0 auto;">
+            <button class="pin-key" data-key="1" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">1</button>
+            <button class="pin-key" data-key="2" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">2</button>
+            <button class="pin-key" data-key="3" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">3</button>
+            <button class="pin-key" data-key="4" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">4</button>
+            <button class="pin-key" data-key="5" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">5</button>
+            <button class="pin-key" data-key="6" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">6</button>
+            <button class="pin-key" data-key="7" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">7</button>
+            <button class="pin-key" data-key="8" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">8</button>
+            <button class="pin-key" data-key="9" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">9</button>
+            <button class="pin-key btn-clear" id="btn-clear-pin-dono" style="height: 50px; width: 50px; border-radius: 50%; border: none; background: transparent; color: var(--text-muted); font-size: 0.72rem; font-weight: 600; cursor: pointer;">Limpar</button>
+            <button class="pin-key" data-key="0" style="height: 50px; width: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; font-size: 1.2rem; cursor: pointer; transition: background 0.15s ease;">0</button>
+            <button class="pin-key btn-backspace" id="btn-backspace-pin-dono" style="height: 50px; width: 50px; border-radius: 50%; border: none; background: transparent; color: var(--text-muted); font-size: 1.1rem; cursor: pointer;">⌫</button>
+          </div>
+
+          ${!isCreation ? `
+            <div style="margin-top: 24px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px;">
+              <button id="btn-esqueci-pin-dono" style="background: none; border: none; color: var(--accent); cursor: pointer; font-size: 0.8rem; font-weight: 700; font-family: 'Montserrat', sans-serif; transition: opacity 0.2s ease;">Esqueci meu PIN</button>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+
+      let pinAccumulator = '';
+
+      const updatePinDisplayDono = () => {
+        const dots = modal.querySelectorAll('#pin-display-dono .pin-dot');
+        dots.forEach((dot, index) => {
+          if (index < pinAccumulator.length) {
+            dot.style.background = 'var(--accent)';
+            dot.style.borderColor = 'var(--accent)';
+            dot.style.transform = 'scale(1.2)';
+          } else {
+            dot.style.background = 'transparent';
+            dot.style.borderColor = 'rgba(255,255,255,0.3)';
+            dot.style.transform = 'scale(1)';
+          }
+        });
+      };
+
+      const handleKeyInput = async (digit) => {
+        if (pinAccumulator.length < 4) {
+          pinAccumulator += digit;
+          updatePinDisplayDono();
+
+          if (pinAccumulator.length === 4) {
+            setTimeout(() => {
+              modal.remove();
+              document.body.style.overflow = '';
+              resolve({ action: 'submit', pin: pinAccumulator });
+            }, 250);
+          }
+        }
+      };
+
+      modal.querySelectorAll('.pin-key[data-key]').forEach(btn => {
+        btn.onclick = () => handleKeyInput(btn.dataset.key);
+        // Add hover feedbacks in JS
+        btn.onmouseenter = () => btn.style.background = 'rgba(255, 255, 255, 0.08)';
+        btn.onmouseleave = () => btn.style.background = 'rgba(255, 255, 255, 0.03)';
+      });
+
+      modal.querySelector('#btn-clear-pin-dono').onclick = () => {
+        pinAccumulator = '';
+        updatePinDisplayDono();
+      };
+
+      modal.querySelector('#btn-backspace-pin-dono').onclick = () => {
+        if (pinAccumulator.length > 0) {
+          pinAccumulator = pinAccumulator.slice(0, -1);
+          updatePinDisplayDono();
+        }
+      };
+
+      modal.querySelector('#btn-cancelar-pin-dono').onclick = () => {
+        modal.remove();
+        document.body.style.overflow = '';
+        resolve({ action: 'cancel' });
+      };
+
+      if (!isCreation) {
+        const forgetBtn = modal.querySelector('#btn-esqueci-pin-dono');
+        forgetBtn.onclick = () => {
+          modal.remove();
+          document.body.style.overflow = '';
+          resolve({ action: 'forgot' });
+        };
+        forgetBtn.onmouseenter = () => forgetBtn.style.opacity = '0.8';
+        forgetBtn.onmouseleave = () => forgetBtn.style.opacity = '1';
+      }
+    });
+  }
+
+  async function iniciarRedefinicaoPin() {
+    if (!STATE.currentUser) return;
+    const email = STATE.currentUser.email;
+
+    const actionCodeSettings = {
+      url: window.location.href.split('?')[0],
+      handleCodeInApp: true
+    };
+
+    try {
+      showToast("Enviando link de redefinição para o seu e-mail...", "info");
+      localStorage.setItem('darkflix_emailForSignIn', email);
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      showToast("Link de redefinição enviado! Verifique seu e-mail.", "success");
+    } catch (err) {
+      console.error("Erro ao enviar link de redefinição de PIN:", err);
+      showToast("Erro ao enviar e-mail de redefinição.", "error");
+    }
+  }
+
+  async function verificarLinkRedefinicaoPin() {
+    if (isSignInWithEmailLink(auth, window.location.href)) {
+      let email = localStorage.getItem('darkflix_emailForSignIn');
+      if (!email) {
+        email = prompt('Por segurança, confirme seu e-mail para redefinir o PIN de Aparelhos:');
+      }
+
+      if (email) {
+        try {
+          showToast("Confirmando autorização...", "info");
+          await signInWithEmailLink(auth, email.trim(), window.location.href);
+          localStorage.removeItem('darkflix_emailForSignIn');
+          showToast("Identidade confirmada com sucesso!", "success");
+          
+          const res = await mostrarModalPinDono(true);
+          if (res.action === 'submit' && res.pin) {
+            const pinRef = ref(db, `users/${STATE.currentUser.uid}/devices_pin`);
+            await set(pinRef, res.pin);
+            showToast("PIN de aparelhos criado com sucesso! Redirecionando...", "success");
+            // Navegar automaticamente para a página de aparelhos após criar o PIN
+            setTimeout(() => navigateTo('devices'), 800);
+          }
+        } catch (err) {
+          console.error("Erro ao validar link de e-mail:", err);
+          showToast("Link de verificação inválido ou expirado.", "error");
+        }
+      }
+      
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }
   
   // Função para mapear User Agent em informações legíveis
   function obterInformacoesAparelho() {
@@ -4500,6 +4804,9 @@ const STATE = {
     if (user) {
       STATE.currentUser = user;
       await loadProfilesFromDatabase();
+
+      // Verificar se o usuário retornou de um link de verificação de email (criação/redefinição de PIN)
+      await verificarLinkRedefinicaoPin();
       
       // Registrar sessão, ouvinte de logout forçado e heartbeat
       await registrarSessaoAtiva();

@@ -4433,17 +4433,17 @@ const STATE = {
             "Clique em <strong>Salvar</strong> e tente enviar novamente!"
           ]
         );
-      } else if (err.code === 'auth/unauthorized-domain') {
+      } else if (err.code === 'auth/unauthorized-domain' || err.code === 'auth/unauthorized-continue-uri') {
         msg = "Domínio atual não autorizado no Firebase.";
         mostrarModalErroFirebase(
           "Domínio Não Autorizado",
-          `O domínio atual <strong>${window.location.hostname}</strong> precisa de autorização no Firebase para poder enviar e-mails.`,
+          `O domínio atual <strong>${window.location.hostname}</strong> precisa de autorização no Firebase para poder enviar e-mails de autenticação.`,
           [
             "Acesse o <strong>Firebase Console</strong> do seu projeto.",
-            "No menu esquerdo, vá em <strong>Build > Authentication > Configurações</strong>.",
-            "Acesse a aba <strong>Domínios autorizados</strong>.",
-            `Clique em 'Adicionar domínio' e insira: <strong style="color:var(--accent)">${window.location.hostname}</strong>.`,
-            "Salvar e tente enviar novamente!"
+            "No menu esquerdo, vá em <strong>Build > Authentication > Configurações</strong> (ou Settings).",
+            "Acesse a aba <strong>Domínios autorizados</strong> (Authorized domains).",
+            `Clique em <strong>'Adicionar domínio'</strong> e adicione o domínio atual: <strong style="color:var(--accent)">${window.location.hostname}</strong> (se for localhost, adicione apenas <code>localhost</code>).`,
+            "Salve e tente enviar novamente!"
           ]
         );
       } else {

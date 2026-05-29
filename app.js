@@ -4338,6 +4338,70 @@ const STATE = {
     });
   }
 
+  function mostrarModalErroFirebase(titulo, subtitulo, etapas) {
+    const oldModal = document.getElementById('modal-erro-firebase');
+    if (oldModal) oldModal.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'modal-erro-firebase';
+    modal.className = 'modal-backdrop active';
+    modal.style.zIndex = '999999';
+
+    const etapasHtml = etapas.map(etapa => `
+      <li style="text-align: left; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4; font-family: 'Montserrat', sans-serif;">
+        ${etapa}
+      </li>
+    `).join('');
+
+    modal.innerHTML = `
+      <div class="pin-container" style="box-shadow: var(--shadow-lg); background: #12121a; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px; text-align: center; position: relative; max-width: 420px; width: 90%;">
+        <button class="pin-close" id="btn-fechar-erro-firebase" style="position: absolute; right: 15px; top: 15px; background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; transition: color 0.2s;">✕</button>
+        
+        <div style="margin: 10px auto 20px; width: 64px; height: 64px; background: rgba(229, 9, 20, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(229, 9, 20, 0.2);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+
+        <h2 style="font-size: 1.25rem; margin-bottom: 8px; font-weight: 700; color: var(--text-primary); font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 0.5px;">${titulo}</h2>
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; font-family: 'Montserrat', sans-serif; max-width: 320px; margin-left: auto; margin-right: auto;">
+          ${subtitulo}
+        </p>
+
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); padding: 15px 18px; margin-bottom: 24px;">
+          <h3 style="font-size: 0.85rem; color: var(--text-primary); margin-bottom: 12px; font-weight: 700; text-align: left; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; gap: 8px; margin-top: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Como configurar no Firebase:
+          </h3>
+          <ol style="margin: 0; padding-left: 18px;">
+            ${etapasHtml}
+          </ol>
+        </div>
+
+        <button id="btn-entendido-erro-firebase" style="width: 100%; padding: 12px 20px; background: var(--accent); color: white; border: none; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 700; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all 0.2s ease;">
+          Entendido, vou configurar!
+        </button>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+
+    const fechar = () => {
+      modal.remove();
+      document.body.style.overflow = '';
+    };
+
+    modal.querySelector('#btn-fechar-erro-firebase').onclick = fechar;
+    modal.querySelector('#btn-entendido-erro-firebase').onclick = fechar;
+
+    const btn = modal.querySelector('#btn-entendido-erro-firebase');
+    btn.onmouseenter = () => btn.style.background = '#c40812';
+    btn.onmouseleave = () => btn.style.background = '';
+  }
+
   async function iniciarRedefinicaoPin() {
     if (!STATE.currentUser) return;
     const email = STATE.currentUser.email;
@@ -4354,7 +4418,48 @@ const STATE = {
       showToast("Link de redefinição enviado! Verifique seu e-mail.", "success");
     } catch (err) {
       console.error("Erro ao enviar link de redefinição de PIN:", err);
-      showToast("Erro ao enviar e-mail de redefinição.", "error");
+      
+      let msg = "Erro ao enviar e-mail de redefinição.";
+      if (err.code === 'auth/operation-not-allowed') {
+        msg = "Login por link de e-mail desativado.";
+        mostrarModalErroFirebase(
+          "Configuração Pendente",
+          "O provedor 'Link de e-mail (login sem senha)' está desativado no Firebase Console. Para que o PIN de aparelhos funcione, ative-o nas configurações.",
+          [
+            "Acesse o <strong>Firebase Console</strong> do seu projeto.",
+            "No menu esquerdo, vá em <strong>Build > Authentication > Sign-in method</strong>.",
+            "Clique no provedor <strong>E-mail/Senha</strong>.",
+            "Ative a opção <strong>Link do e-mail (login sem senha)</strong>.",
+            "Clique em <strong>Salvar</strong> e tente enviar novamente!"
+          ]
+        );
+      } else if (err.code === 'auth/unauthorized-domain') {
+        msg = "Domínio atual não autorizado no Firebase.";
+        mostrarModalErroFirebase(
+          "Domínio Não Autorizado",
+          `O domínio atual <strong>${window.location.hostname}</strong> precisa de autorização no Firebase para poder enviar e-mails.`,
+          [
+            "Acesse o <strong>Firebase Console</strong> do seu projeto.",
+            "No menu esquerdo, vá em <strong>Build > Authentication > Configurações</strong>.",
+            "Acesse a aba <strong>Domínios autorizados</strong>.",
+            `Clique em 'Adicionar domínio' e insira: <strong style="color:var(--accent)">${window.location.hostname}</strong>.`,
+            "Salvar e tente enviar novamente!"
+          ]
+        );
+      } else {
+        msg = `Erro: ${err.message || err.code || err}`;
+        mostrarModalErroFirebase(
+          "Erro ao Enviar E-mail",
+          `O Firebase retornou um erro ao tentar enviar o link para seu e-mail:`,
+          [
+            `Código do erro: <strong>${err.code || 'Desconhecido'}</strong>`,
+            `Mensagem: <code>${err.message || err}</code>`,
+            "Verifique se as credenciais do seu Firebase no arquivo <code>app.js</code> estão totalmente corretas."
+          ]
+        );
+      }
+
+      showToast(msg, "error");
     }
   }
 

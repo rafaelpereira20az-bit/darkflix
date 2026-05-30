@@ -1973,6 +1973,20 @@ const STATE = {
       categoria: "aberto",
       logo: "https://upload.wikimedia.org/wikipedia/pt/a/a6/Logotipo_da_TV_Nova_Era.png",
       url: "http://wz3.dnip.com.br:1935/novaeratv/novaeratv.sdp/live.m3u8"
+    },
+    {
+      id: "fifa-plus-portuguese",
+      nome: "FIFA+ Portuguese",
+      categoria: "aberto",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwmkdTPXGLLPs5v_lU-ebgw-vg4qZ2-XeEsQ&s",
+      url: "https://e3be9ac5.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctYnJfRklGQVBsdXNQb3J0dWd1ZXNlX0hMUw/playlist.m3u8"
+    },
+    {
+      id: "multimedios-saltillo",
+      nome: "Multimedios Saltillo",
+      categoria: "aberto",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDWgRy1wTFCQdTCpgqmyamO2UW8rSa-eIc6A&s",
+      url: "https://mdstrm.com/live-stream-playlist/5d5d51a4e9a40e25f4a0332c.m3u8?checkedby:iptvcat.net"
     }
   ];
 
